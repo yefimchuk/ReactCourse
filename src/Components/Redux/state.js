@@ -66,6 +66,12 @@ let state = {
                 avatar: "https://lh3.googleusercontent.com/xGwxQS8E_TgS53kA02U4OW31mGgrhY6Ey5zrbEP62dFq-BJJmuiMM1B3ACCU5VW0fY8H25SjxWuLF5bWZF-R5uWH"
             }
 
+        ],
+        dialogsData: [
+            {message: "Hello"},
+            {message: "Dima, how are u?"},
+            {message: "Bye"},
+
         ]
     },
     sideBar: {

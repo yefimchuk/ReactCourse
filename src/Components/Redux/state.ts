@@ -1,5 +1,6 @@
+const addnewreview = "ADD-NEW-REVIEW";
+const updatereviewtext = "UPDATE-REVIEW-TEXT";
 let store = {
-
     _state: {
         profilePage: {
             ReviewData: [
@@ -127,7 +128,8 @@ let store = {
     },
     dispatch(action: any) {
 
-        if (action.type === "ADD-NEW-REVIEW") {
+
+        if (action.type === addnewreview) {
 
             let NewReview = {
                 avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
@@ -140,16 +142,25 @@ let store = {
             this.Rerender(this._state)
 
 
-        } else if (action.type === "UPDATE-REVIEW-TEXT") {
+        } else {
 
-            this._state.profilePage.NewReviewText = action.newText
-            this.Rerender(this._state)
+            if (action.type === updatereviewtext) {
+
+                        this._state.profilePage.NewReviewText = action.newText
+                        this.Rerender(this._state)
 
 
+                    }
         }
     }
-
-
 }
+
+export const addNewReviewActionCreator = () => {
+    return {type: addnewreview}
+}
+export const updatereviewtextActionCreator = (text: string) => {
+    return {type: updatereviewtext, newText: text}
+}
+
 
 export default store

@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
+import {addNewReviewActionCreator, updatereviewtextActionCreator} from "../../Redux/state";
 
 let Profile = (props) => {
 
@@ -10,8 +11,9 @@ let Profile = (props) => {
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;
+        const action = addNewReviewActionCreator();
         if (text !== ""){
-            props.dispatch({type: "ADD-NEW-REVIEW"})
+            props.dispatch(action)
 
         }
 
@@ -20,7 +22,8 @@ let Profile = (props) => {
     let newTextReview = () => {
 
         let text = newReviewElement.current.value;
-        props.dispatch({type: "UPDATE-REVIEW-TEXT", newText: text})
+        const action = updatereviewtextActionCreator(text);
+        props.dispatch(action)
     }
     return (
         <div>

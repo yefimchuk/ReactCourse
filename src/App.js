@@ -1,4 +1,5 @@
 import './App.css';
+import Header from "./Header";
 
 function App() {
   return (
@@ -9,15 +10,5 @@ function App() {
   </div>
   );
 }
-let Header = () => {
-  return (
-      <div className="Header">
 
-        <div>Home</div>
-        <div>About us</div>
-        <div>Contact</div>
-
-      </div>
-)
-}
 export default App;

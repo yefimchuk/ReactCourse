@@ -1,10 +1,9 @@
+import React from "react";
+import logo from "../logo.svg"
 let Header = () => {
     return (
         <div className="Header">
-
-            <div className=>Home</div>
-            <div>About us</div>
-            <div>Contact</div>
+    <img src={logo} className="App-logo" alt={logo}/>
 
         </div>
     )

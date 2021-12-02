@@ -1,4 +1,9 @@
-
+*{
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
+}
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
@@ -6,26 +11,48 @@
 }
 
 .App-header {
-  width: 100%;
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+padding: 1em;
+  grid-auto-rows: minmax(100px, auto);
+
   color: white;
+
 }
 
 .App-link {
   color: #61dafb;
 }
 .App{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
+  background-color: #282c34;
+  height: 1000px;
+
+}
+.item1{
+  grid-column-start: 1;
+  grid-column-end:5;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  border: 1px solid white;
+
+}
+.item2{
+  grid-column-start: 1;
+  grid-column-end:3;
+  grid-row-start: 3 ;
+  grid-row-end: 5;
+  border: 1px solid white;
+
+}
+.item3{
+
+  border: 1px solid white;
+
+}
+.item4{
+
+  border: 1px solid white;
+
 }
 .Header{
 width: 23%;
@@ -36,4 +63,18 @@ width: 23%;
   font-size: 30px;
   color: #282c34;
 
+}
+.box {
+  border-radius: 5px;
+  border: 1px solid white;
+  padding: 1em;
+}
+.box1 {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.nested{
+  padding: 1em;
+  background: mediumpurple;
+  border: 1px solid black;
 }

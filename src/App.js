@@ -9,9 +9,12 @@ import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
 
-function App() {
+
+const App = () => {
+
     return (
-        <BrowserRouter>
+
+
             <div className='App'>
                 <Header />
                 <Sidebar />
@@ -25,7 +28,8 @@ function App() {
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
+
+
     );
 }
 

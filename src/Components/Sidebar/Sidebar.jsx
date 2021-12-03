@@ -1,33 +1,31 @@
 import React from "react";
 import s from "./Sidebar.module.css"
+import {NavLink} from "react-router-dom";
 
 let Sidebar = () => {
     return (
-        <div className={s.Sidebar}>
 
-            <div className={s.header_text}>
-
-                <div className={s.header_text1}>
-                    <a className={s.text} href="/profile">Profile</a>
+        <nav className={s.Sidebar}>
+                <div className={s.item}>
+                    <NavLink exact activeClassName={s.active}  to="/profile" >Profile</NavLink>
                 </div>
 
-                <div className={s.header_text1}>
-                    <a className={s.text} href="/message">Message</a>
+                <div className={s.item}>
+                    <NavLink   to="/message" activeClassName={s.hello}>Message</NavLink>
                 </div>
 
-                <div className={s.header_text1}>
-                    <a className={s.text} href="/news">News</a>
+                <div className={s.item}>
+                    <NavLink to="/news">News</NavLink>
                 </div>
 
-                <div className={s.header_text1}>
-                    <a className={s.text} href="/music">Music</a>
+                <div className={s.item}>
+                    <NavLink to="/music">Music</NavLink>
                 </div>
-                <div className={s.header_text1}>
-                    <a  className={s.text} href="/settings">Settings</a>
+                <div className={s.item}>
+                    <NavLink to="/settings">Settings</NavLink>
                 </div>
-            </div>
+        </nav>
 
-        </div>
     )
 }
 export default Sidebar

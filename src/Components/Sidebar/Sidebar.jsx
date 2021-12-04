@@ -6,6 +6,7 @@ let Sidebar = () => {
     return (
 
         <nav className={s.Sidebar}>
+            <div className={s.ItemFlex}>
                 <div className={s.item}>
                     <NavLink exact activeClassName={s.active}  to="/profile" >Profile</NavLink>
                 </div>
@@ -24,6 +25,8 @@ let Sidebar = () => {
                 <div className={s.item}>
                     <NavLink to="/settings">Settings</NavLink>
                 </div>
+            </div>
+
         </nav>
 
     )

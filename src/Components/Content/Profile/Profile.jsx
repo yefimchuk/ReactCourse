@@ -1,11 +1,11 @@
 import React from "react";
-import s from "../CSS/Content.module.css"
+import s from "./Profile.module.css"
 import Review from "./Review";
 
-let Content = () => {
+let Profile = () => {
 
     return (
-        <div className={s.Content}>
+        <div>
             <img className={s.ImageTop}
                  src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"/>
             <div className={s.account}>
@@ -38,4 +38,4 @@ let Content = () => {
         </div>
     )
 }
-export default Content
+export default Profile

@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../logo.svg"
-import s from "../CSS/Header.module.css"
+import s from "./Header.module.css"
 let Header = () => {
     return (
         <div className={s.Header}>

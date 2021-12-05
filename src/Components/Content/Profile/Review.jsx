@@ -1,5 +1,5 @@
 import React from "react";
-import s from "../CSS/Content.module.css"
+import s from "./Profile.module.css"
 
 let Review = (props) => {
     return (

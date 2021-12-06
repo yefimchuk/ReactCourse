@@ -8,22 +8,22 @@ let Sidebar = () => {
             <div className={s.header_text}>
 
                 <div className={s.header_text1}>
-                    <a href="/profile">Profile</a>
+                    <a className={s.text} href="/profile">Profile</a>
                 </div>
 
                 <div className={s.header_text1}>
-                    <a href="/message">Message</a>
+                    <a className={s.text} href="/message">Message</a>
                 </div>
 
                 <div className={s.header_text1}>
-                    <a href="/news">News</a>
+                    <a className={s.text} href="/news">News</a>
                 </div>
 
                 <div className={s.header_text1}>
-                    <a href="/music">Music</a>
+                    <a className={s.text} href="/music">Music</a>
                 </div>
                 <div className={s.header_text1}>
-                    <a href="/settings">Settings</a>
+                    <a  className={s.text} href="/settings">Settings</a>
                 </div>
             </div>
 

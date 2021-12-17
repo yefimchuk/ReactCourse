@@ -1,42 +1,13 @@
 
+.Post {
+    padding: 15px;
 
-.account {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
 }
 
 .ImageTop {
     border-radius: 6px;
     width: 100%;
     height: 30%;
-
-}
-
-.personalData {
-    margin-left: 30px;
-}
-
-.text1 {
-    color: white;
-    font-size: 30px;
-    margin-bottom: 10px;
-
-}
-
-.text {
-    color: white;
-    font-size: 20px;
-}
-
-.accountAvatar {
-    height: 150px;
-}
-
-.Post {
-    padding: 15px;
 
 }
 

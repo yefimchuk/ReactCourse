@@ -1,12 +1,12 @@
 import {UsersAPI} from "../../API/API";
 
-const Follow = "FOLLOW";
-const UnFollow = "UNFOLLOW";
-const SetUsers = "SET-USERS";
-const SetCurrentPage = "SET-CURRENT-PAGE";
-const SetTotalUserCount = "SET-TOTAL-USER-COUNT"
-const IsLogin = "IS-LOGIN"
-const WAITING_FOLLOW = "WAITING-FOLLOW"
+const Follow = "users/FOLLOW";
+const UnFollow = "users/UNFOLLOW";
+const SetUsers = "users/SET-USERS";
+const SetCurrentPage = "users/SET-CURRENT-PAGE";
+const SetTotalUserCount = "users/SET-TOTAL-USER-COUNT"
+const IsLogin = "users/IS-LOGIN"
+const WAITING_FOLLOW = "users/WAITING-FOLLOW"
 let initialState = {
     users: [{
         followed: false,
@@ -121,7 +121,7 @@ export const ToggleWaitingFollow = (WaitingFollow: any, id: number) => {
 let FollowUnfollowFLow = async (dispatch: any, id: number, apiMethod: any, actionCreator: Function) => {
     dispatch(ToggleWaitingFollow(true, id))
     let response = await apiMethod(id)
-    debugger
+
     if (response.resultCode === 0) {
         dispatch(actionCreator(id))
     }
@@ -129,13 +129,13 @@ let FollowUnfollowFLow = async (dispatch: any, id: number, apiMethod: any, actio
 }
 // thunk
 export const followThunk = (id: number) => {
-    return (dispatch: any) => {
-        FollowUnfollowFLow(dispatch, id, UsersAPI.Follow.bind((UsersAPI)), follow)
+    return async (dispatch: any) => {
+        await FollowUnfollowFLow(dispatch, id, UsersAPI.Follow.bind((UsersAPI)), follow)
     }
 }
 export const unfollowThunk = (id: number) => {
-    return (dispatch: any) => {
-        FollowUnfollowFLow(dispatch, id, UsersAPI.Unfollow.bind((UsersAPI)), unfollow)
+    return async (dispatch: any) => {
+        await  FollowUnfollowFLow(dispatch, id, UsersAPI.Unfollow.bind((UsersAPI)), unfollow)
     }
 }
 export const getUsersThunk = (pageSize: number) => {

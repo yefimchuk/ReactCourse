@@ -21,15 +21,15 @@ export const UsersAPI = {
         })
     },
 
-    Unfollow: async (id: number) => {
-        let response = instance.delete(`follow/${id}`).then(response => {
-            return response.data
-        })
+    Unfollow: async( id: number) => {
+        let response = await instance.delete(`follow/${id}`)
+        return response.data
+
     },
 
     Follow: async (id: number) => {
         let response = await instance.post(`follow/${id}`, {})
-        return response.data
+            return response.data
     },
     SetMyId: (userId: number) => {
         return instance.get(`profile/${userId}`)

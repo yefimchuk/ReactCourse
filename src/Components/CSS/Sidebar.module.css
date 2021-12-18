@@ -1,0 +1,15 @@
+.Sidebar {
+    grid-area: S;
+    background-color: #1c1e23;
+    border-radius: 6px;
+}
+.header_text1{
+    font-size: 25px;
+    color: white;
+    margin-left: 20px;
+    padding: 5px;
+    text-align: start;
+}
+.header_text{
+    margin-top: 20px;
+}

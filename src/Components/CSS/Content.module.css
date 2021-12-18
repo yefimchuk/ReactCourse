@@ -1,0 +1,131 @@
+.Content {
+
+    grid-area: C;
+    background-color: #282c34;
+
+}
+
+.account {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.ImageTop {
+    border-radius: 6px;
+    width: 100%;
+    height: 30%;
+
+}
+
+.personalData {
+    margin-left: 30px;
+}
+
+.text1 {
+    color: white;
+    font-size: 30px;
+    margin-bottom: 10px;
+
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+}
+
+.accountAvatar {
+    height: 150px;
+}
+
+.Post {
+    padding: 15px;
+
+}
+
+.postFlex {
+    width: 81%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 7px;
+}
+
+.blockPost {
+    color: lightgray;
+    padding: 10px;
+    background: lightslategray;
+    width: 80%;
+    height: 70px;
+
+    border-radius: 4px;
+}
+
+.textPost {
+    padding: 10px;
+    font-size: 25px;
+    color: white;
+}
+
+.submit {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    background: lightgray;
+    margin: 10px;
+}
+
+.review {
+    display: flex;
+
+    flex-direction: row;
+
+
+}
+
+.reviewText {
+
+    color: white;
+    font-size: 18px;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+}
+
+.likes {
+
+
+    color: red;
+    height: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+
+}
+
+.likePhoto {
+    height: 30px;
+}
+
+.textLike {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+
+}

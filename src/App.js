@@ -1,8 +1,8 @@
 import React from "react";
 import './App.css';
-import Header from "./Components/Header";
-import Sidebar from "./Components/Sidebar";
-import Content from "./Components/Content";
+import Header from "./Components/JSX/Header";
+import Sidebar from "./Components/JSX/Sidebar";
+import Content from "./Components/JSX/Content";
 
 function App() {
     return (

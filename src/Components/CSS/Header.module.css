@@ -1,0 +1,6 @@
+.Header {
+    grid-area: H;
+    align-self: start;
+    background-color: #1c1e23;
+    border-radius: 4px;
+}

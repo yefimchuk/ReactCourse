@@ -1,3 +1,4 @@
+
 *{
   -ms-overflow-style: none;
 }
@@ -21,90 +22,16 @@
   }
 }
 
-
-
-.App-link {
-  color: #61dafb;
-}
 .App{
   grid-template-areas:
   "H H"
   "S C";
   display: grid;
-
   grid-template-rows: 50px 1fr;
   grid-template-columns: 2fr 10fr;
-  grid-gap: 15px;
+  grid-column-gap: 10px;
+  grid-row-gap: 15px;
   padding: 1em;
   background-color: #282c34;
-
-  height: 1000px;
-
-}
-.item1{
-  grid-column-start: 1;
-  grid-column-end:5;
-  grid-row-start: 1;
-  grid-row-end: 3;
-  border: 1px solid white;
-
-}
-.item2{
-  grid-column-start: 1;
-  grid-column-end:3;
-  grid-row-start: 3 ;
-  grid-row-end: 5;
-  border: 1px solid white;
-
-}
-.item3{
-
-  border: 1px solid white;
-
-}
-.item4{
-
-  border: 1px solid white;
-
-}
-
-.box {
-  border-radius: 5px;
-  border: 1px solid white;
-  padding: 1em;
-}
-.box1 {
-  grid-column-start: 1;
-  grid-column-end: 4;
-}
-.nested{
-  padding: 1em;
-  background: mediumpurple;
-  border: 1px solid black;
-}
-.header_text {
-
-  color: white;
-}
-.Header {
-grid-area: H;
-align-self: start;
-  background: mediumpurple;
-
-
-
-}
-.header_text1{
-  padding: 10px;
-  text-align: center;
-}
-.Sidebar {
-  grid-area: S;
-  background: mediumpurple;
-
-}
-.Content{
-  grid-area: C;
-  background: red;
-
+  height: 100%;
 }

@@ -6,10 +6,10 @@ import App from './App';
 // @ts-ignore
 import store from "./Components/Redux/store-redux.ts";
 import {Provider} from "react-redux";
-import {HashRouter, Navigate} from "react-router-dom";
+import {HashRouter} from "react-router-dom";
 
 
-ReactDOM.render(
+ReactDOM.render<any>(
     <React.StrictMode>
 
         <Provider store={store}>

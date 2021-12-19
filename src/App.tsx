@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect} from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
@@ -26,7 +26,6 @@ let App = (props: any) => {
     if (!props.initialized) {
         return <Loading/>
     }
-    console.log("1")
     return (
 
         <div className='App'>
@@ -36,7 +35,7 @@ let App = (props: any) => {
             <Sidebar friendsData={props.friendsData}/>
             <div className='app-wrapper-content'>
                 <Routes>
-
+                    <Route path="/login" element={<LoginContainer/>}/>
                     <Route path="/message/:id" element={<MessageContainer/>}/>
                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                     <Route path='/profile' element={<ProfileContainer/>}/>
@@ -44,7 +43,6 @@ let App = (props: any) => {
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
-                    <Route path="/login" element={<LoginContainer/>}/>
                     <Route path="/" element={<ProfileContainer/>}>
 
                     </Route>

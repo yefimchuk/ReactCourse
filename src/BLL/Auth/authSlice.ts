@@ -3,22 +3,26 @@ import {AuthAPI, HeaderAPI} from "../../API/API";
 
 
 export let HeaderLogin: any = createAsyncThunk("authPage/HeaderLogin",
-    async ({}, {dispatch}) => {
+    async ({}, {dispatch, rejectWithValue}) => {
+        try {
+            let responseFromAuthMe = await HeaderAPI.AuthMe()
+            if (responseFromAuthMe.data.resultCode === 0) {
+                let {id, email, login} = responseFromAuthMe.data.data;
 
-        let responseFromAuthMe = await HeaderAPI.AuthMe()
-        if (responseFromAuthMe.data.resultCode === 0) {
-            let {id, email, login} = responseFromAuthMe.data.data;
-            //TODO check 4 arg - isLogin
-            dispatch(setAuthUserData({id, email, login}))
+                dispatch(setAuthUserData({id, email, login}))
 
-            let responseLogin = await HeaderAPI.Login(login)
+                let responseLogin = await HeaderAPI.Login(login)
 
-            return responseLogin.data.items.filter((u: any) => {
-                if (id === u.id) {
-                    return u
-                }
-            })
+                return responseLogin.data.items.filter((u: any) => {
+                    if (id === u.id) {
+                        return u
+                    }
+                })
+            }
+        } catch (e) {
+            rejectWithValue(e)
         }
+
     })
 
 
@@ -57,14 +61,14 @@ debugger
     })
 
 
-export let UnLogin = createAsyncThunk("authPage/unlogin",
-    async ({}, {dispatch}) => {
+export let UnLogin = createAsyncThunk("authPage/unLogin",
+    async ({val}: any, {dispatch}) => {
         let response = await AuthAPI.LogOut()
 
         if (response.data.resultCode === 0) {
             dispatch(setLogOut())
         }
-
+        return response
     })
 
 export let GetCaptchaUrl = createAsyncThunk("authPage/getCaptchaUrl",
@@ -132,7 +136,7 @@ export const authSlice = createSlice({
                 state.date = action.payload[0]
             },
             [HeaderLogin.pending]: (state, action) => {
-
+                state.isLogin = false
             }
         },
     }

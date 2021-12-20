@@ -21,10 +21,8 @@ type PropsT = {
 
 }
 let Header = ({date, isLogin}: PropsT) => {
-    let dispatch = useDispatch()
-    let logOut = () => {
-        dispatch(UnLogin())
-    }
+    const dispatch = useDispatch();
+
 
     return (
         <div className="Header">
@@ -38,7 +36,9 @@ let Header = ({date, isLogin}: PropsT) => {
                             <div className="name">{date.name}</div>
                             <img className="avatar" src={date.photos.large === null ? photo : date.photos.large}
                                  alt="avatar"/>
-                            <LogoutOutlined className="logout" onClick={logOut}/>
+                            <LogoutOutlined className="logout" onClick={() => {
+                                dispatch(UnLogin({date}))
+                            }}/>
                         </div> : null
                 }
 

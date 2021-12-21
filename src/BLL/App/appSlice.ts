@@ -5,11 +5,8 @@ import {HeaderLogin} from "../Auth/authSlice";
 export let initializingThunk: any = createAsyncThunk("app/initializingWasSuccess",
     async ({}, {dispatch, rejectWithValue}) => {
         try {
-
             let auth = await dispatch(HeaderLogin({}))
-
             await Promise.all([auth])
-            debugger
             return true
         } catch (err) {
             debugger

@@ -5,7 +5,6 @@ import {compose} from "redux";
 import {WithAuthRedirectToProfile} from "../../hoc/WithAuthRedirectToProfile";
 import {getAuthDateSelector, getAuthIsLoginSelector} from "../../BLL/Auth/authSelector";
 import {useSelector} from "react-redux";
-import {Navigate} from "react-router-dom";
 
 
 let HeaderContainerAPI = () => {

@@ -10,10 +10,13 @@ export const GetNewProfile: any = createAsyncThunk(
         if (!id) {
             const auth = await HeaderAPI.AuthMe()
             dispatch(setId(auth.data.data.id))
-            return await UsersAPI.SetMyId(auth.data.data.id)
-
+            let profile = await UsersAPI.SetMyId(auth.data.data.id)
+            let status = await dispatch(GetStatusThunk(auth.data.data.id))
+            return [status.payload, profile]
         }
-        return await UsersAPI.SetMyId(id)
+        let profile = await UsersAPI.SetMyId(id)
+        let status = await dispatch(GetStatusThunk({id}))
+        return [status.payload, profile]
 
     })
 
@@ -33,7 +36,7 @@ export const GetStatusThunk: any = createAsyncThunk("profile/getStatus",
             dispatch(setId(response.data.data.id))
             let statusResponse = await ProfileAPI.SetStatus(response.data.data.id)
             if (statusResponse.data !== null) {
-                dispatch(setStatus(statusResponse.data))
+                return statusResponse.data
             }
         }
 
@@ -41,7 +44,7 @@ export const GetStatusThunk: any = createAsyncThunk("profile/getStatus",
         if (response.data === null) {
             response.data = ""
         }
-        dispatch(setStatus(response.data))
+        return (response.data)
     })
 
 export const UpdateStatusThunk: any = createAsyncThunk("profile/getStatus",
@@ -51,8 +54,7 @@ export const UpdateStatusThunk: any = createAsyncThunk("profile/getStatus",
 
         let response = await ProfileAPI.UpdateStatus(status)
         if (response.data.resultCode === 0) {
-
-            dispatch(setStatus(status))
+            return status
         }
 
 
@@ -154,13 +156,6 @@ export const profilePage = createSlice({
 
 
         },
-        setStatus: (state, action) => {
-
-            return {
-                ...state,
-                status: action.payload,
-            }
-        },
         setId: (state, action) => {
 
             return {
@@ -176,10 +171,20 @@ export const profilePage = createSlice({
     },
     extraReducers: {
         [GetNewProfile.fulfilled]: (state, action) => {
+            state.status = action.payload[0]
+            state.Profile = action.payload[1].data
+        },
 
-            state.Profile = action.payload.data
+        [GetStatusThunk.fulfilled]: (state, action) => {
+
+            state.status = action.payload
+        },
+
+        [UpdateStatusThunk.fulfilled]: (state, action) => {
+
+            state.status = action.payload
         },
     },
 },)
 
-export const {setId, setStatus, addNewReview, sendLike,} = profilePage.actions
+export const {setId, addNewReview, sendLike,} = profilePage.actions

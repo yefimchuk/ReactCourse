@@ -22,7 +22,7 @@ import {getFriendSelector, getInitializedSelector} from "./BLL/App/appSelector";
     let friendsData = useSelector(getFriendSelector)
     useEffect(() => {
             dispatch(initializingThunk({}))
-        }, []
+        }, [dispatch]
     )
 
 

@@ -25,7 +25,7 @@ let ProfileAPIContainer = (props) => {
     let dispatch = useDispatch()
     let [state, SetState] = useState(props2)
 
-    useEffect(() => {
+    useEffect(async () => {
 
         let userId = params.userId;
         if (!userId) {
@@ -33,28 +33,14 @@ let ProfileAPIContainer = (props) => {
         }
 
         dispatch(GetNewProfile(userId))
-        dispatch(GetStatusThunk(userId))
+
 
 
     }, [])
 
-    useEffect(() => {
 
-        let userId = params.userId;
-        if (!userId) {
-            userId = props2.id
-        }
 
-        dispatch(GetNewProfile(userId))
-        dispatch(GetStatusThunk(userId))
-
-    }, [props2.id])
-
-    if (!props2.Profile || props2.Profile.Status === null) {
-        return <MyLoader/>
-    }
-
-    if (props2 === state) {
+    if (props2 === state || !props2.Profile.fullName) {
         return <MyLoader/>
     }
 

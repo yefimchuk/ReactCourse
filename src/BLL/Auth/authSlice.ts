@@ -4,6 +4,8 @@ import {AuthAPI, HeaderAPI} from "../../API/API";
 
 export let HeaderLogin: any = createAsyncThunk("authPage/HeaderLogin",
     async ({}, {dispatch, rejectWithValue}) => {
+
+
         try {
             let responseFromAuthMe = await HeaderAPI.AuthMe()
             if (responseFromAuthMe.data.resultCode === 0) {

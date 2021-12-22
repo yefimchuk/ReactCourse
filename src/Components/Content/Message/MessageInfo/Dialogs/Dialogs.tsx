@@ -6,7 +6,7 @@ const MessageAccounts = (props: any) => {
 
     return (
 
-        <div className="account">
+        <div className="accountMessage ">
             {props.message}
 
         </div>

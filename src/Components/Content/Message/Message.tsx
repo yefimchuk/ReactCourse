@@ -28,7 +28,7 @@ let Message = ({messageData, dialogsData}: any) => {
     )
 
     return (
-        <div className="s.message">
+        <div className="message">
             <div className="account">
                 <div>
                     {messageDataBLL}

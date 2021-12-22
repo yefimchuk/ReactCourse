@@ -5,10 +5,10 @@ import {NavLink} from "react-router-dom";
 const MessageAccounts = (props: any) => {
     return (
 
-        <div className="account">
-            <img className="avatar" src={props.avatar}/>
+        <div className="accountMessage ">
+            <img className="avatarMessage" src={props.avatar}/>
 
-            <NavLink to={"/message/" + props.address} className="user">{props.nickname}    </NavLink>
+            <NavLink to={"/message/" + props.address} className="userMessage ">{props.nickname}    </NavLink>
         </div>
     )
 }

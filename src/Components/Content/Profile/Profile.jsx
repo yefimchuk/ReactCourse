@@ -17,7 +17,10 @@ let Profile = () => {
 
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
-                <div className={s.blockPost}>your news...</div>
+
+                <input className={s.blockPost} align="top" placeholder="you post...">
+
+                </input>
                 <div className={s.postFlex}>
                     <div className={s.submit}>Send</div>
                 </div>

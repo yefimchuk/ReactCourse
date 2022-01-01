@@ -21,4 +21,5 @@ let PersonalData = (props) => {
 
     )
 }
+
 export default PersonalData

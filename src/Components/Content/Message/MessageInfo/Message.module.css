@@ -1,0 +1,8 @@
+.account {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-self: center;
+    width: 30%;
+
+}

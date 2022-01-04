@@ -8,11 +8,11 @@ let Sidebar = () => {
         <nav className={s.Sidebar}>
             <div className={s.ItemFlex}>
                 <div className={s.item}>
-                    <NavLink exact activeClassName={s.active}  to="/profile" >Profile</NavLink>
+                    <NavLink  activeClassName={s.active}  to="/profile" >Profile</NavLink>
                 </div>
 
                 <div className={s.item}>
-                    <NavLink   to="/message" activeClassName={s.hello}>Message</NavLink>
+                    <NavLink   to="/message/:id">Message</NavLink>
                 </div>
 
                 <div className={s.item}>

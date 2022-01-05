@@ -2,7 +2,7 @@ import React from "react";
 
 import s from "../ProfileInfo/PersonalData.module.css"
 
-let PersonalData = (props) => {
+let PersonalInformation = (props) => {
     return (
         <div className={s.account}>
             <div>
@@ -22,4 +22,4 @@ let PersonalData = (props) => {
     )
 }
 
-export default PersonalData
+export default PersonalInformation

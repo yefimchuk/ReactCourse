@@ -20,6 +20,7 @@ const App = () => {
                 <Sidebar />
                 <div class='app-wrapper-content'>
                     <Routes>
+
                         <Route path="/message/:id" element= {<Message/>}/>
                         <Route path="/profile" element={<Profile/>}/>
                         <Route path="/news" element={<News/>}/>

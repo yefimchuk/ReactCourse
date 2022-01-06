@@ -8,7 +8,7 @@ let Sidebar = () => {
         <nav className={s.Sidebar}>
             <div className={s.ItemFlex}>
                 <div className={s.item}>
-                    <NavLink  activeClassName={s.active}  to="/profile" >Profile</NavLink>
+                    <NavLink  activeClassName="active"  to="/profile" >Profile</NavLink>
                 </div>
 
                 <div className={s.item}>

@@ -19,7 +19,7 @@ const App = (props) => {
                 <Sidebar friendsData={props.state.sideBar.friendsData}/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path="/message/:id" element={<MessageContainer store={props.store}/>}/>
+                        <Route path="/message/:id" element={<MessageContainer />}/>
                         <Route path="/profile" element={<ProfileContainer />}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>

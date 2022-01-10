@@ -55,6 +55,7 @@ text-decoration: none;
     border-radius: 100px;
     background: lightgray;
     margin: 10px;
+    object-fit:cover;
 }
 
 .review {

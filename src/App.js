@@ -9,7 +9,6 @@ import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
 
-
 const App = (props) => {
 
     return (
@@ -20,8 +19,8 @@ const App = (props) => {
                 <Sidebar />
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path="/message/:id" element={<Message messageData={props.messageData}/>}/>
-                        <Route path="/profile" element={<Profile PersonalData={props.PersonalData} ReviewData={props.ReviewData} />}/>
+                        <Route path="/message/:id" element={<Message messageData={props.state.messagePage.messageData}/>}/>
+                        <Route path="/profile" element={<Profile PersonalData={props.state.profilePage.PersonalData} ReviewData={props.state.profilePage.ReviewData} />}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

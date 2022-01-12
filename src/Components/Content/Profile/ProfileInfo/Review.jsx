@@ -5,9 +5,7 @@ import {sendLikes, sendLikesActionCreator} from "../../../Redux/profile-reducer"
 let Review = (props) => {
 
     let Like = () => {
-
         let action = sendLikesActionCreator(props)
-
         props.dispatch(action)
 
     }

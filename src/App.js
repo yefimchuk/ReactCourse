@@ -6,8 +6,9 @@ import {BrowserRouter, Route, Routes,} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
-import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
+
 import MessageContainer from "./Components/Content/Message/messageContainer";
+import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 
 const App = (props) => {
 
@@ -20,7 +21,7 @@ const App = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path="/message/:id" element={<MessageContainer />}/>
-             {/*           <Route path="/profile" element={<ProfileContainer />}/>*/}
+                        <Route path="/profile" element={<ProfileContainer />}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

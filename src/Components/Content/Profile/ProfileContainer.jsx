@@ -1,37 +1,32 @@
+import React from "react";
+import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Redux/profile-reducer";
+import Profile from "./Profile";
+import {connect} from "react-redux";
+let mapDispatchToProps = (dispatch) => {
+    return {
+        addReview: (text) => {
+            const action = addNewReviewActionCreator(text);
+            dispatch(action)
+        },
+        newTextReview: (text) => {
+            const action = updateReviewTextActionCreator(text);
+            dispatch(action)
+        },
 
+    }
+}
 
-/*let ProfileContainer = (props) => {*/
-
-
-/*    return
-        {(store) => {
-            let state = store.getState()
-
-            let addReview = (text) => {
-
-                const action = addNewReviewActionCreator(text);
-                store.dispatch(action)
-
-            }
-            let newTextReview = (text) => {
-
-                const action = updateReviewTextActionCreator(text);
-                store.dispatch(action)
-            }
-            return <Profile addReview={addReview} newTextReview={newTextReview}
-                            ReviewData={state.profilePage.ReviewData}
-                            name={state.profilePage.PersonalData.name}
-                            avatar={state.profilePage.PersonalData.avatar}
-                            born={state.profilePage.PersonalData.born}
-                            education={state.profilePage.PersonalData.education}
-                            city={state.profilePage.PersonalData.city}
-                            site={state.profilePage.PersonalData.site}
-                            dispatch={store.dispatch}
-                            NewReviewText={state.profilePage.NewReviewText}
-            />
+let mapStateToProps = (state) => {
+    return {
+        ReviewData: state.profilePage.ReviewData,
+        name: state.profilePage.PersonalData.name,
+        avatar: state.profilePage.PersonalData.avatar,
+        born: state.profilePage.PersonalData.born,
+        education: state.profilePage.PersonalData.education,
+        city: state.profilePage.PersonalData.city,
+        site: state.profilePage.PersonalData.site,
         }
     }
-    </Store.Consumer>*/
+    let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
 
-/*
-        export default ProfileContainer;*/
+    export default ProfileContainer;

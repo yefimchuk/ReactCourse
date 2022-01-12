@@ -10,6 +10,7 @@ let Profile = (props) => {
                                                             id={review.id}/>)
     let newReviewElement = React.createRef()
     let addReview = () => {
+        debugger
         let text = newReviewElement.current.value;
         if (text !== "") {
             props.addReview(text)

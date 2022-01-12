@@ -4,7 +4,6 @@ import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 
 let Profile = (props) => {
-    debugger
 
         let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
                                                       message={review.message}/>)

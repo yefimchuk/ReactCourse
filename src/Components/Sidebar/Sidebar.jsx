@@ -1,8 +1,9 @@
 import React from "react";
 import s from "./Sidebar.module.css"
 import {NavLink} from "react-router-dom";
+import Friends from "./Friends/Friends";
 
-let Sidebar = () => {
+let Sidebar = (props) => {
     return (
 
         <nav className={s.Sidebar}>
@@ -24,6 +25,9 @@ let Sidebar = () => {
                 </div>
                 <div className={s.item}>
                     <NavLink to="/settings">Settings</NavLink>
+                </div>
+                <div className={s.item}>
+                  <Friends friendsData={props.friendsData}/>
                 </div>
             </div>
 

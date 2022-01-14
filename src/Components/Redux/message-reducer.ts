@@ -47,23 +47,20 @@ export const MessageReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
 
         case updatemessagetext: {
-            let newState = {...state}
-            newState.NewMessageText = {...state.NewMessageText}
-            newState.NewMessageText = action.newText
-            return newState
+            return {
+                ...state,
+                NewMessageText: {...state.NewMessageText} = action.newText
+            }
         }
         case addnewmessage: {
-            let newState = {...state}
-            newState.dialogsData = [...state.dialogsData]
             let NewMessage = {
-                message: newState.NewMessageText
+                message: state.NewMessageText
             }
-
-            newState.dialogsData.push(NewMessage)
-            newState.NewMessageText = '';
-
-            return newState;
-
+            return {
+                ...state,
+                dialogsData: [...state.dialogsData, NewMessage],
+                NewMessageText: ''
+            }
         }
         default:
             return state

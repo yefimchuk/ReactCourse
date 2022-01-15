@@ -8,6 +8,7 @@ const MessageAccounts = (props) => {
 
         <div className={s.account}>
             {props.message}
+
         </div>
     )
 }

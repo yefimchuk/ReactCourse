@@ -36,7 +36,8 @@
     grid-row-gap: 15px;
     padding: 1em;
     background-color: #282c34;
-    height: 1500px;
+    min-height: 800px;
+    height: 100%
 }
 
 .app-wrapper-content {

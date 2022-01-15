@@ -26,7 +26,7 @@ let Message = (props) => {
             <div className={s.dialogs}>
                 <div>
                     {dialogsDataBll}
-
+                    <textarea> </textarea>
                 </div>
 
             </div>

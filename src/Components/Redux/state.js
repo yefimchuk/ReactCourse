@@ -1,3 +1,5 @@
+import {Rerender} from "../../render";
+
 let state = {
     profilePage: {
         ReviewData: [
@@ -112,4 +114,13 @@ let state = {
     }
 }
 
+export let AddNewReview = (message) => {
+    let NewReview = {
+        avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
+        likes: "0",
+        message: message,
+    }
+    state.profilePage.ReviewData.push(NewReview)
+Rerender(state)
+}
 export default state

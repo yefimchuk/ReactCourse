@@ -33,7 +33,9 @@ let state = {
                 education: "National Aviation University",
                 site: "https://github.com/yefimchuk"
             }
-        ]
+        ],
+        NewReviewText: "yefimchuk"
+
     },
     messagePage: {
         messageData: [
@@ -122,5 +124,11 @@ export let AddNewReview = (message) => {
     }
     state.profilePage.ReviewData.push(NewReview)
 Rerender(state)
+state.profilePage.NewReviewText = "";
+}
+export let updateReviewText = (newText) => {
+
+    state.profilePage.NewReviewText = newText
+    Rerender(state)
 }
 export default state

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import {AddNewReview} from "../../Redux/state";
+import {AddNewReview, updateReviewText} from "../../Redux/state";
 
 let Profile = (props) => {
 
@@ -12,7 +12,11 @@ let Profile = (props) => {
     let addReview = () => {
         let text = newReviewElement.current.value;
         AddNewReview(text)
-   newReviewElement.current.value = "";
+
+    }
+    let newTextReview = () => {
+        let text = newReviewElement.current.value;
+        updateReviewText(text)
     }
     return (
         <div>
@@ -30,7 +34,7 @@ let Profile = (props) => {
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
 
-                <input ref={newReviewElement} className={s.blockPost} align="top" placeholder="you post...">
+                <input value={props.NewReviewText} onChange={newTextReview} ref={newReviewElement} className={s.blockPost} align="top" placeholder="you post...">
 
                 </input>
                 <div className={s.postFlex}>

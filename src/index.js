@@ -2,8 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import state, {subscribe} from "./Components/Redux/state";
 
-export let Rerender = (state) => {
+let Rerender = (state) => {
     ReactDOM.render(
         <React.StrictMode>
 
@@ -13,4 +14,5 @@ export let Rerender = (state) => {
     );
 
 }
-
+Rerender(state)
+subscribe(Rerender)

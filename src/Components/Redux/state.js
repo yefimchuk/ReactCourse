@@ -1,4 +1,7 @@
-import {Rerender} from "../../render";
+let Rerender = () => {
+    console.log("hello")
+}
+
 
 let state = {
     profilePage: {
@@ -123,12 +126,15 @@ export let AddNewReview = (message) => {
         message: message,
     }
     state.profilePage.ReviewData.push(NewReview)
-Rerender(state)
-state.profilePage.NewReviewText = "";
+    Rerender(state)
+    state.profilePage.NewReviewText = "";
 }
 export let updateReviewText = (newText) => {
 
     state.profilePage.NewReviewText = newText
     Rerender(state)
+}
+export let subscribe = (observe) => {
+    Rerender = observe
 }
 export default state

@@ -2,17 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import state, {subscribe} from "./Components/Redux/state";
 
-let Rerender = (state) => {
+import store from "./Components/Redux/state";
+
+let Rerender = (store) => {
+
     ReactDOM.render(
         <React.StrictMode>
 
-            <App state={state}/>
+            <App state={store}/>
+
         </React.StrictMode>,
         document.getElementById('root')
     );
 
 }
-Rerender(state)
-subscribe(Rerender)
+Rerender(store.state)
+store.subscribe(Rerender)

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import {AddNewReview, updateReviewText} from "../../Redux/state";
+import state from "../../Redux/state";
 
 let Profile = (props) => {
 
@@ -11,12 +11,12 @@ let Profile = (props) => {
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;
-        AddNewReview(text)
+        state.AddNewReview(text)
 
     }
     let newTextReview = () => {
         let text = newReviewElement.current.value;
-        updateReviewText(text)
+        state.updateReviewText(text)
     }
     return (
         <div>

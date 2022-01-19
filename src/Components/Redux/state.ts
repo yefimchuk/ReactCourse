@@ -1,5 +1,6 @@
 let store = {
-    state: {
+
+    _state: {
         profilePage: {
             ReviewData: [
                 {
@@ -33,7 +34,7 @@ let store = {
                     site: "https://github.com/yefimchuk"
                 }
             ],
-            NewReviewText: "yefimchuk"
+            NewReviewText: ""
 
         },
         messagePage: {
@@ -114,27 +115,41 @@ let store = {
             ]
         }
     },
+    getState() {
+
+        return this._state
+    },
     Rerender(state: object) {
         console.log("hello")
     },
-    AddNewReview (message: string){
-        let NewReview = {
-            avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
-            likes: "0",
-            message: message,
-        }
-        this.state.profilePage.ReviewData.push(NewReview)
-        this.Rerender(this.state)
-        this.state.profilePage.NewReviewText = "";
-    },
-    updateReviewText (newText: string) {
-
-        this.state.profilePage.NewReviewText = newText
-        this.Rerender(this.state)
-    },
-    subscribe (observe : () => void) {
+    subscribe(observe: () => void) {
         this.Rerender = observe
+    },
+    dispatch(action: any) {
+
+        if (action.type === "ADD-NEW-REVIEW") {
+
+            let NewReview = {
+                avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
+                likes: "0",
+                message: this._state.profilePage.NewReviewText
+            }
+            this._state.profilePage.ReviewData.push(NewReview)
+
+            this._state.profilePage.NewReviewText = '';
+            this.Rerender(this._state)
+
+
+        } else if (action.type === "UPDATE-REVIEW-TEXT") {
+
+            this._state.profilePage.NewReviewText = action.newText
+            this.Rerender(this._state)
+
+
+        }
     }
+
+
 }
 
 export default store

@@ -2,7 +2,6 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import state from "../../Redux/state";
 
 let Profile = (props) => {
 
@@ -11,12 +10,17 @@ let Profile = (props) => {
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;
-        state.AddNewReview(text)
+        if (text !== ""){
+            props.dispatch({type: "ADD-NEW-REVIEW"})
+
+        }
+
 
     }
     let newTextReview = () => {
+
         let text = newReviewElement.current.value;
-        state.updateReviewText(text)
+        props.dispatch({type: "UPDATE-REVIEW-TEXT", newText: text})
     }
     return (
         <div>
@@ -34,7 +38,8 @@ let Profile = (props) => {
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
 
-                <input value={props.NewReviewText} onChange={newTextReview} ref={newReviewElement} className={s.blockPost} align="top" placeholder="you post...">
+                <input value={props.NewReviewText} onChange={newTextReview} ref={newReviewElement}
+                       className={s.blockPost} align="top" placeholder="you post...">
 
                 </input>
                 <div className={s.postFlex}>

@@ -1,5 +1,3 @@
-import state from "./state";
-
 let initialState = {
 
     friendsData: [
@@ -36,11 +34,9 @@ let initialState = {
 
     ]
 }
-export const SidebarReducer = (state: any = initialState, action: any ) => {
+export const SidebarReducer = (state: any = initialState, action: any) => {
 
     return state
-
-
 
 
 }

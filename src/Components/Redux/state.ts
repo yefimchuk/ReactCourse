@@ -1,5 +1,7 @@
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
+const addnewmessage = "ADD-NEW-MESSAGE";
+const updatemessagetext = "UPDATE-MESSAGE-TEXT";
 let store = {
     _state: {
         profilePage: {
@@ -77,7 +79,8 @@ let store = {
                 {message: "Dima, how are u?"},
                 {message: "Bye"},
 
-            ]
+            ],
+            NewMessageText: "he"
         },
         sideBar: {
 
@@ -142,25 +145,43 @@ let store = {
             this.Rerender(this._state)
 
 
-        } else {
+        }
 
-            if (action.type === updatereviewtext) {
+        else if (action.type === updatereviewtext ) {
 
-                        this._state.profilePage.NewReviewText = action.newText
-                        this.Rerender(this._state)
+            this._state.profilePage.NewReviewText = action.newText
+            this.Rerender(this._state)
 
 
-                    }
+        }
+        else if (action.type === updatemessagetext) {
+
+            this._state.messagePage.NewMessageText = action.newText
+            this.Rerender(this._state)
+
+
         }
     }
+
 }
+
 
 export const addNewReviewActionCreator = () => {
     return {type: addnewreview}
 }
-export const updatereviewtextActionCreator = (text: string) => {
+export const updateReviewTextActionCreator = (text: string) => {
+
     return {type: updatereviewtext, newText: text}
 }
+
+export const addNewMessageActionCreator = () => {
+    return {type: addnewreview}
+}
+export const updateMessageTextActionCreator = (text: string) => {
+
+    return {type: updatemessagetext, newText: text}
+}
+
 
 
 export default store

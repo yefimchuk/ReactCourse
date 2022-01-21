@@ -1,6 +1,7 @@
 .message {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 .account {
     display: flex;
@@ -18,4 +19,5 @@ display: flex;
     align-items: flex-start;
     justify-content: center;
     margin-bottom: 10px;
+    margin-right: 10%;
 }

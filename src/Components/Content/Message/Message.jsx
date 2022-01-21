@@ -2,9 +2,18 @@ import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
-
+import {updateMessageTextActionCreator, updateReviewTextActionCreator} from "../../Redux/state";
 
 let Message = (props) => {
+
+    let newReviewElement = React.createRef()
+    let UpdateMessage = () => {
+
+        let text = newReviewElement.current.value;
+
+        const action = updateMessageTextActionCreator(text);
+        props.dispatch(action)
+    }
 
     let messageDataBLL = props.messageData.map(review => <MessageAccounts nickname={review.nickname}
                                                                           address={review.address}
@@ -20,13 +29,13 @@ let Message = (props) => {
                     {messageDataBLL}
 
                 </div>
-                
+
             </div>
 
             <div className={s.dialogs}>
                 <div>
                     {dialogsDataBll}
-                    <textarea> </textarea>
+                    <textarea onChange={UpdateMessage} ref={newReviewElement} value={props.NewMessageText}> </textarea>
                 </div>
 
             </div>

@@ -80,7 +80,7 @@ let store = {
                 {message: "Bye"},
 
             ],
-            NewMessageText: "he"
+            NewMessageText: ""
         },
         sideBar: {
 
@@ -161,6 +161,16 @@ let store = {
 
 
         }
+        else if (action.type === addnewmessage) {
+
+            let NewMessage = {
+                message: this._state.messagePage.NewMessageText
+            }
+            this._state.messagePage.dialogsData.push(NewMessage)
+
+            this._state.messagePage.NewMessageText = '';
+            this.Rerender(this._state)
+        }
     }
 
 }
@@ -175,7 +185,7 @@ export const updateReviewTextActionCreator = (text: string) => {
 }
 
 export const addNewMessageActionCreator = () => {
-    return {type: addnewreview}
+    return {type: addnewmessage}
 }
 export const updateMessageTextActionCreator = (text: string) => {
 

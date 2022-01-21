@@ -2,7 +2,11 @@ import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
-import {updateMessageTextActionCreator, updateReviewTextActionCreator} from "../../Redux/state";
+import {
+    addNewMessageActionCreator,
+    updateMessageTextActionCreator,
+    updateReviewTextActionCreator
+} from "../../Redux/state";
 
 let Message = (props) => {
 
@@ -13,8 +17,16 @@ let Message = (props) => {
 
         const action = updateMessageTextActionCreator(text);
         props.dispatch(action)
-    }
 
+    }
+    let AddNewMessage = () => {
+        let text = props.NewMessageText
+        const action = addNewMessageActionCreator(text)
+        if (text !== ""){
+        props.dispatch(action)
+            }
+
+    }
     let messageDataBLL = props.messageData.map(review => <MessageAccounts nickname={review.nickname}
                                                                           address={review.address}
                                                                           avatar={review.avatar}/>
@@ -35,9 +47,12 @@ let Message = (props) => {
             <div className={s.dialogs}>
                 <div>
                     {dialogsDataBll}
-                    <textarea onChange={UpdateMessage} ref={newReviewElement} value={props.NewMessageText}> </textarea>
                 </div>
-
+                <div className={s.postFlex}>
+                    <textarea onChange={UpdateMessage} ref={newReviewElement} value={props.NewMessageText}> </textarea>
+                    <div onClick={AddNewMessage} className={s.submit}>Send
+                    </div>
+                </div>
             </div>
         </div>
 

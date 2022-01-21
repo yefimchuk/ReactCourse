@@ -21,3 +21,19 @@ display: flex;
     margin-bottom: 10px;
     margin-right: 10%;
 }
+.postFlex {
+    width: 81%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 7px;
+}
+.submit {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: green;
+    width: 100px;
+    height: 40px;
+    border-radius: 4px;
+}

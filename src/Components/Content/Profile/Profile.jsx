@@ -11,7 +11,7 @@ let Profile = (props) => {
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;
-        const action = addNewReviewActionCreator();
+        const action = addNewReviewActionCreator(text);
         if (text !== ""){
             props.dispatch(action)
 

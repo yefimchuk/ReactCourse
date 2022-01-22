@@ -1,7 +1,7 @@
+import {MessageReducer} from "./message-reducer";
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
-const addnewmessage = "ADD-NEW-MESSAGE";
-const updatemessagetext = "UPDATE-MESSAGE-TEXT";
+
 let store = {
     _state: {
         profilePage: {
@@ -131,8 +131,10 @@ let store = {
     },
     dispatch(action: any) {
 
+        this._state.messagePage = MessageReducer(this._state.messagePage, action)
 
-        if (action.type === addnewreview) {
+   /*     if (action.type === addnewreview) {
+
 
             let NewReview = {
                 avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
@@ -145,32 +147,21 @@ let store = {
             this.Rerender(this._state)
 
 
-        }
-
-        else if (action.type === updatereviewtext ) {
+        } else if (action.type === updatereviewtext) {
 
             this._state.profilePage.NewReviewText = action.newText
             this.Rerender(this._state)
 
 
-        }
-        else if (action.type === updatemessagetext) {
+        } else if (action.type === updatemessagetext) {
 
             this._state.messagePage.NewMessageText = action.newText
             this.Rerender(this._state)
 
 
-        }
-        else if (action.type === addnewmessage) {
+        }*/
 
-            let NewMessage = {
-                message: this._state.messagePage.NewMessageText
-            }
-            this._state.messagePage.dialogsData.push(NewMessage)
-
-            this._state.messagePage.NewMessageText = '';
-            this.Rerender(this._state)
-        }
+        this.Rerender(this._state)
     }
 
 }
@@ -184,13 +175,6 @@ export const updateReviewTextActionCreator = (text: string) => {
     return {type: updatereviewtext, newText: text}
 }
 
-export const addNewMessageActionCreator = () => {
-    return {type: addnewmessage}
-}
-export const updateMessageTextActionCreator = (text: string) => {
-
-    return {type: updatemessagetext, newText: text}
-}
 
 
 

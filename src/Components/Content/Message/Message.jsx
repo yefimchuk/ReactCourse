@@ -2,29 +2,26 @@ import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
-import {
-    addNewMessageActionCreator,
-    updateMessageTextActionCreator,
-    updateReviewTextActionCreator
-} from "../../Redux/state";
+import {addNewMessageActionCreator, updateMessageTextActionCreator} from "../../Redux/message-reducer";
+
 
 let Message = (props) => {
 
     let newReviewElement = React.createRef()
     let UpdateMessage = () => {
-
         let text = newReviewElement.current.value;
 
-        const action = updateMessageTextActionCreator(text);
+        const action = updateMessageTextActionCreator(text)
+
         props.dispatch(action)
 
     }
     let AddNewMessage = () => {
         let text = props.NewMessageText
-        const action = addNewMessageActionCreator(text)
-        if (text !== ""){
-        props.dispatch(action)
-            }
+        const action = addNewMessageActionCreator()
+        if (text !== "") {
+            props.dispatch(action)
+        }
 
     }
     let messageDataBLL = props.messageData.map(review => <MessageAccounts nickname={review.nickname}

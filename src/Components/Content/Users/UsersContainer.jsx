@@ -1,29 +1,24 @@
 import {connect} from "react-redux";
-import {
-    follow,
-    unfollow,
-    setUsers,
-    setCurrentPage,
-    setNewTotalCount,
-    isLogin
-} from "../../Redux/userspage-reducer";
+import {follow, isLogin, setCurrentPage, setNewTotalCount, setUsers, unfollow} from "../../Redux/userspage-reducer";
 
 
 import React from "react";
 import * as axios from "axios";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
+import {GetUsers} from "../../../API/API";
+
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
 
         this.props.isLogin(true)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=173&count=${this.props.pageSize}`, {withCredentials:true}).then(a => {
-            this.props.isLogin(false)
+        GetUsers(this.props.pageSize).then(data => {
 
-            this.props.setUsers(a.data.items)
-            this.props.setNewTotalCount(a.data.totalCount)
+            this.props.isLogin(false)
+            this.props.setUsers(data.items)
+            this.props.setNewTotalCount(data.totalCount)
         })
     }
 

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Redux/state";
+import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Redux/profile-reducer";
 
 let Profile = (props) => {
 

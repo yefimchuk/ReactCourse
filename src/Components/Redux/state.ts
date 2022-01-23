@@ -1,6 +1,6 @@
 import {MessageReducer} from "./message-reducer";
-const addnewreview = "ADD-NEW-REVIEW";
-const updatereviewtext = "UPDATE-REVIEW-TEXT";
+import {ProfileReducer} from "./profile-reducer";
+
 
 let store = {
     _state: {
@@ -132,34 +132,8 @@ let store = {
     dispatch(action: any) {
 
         this._state.messagePage = MessageReducer(this._state.messagePage, action)
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
 
-   /*     if (action.type === addnewreview) {
-
-
-            let NewReview = {
-                avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
-                likes: "0",
-                message: this._state.profilePage.NewReviewText
-            }
-            this._state.profilePage.ReviewData.push(NewReview)
-
-            this._state.profilePage.NewReviewText = '';
-            this.Rerender(this._state)
-
-
-        } else if (action.type === updatereviewtext) {
-
-            this._state.profilePage.NewReviewText = action.newText
-            this.Rerender(this._state)
-
-
-        } else if (action.type === updatemessagetext) {
-
-            this._state.messagePage.NewMessageText = action.newText
-            this.Rerender(this._state)
-
-
-        }*/
 
         this.Rerender(this._state)
     }
@@ -167,13 +141,7 @@ let store = {
 }
 
 
-export const addNewReviewActionCreator = () => {
-    return {type: addnewreview}
-}
-export const updateReviewTextActionCreator = (text: string) => {
 
-    return {type: updatereviewtext, newText: text}
-}
 
 
 

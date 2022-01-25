@@ -7,7 +7,7 @@ import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Re
 let Profile = (props) => {
 
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                            message={review.message}/>)
+                                                            message={review.message}   dispatch={props.dispatch} id={review.id}/>)
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;

@@ -7,23 +7,27 @@ let store = {
         profilePage: {
             ReviewData: [
                 {
+                    id: 1,
                     avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8KJh4iMd90SSfuNCU02ss6lX6CokNaWwzQ&usqp=CAU",
-                    likes: "11",
+                    likes: 1112,
                     message: "Hello, i am is a doctor"
                 },
                 {
+                    id: 2,
                     avatar: "https://seedsouth.com/wp-content/uploads/2021/02/Elon-Musk-1999.jpg",
-                    likes: "2287278",
+                    likes: 14242343,
                     message: "Hello, I'm Elon Mask"
                 },
                 {
+                    id: 3,
                     avatar: "https://upload.wikimedia.org/wikipedia/commons/1/16/Emblem_of_National_Aviation_University.png",
-                    likes: "-15105",
+                    likes: -23423,
                     message: "I'm Zubin"
                 },
                 {
+                    id: 4,
                     avatar: "https://www.meme-arsenal.com/memes/91e83b00c27bf4d5bb849a6ac2b81fe5.jpg",
-                    likes: "11105",
+                    likes: 23423,
                     message: "I love c#"
                 },
             ],

@@ -26,7 +26,8 @@ const App = (props) => {
                         <Route path="/profile" element={<Profile PersonalData={props.state.profilePage.PersonalData}
                                                                  ReviewData={props.state.profilePage.ReviewData}
                                                                  NewReviewText={props.state.profilePage.NewReviewText}
-                                                                 dispatch={props.dispatch}/>}/>
+                                                                 dispatch={props.dispatch}/>}
+                               id={props.state.profilePage.ReviewData.id}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

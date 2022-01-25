@@ -9,8 +9,9 @@ import Settings from "./Components/Content/Settings/Settings";
 
 import MessageContainer from "./Components/Content/Message/messageContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
+import UsersContainer from "./Components/Content/Users/UsersContainer";
 
-const App = (props) => {
+const App = (props:any) => {
 
     return (
         <BrowserRouter>
@@ -25,6 +26,7 @@ const App = (props) => {
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
                     </Routes>
                 </div>
             </div>

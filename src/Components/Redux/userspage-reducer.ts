@@ -33,7 +33,7 @@ let initialState = {
         },
     ]
 }
-export const UsersReducers = (state: any = initialState, action: any) => {
+export const UsersReducers = (state = initialState, action: any) => {
 
     switch (action.type) {
 
@@ -77,10 +77,10 @@ export const UsersReducers = (state: any = initialState, action: any) => {
 export const followActionCreator = (userid: number) => {
     return {type: follow, id: userid}
 }
-export const unFollowCreator = (userid: number) => {
+export const unfollowActionCreator = (userid: number) => {
     return {type: unFollow, id: userid}
 }
-export const SetUsers = (userid: number) => {
+export const SetUsersActionCreator = (userid: number) => {
     return {type: setUsers, id: userid}
 }
 

@@ -8,17 +8,17 @@ import Profile from "./Profile";
 import {connect} from "react-redux";
 import Review from "./ProfileInfo/Review";
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = (dispatch: any) => {
     return {
-        addReview: (text) => {
-            const action = addNewReviewActionCreator(text);
+        addReview: (text: string) => {
+            const action = addNewReviewActionCreator();
             dispatch(action)
         },
-        newTextReview: (text) => {
+        newTextReview: (text: string) => {
             const action = updateReviewTextActionCreator(text);
             dispatch(action)
         },
-        like: (props) => {
+        like: (props: any)  => {
 
             let action = sendLikesActionCreator(props)
             dispatch(action)
@@ -27,7 +27,7 @@ let mapDispatchToProps = (dispatch) => {
     }
 }
 
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: any) => {
 
     return {
         ReviewData: state.profilePage.ReviewData,

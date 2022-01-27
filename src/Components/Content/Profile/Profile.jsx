@@ -2,28 +2,22 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Redux/profile-reducer";
 
 let Profile = (props) => {
 
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                            message={review.message}   dispatch={props.dispatch} id={review.id}/>)
+                                                            message={review.message} dispatch={props.dispatch}
+                                                            id={review.id}/>)
     let newReviewElement = React.createRef()
     let addReview = () => {
         let text = newReviewElement.current.value;
-        const action = addNewReviewActionCreator(text);
-        if (text !== ""){
-            props.dispatch(action)
-
+        if (text !== "") {
+            props.addReview(text)
         }
-
-
     }
     let newTextReview = () => {
-
         let text = newReviewElement.current.value;
-        const action = updateReviewTextActionCreator(text);
-        props.dispatch(action)
+        props.newTextReview(text)
     }
     return (
         <div>
@@ -31,11 +25,11 @@ let Profile = (props) => {
                  src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"/>
 
 
-            <PersonalInformation avatar={props.PersonalData[0].avatar}
-                                 name={props.PersonalData[0].name} city={props.PersonalData[0].city}
-                                 born={props.PersonalData[0].born}
-                                 education={props.PersonalData[0].education}
-                                 site={props.PersonalData[0].site}/>
+            <PersonalInformation avatar={props.avatar}
+                                 name={props.name} city={props.city}
+                                 born={props.born}
+                                 education={props.education}
+                                 site={props.site}/>
 
 
             <div className={s.Post}>

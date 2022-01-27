@@ -32,7 +32,7 @@ let store = {
                     message: "I love c#"
                 },
             ],
-            PersonalData: [
+            PersonalData:
                 {
                     avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
                     name: "Dmitriy Yefimchuk",
@@ -40,8 +40,8 @@ let store = {
                     born: "2003-01-12",
                     education: "National Aviation University",
                     site: "https://github.com/yefimchuk"
-                }
-            ],
+                },
+
             NewReviewText: ""
 
         },
@@ -124,7 +124,7 @@ let store = {
             ]
         }
     },
-    getState() {
+  /*  getState() {
 
         return this._state
     },
@@ -141,7 +141,7 @@ let store = {
 
 
         this.Rerender(this._state)
-    }
+    }*/
 
 }
 

@@ -8,6 +8,7 @@ import Profile from "./Components/Content/Profile/Profile";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
+import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 
 const App = (props) => {
 
@@ -23,11 +24,7 @@ const App = (props) => {
                                                                      dialogsData={props.state.messagePage.dialogsData}
                                                                      NewMessageText={props.state.messagePage.NewMessageText}
                                                                      dispatch={props.dispatch}/>}/>
-                        <Route path="/profile" element={<Profile PersonalData={props.state.profilePage.PersonalData}
-                                                                 ReviewData={props.state.profilePage.ReviewData}
-                                                                 NewReviewText={props.state.profilePage.NewReviewText}
-                                                                 dispatch={props.dispatch}/>}
-                               id={props.state.profilePage.ReviewData.id}/>
+                        <Route path="/profile" element={<ProfileContainer store={props.store}/>}/>
                         <Route path="/news" element={<News/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>

@@ -28,7 +28,7 @@ let initialState = {
             message: "I love c#"
         },
     ],
-    PersonalData: [
+    PersonalData:
         {
             avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
             name: "Dmitriy Yefimchuk",
@@ -36,8 +36,8 @@ let initialState = {
             born: "2003-01-12",
             education: "National Aviation University",
             site: "https://github.com/yefimchuk"
-        }
-    ],
+        },
+
     NewReviewText: ""
 
 }
@@ -51,7 +51,8 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
                 message: state.NewReviewText
             }
             state.ReviewData.push(NewReview)
-            state.NewReviewText = '';
+            state.NewReviewText = ''
+            debugger
             return state
         case updatereviewtext:
             state.NewReviewText = action.newText

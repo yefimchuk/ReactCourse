@@ -10,7 +10,8 @@ let Message = (props) => {
     let newReviewElement = React.createRef()
     let UpdateMessage = () => {
         let text = newReviewElement.current.value;
-
+let arr = [1,1,5,6];
+console.log(arr)
         const action = updateMessageTextActionCreator(text)
 
         props.dispatch(action)
@@ -24,11 +25,11 @@ let Message = (props) => {
         }
 
     }
-    let messageDataBLL = props.messageData.map(review => <MessageAccounts nickname={review.nickname}
+    let messageDataBLL = props.messageData.map((review) => <MessageAccounts nickname={review.nickname}
                                                                           address={review.address}
                                                                           avatar={review.avatar}/>
     )
-    let dialogsDataBll = props.dialogsData.map(reviews => <Dialogs message={reviews.message}/>
+    let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
     )
 
     return (

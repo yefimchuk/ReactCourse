@@ -4,6 +4,7 @@ import {ProfileReducer} from "./profile-reducer";
 
 let store = {
     _state: {
+
         profilePage: {
             ReviewData: [
                 {

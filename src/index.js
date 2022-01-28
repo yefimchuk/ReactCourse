@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import store from "./Components/Redux/state.ts";
+import store from "./Components/Redux/store-redux.ts";
 let a = store
 
 let Rerender = (state) => {

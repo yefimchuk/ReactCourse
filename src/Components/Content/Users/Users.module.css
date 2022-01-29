@@ -1,0 +1,17 @@
+.User {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 95%;
+    margin: 20px;
+
+}
+.UserInfo
+{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+border-radius: 15px;
+    border: 2px solid white;
+}

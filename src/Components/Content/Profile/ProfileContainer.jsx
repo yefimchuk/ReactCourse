@@ -3,7 +3,7 @@ import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Re
 import Profile from "./Profile";
 
 let ProfileContainer = (props) => {
-debugger
+
     let state = props.store.getState()
 
     let addReview = (text) => {

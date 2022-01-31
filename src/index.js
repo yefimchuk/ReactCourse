@@ -4,14 +4,15 @@ import './index.css';
 import App from './App';
 
 import store from "./Components/Redux/store-redux.ts";
+import Store from "./context-react";
 
 let Rerender = (state) => {
 
     ReactDOM.render(
         <React.StrictMode>
-
-            <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
-
+            <Store.Provider value={store}>
+                <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+            </Store.Provider>
         </React.StrictMode>,
         document.getElementById('root')
     );

@@ -4,15 +4,15 @@ import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
 
 let Message = (props) => {
-
+debugger
     let newReviewElement = React.createRef()
     let onUpdateMessage = () => {
-
         let text = newReviewElement.current.value;
         props.UpdateMessage(text)
     }
     let onAddNewMessage = () => {
-        let text = props.NewMessageText
+        debugger
+        let text = props.NewReviewText
         if (text !== "") {
             props.AddNewMessage()
         }
@@ -40,7 +40,7 @@ let Message = (props) => {
                     {dialogsDataBll}
                 </div>
                 <div className={s.postFlex}>
-                    <textarea onChange={onUpdateMessage} ref={newReviewElement} value={props.NewMessageText}> </textarea>
+                    <textarea onChange={onUpdateMessage} ref={newReviewElement} value={props.NewReviewText}> </textarea>
                     <div onClick={onAddNewMessage} className={s.submit}>Send
                     </div>
                 </div>

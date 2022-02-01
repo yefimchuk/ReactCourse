@@ -1,11 +1,9 @@
-import React from "react";
-import {addNewReviewActionCreator, updateReviewTextActionCreator} from "../../Redux/profile-reducer";
-import Store from "../../../context-react";
-import Profile from "./Profile";
 
-let ProfileContainer = (props) => {
 
-    return <Store.Consumer>
+/*let ProfileContainer = (props) => {*/
+
+
+/*    return
         {(store) => {
             let state = store.getState()
 
@@ -33,6 +31,7 @@ let ProfileContainer = (props) => {
             />
         }
     }
-    </Store.Consumer>
-}
-        export default ProfileContainer;
+    </Store.Consumer>*/
+
+/*
+        export default ProfileContainer;*/

@@ -47,7 +47,9 @@ export const MessageReducer = (state: any = initialState, action: any) => {
     switch (action.type) {
 
         case updatemessagetext:
+
             state.NewMessageText = action.newText
+            debugger
             return state
         case addnewmessage:
             let NewMessage = {

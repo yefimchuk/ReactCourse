@@ -8,11 +8,11 @@ import {
     isLogin
 } from "../../Redux/userspage-reducer";
 
-import loading from "../../../img/35771931234507.564a1d2403b3a.gif"
+
 import React from "react";
 import * as axios from "axios";
 import Users from "./Usersc";
-import s from "./../Users/Users.module.css"
+import Loading from "../../../common/loading";
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
@@ -42,7 +42,7 @@ class UsersAPIContainer extends React.Component {
 
         return <>
 
-            {this.props.IsLogin ? <div className={s.loading}><img  className={s.loading1} src={loading}/></div> : null}
+            {this.props.IsLogin ? <Loading/> : null}
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
                    pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                    onPageChanged={this.onPageChanged}

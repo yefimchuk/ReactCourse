@@ -1,0 +1,12 @@
+.loading {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+
+}
+.loading1
+{
+    width: 7%;
+}

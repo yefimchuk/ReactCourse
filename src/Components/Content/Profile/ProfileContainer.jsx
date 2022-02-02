@@ -25,6 +25,7 @@ let mapStateToProps = (state) => {
         education: state.profilePage.PersonalData.education,
         city: state.profilePage.PersonalData.city,
         site: state.profilePage.PersonalData.site,
+        NewReviewText: state.profilePage.NewReviewText
         }
     }
     let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);

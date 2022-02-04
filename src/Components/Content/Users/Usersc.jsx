@@ -20,12 +20,14 @@ let Users = (props) => {
 
         {
             props.users.map(u => <div key={u.id}>
-                <NavLink  to={"/profile/" + u.id}>
-                    <div className={s.User}>
+
+                <div className={s.User}>
 
                         <div>
-                            <img className={s.avatar}
-                                 src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
+                            <NavLink to={"/profile/" + u.id}>
+                                <img className={s.avatar}
+                                     src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
+                            </NavLink>
                             <div>{
                                 u.followed ? <div className={s.followed} onClick={() => {
                                         props.unfollow(u.id)
@@ -35,20 +37,21 @@ let Users = (props) => {
                                     }}>Follow</div>
                             }</div>
                         </div>
-                        <div className={s.UserInfo}>
-                            <div className={s.left}>
-                                <div className={s.nick}>{u.name}</div>
-                                <div className={s.status}>{u.status}</div>
-                            </div>
-                            <div className={s.right}>
-                                <div className={s.city}>{u.city}</div>
-                                <div className={s.country}>{u.country}</div>
-                            </div>
+                    <NavLink className={s.UserInfo} to={"/profile/" + u.id}>
+
+                        <div className={s.left}>
+                            <div className={s.nick}>{u.name}</div>
+                            <div className={s.status}>{u.status}</div>
+                        </div>
+                        <div className={s.right}>
+                            <div className={s.city}>{u.city}</div>
+                            <div className={s.country}>{u.country}</div>
                         </div>
 
+                    </NavLink>
 
                     </div>
-                </NavLink>
+
             </div>)
         }
         <div>

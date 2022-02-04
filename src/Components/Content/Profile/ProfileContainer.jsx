@@ -15,9 +15,7 @@ this.props.setNewProfile(a.data)
 
 
     render() {
-if (!this.props.Profile){
 
-}
         return <Profile {...this.props}/>
     }
 }

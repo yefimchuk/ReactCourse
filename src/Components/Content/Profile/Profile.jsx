@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
+import Loading from "../../../common/loading";
 
 let Profile = (props) => {
 
@@ -20,17 +21,19 @@ let Profile = (props) => {
         let text = newReviewElement.current.value;
         props.newTextReview(text)
     }
+    if (!props.Profile) {
+        return <Loading/>
+    }
     return (
         <div>
             <img className={s.ImageTop}
                  src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"/>
 
 
-            <PersonalInformation avatar={props.Profile.photos.large }
-                                 name={props.name} city={props.city}
-                                 born={props.born}
-                                 education={props.education}
-                                 site={props.site}/>
+            <PersonalInformation avatar={props.Profile.photos.large}
+                                 name={props.Profile.fullName}
+                                 job={props.Profile.lookingForAJobDescription}
+                                 site={props.Profile.contacts.mainLink}/>
 
 
             <div className={s.Post}>

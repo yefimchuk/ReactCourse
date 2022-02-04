@@ -6,8 +6,8 @@ import PersonalInformation from "./ProfileInfo/PersonalData";
 let Profile = (props) => {
 
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                            message={review.message} dispatch={props.dispatch}
-                                                            id={review.id}/>)
+                                                            message={review.message} like={props.like}
+                                                            id={review.id} />)
     let newReviewElement = React.createRef()
     let addReview = () => {
 

@@ -22,8 +22,5 @@ let Rerender = (state) => {
 }
 
 Rerender(store.getState())
-store.subscribe(() => {
-    let state = store.getState()
-    Rerender(state)
-})
+
 

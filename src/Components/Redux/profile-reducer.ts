@@ -46,31 +46,33 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
     switch (action.type) {
         case addnewreview: {
             let NewReview = {
+                id: 5,
                 avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
                 likes: "0",
                 message: state.NewReviewText
             }
-            let newState = {...state}
-            newState.ReviewData = [...state.ReviewData]
-            newState.ReviewData.push(NewReview)
-            newState.NewReviewText = ''
+            return {
+                ...state,
+                ReviewData: [...state.ReviewData, NewReview],
+                NewReviewText: ''
 
-            return newState
+            }
         }
         case updatereviewtext: {
-            let newState = {...state};
-
-            newState.NewReviewText = action.newText;
-            return newState;
+            return {
+                ...state,
+                NewReviewText: action.newText
+            }
         }
-        case sendLike:
+        case sendLike: {
+            return {
+                ...state,
+                ReviewData: [...state.ReviewData].filter((el: any) =>
+                    el.id === action.numberLikes.id ? el.likes++ : el.likes
+                )
 
-            state.ReviewData.filter((el: any) =>
-                el.id === action.numberLikes.id ? el.likes++ : el.likes
-            )
-
-            return state
-
+            }
+        }
         default:
             return state
 

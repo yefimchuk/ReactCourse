@@ -1,12 +1,11 @@
 import React from "react";
 import s from "../Profile.module.css"
-import {sendLikes, sendLikesActionCreator} from "../../../Redux/profile-reducer";
 
 let Review = (props) => {
 
     let Like = () => {
-        let action = sendLikesActionCreator(props)
-        props.dispatch(action)
+
+        props.like(props)
 
     }
 

@@ -1,17 +1,29 @@
 .User {
+
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 95%;
+    align-items: flex-start;
+    width: 65%;
     margin: 20px;
 
 }
-.UserInfo
-{
+
+.UserInfo {
+
     padding: 10px;
     display: flex;
+    height: 65px;
     justify-content: space-between;
-    width: 90%;
-border-radius: 15px;
+    width: 85%;
+    border-radius: 15px;
     border: 2px solid white;
+}
+
+.avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    background: lightgray;
+    object-fit: cover;
 }

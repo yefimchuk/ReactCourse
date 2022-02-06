@@ -10,18 +10,18 @@ let Users = (props) => {
                     <div>
                         <img className={s.avatar} src={u.avatar}/>
                         <div>{
-                            u.followed ? <button onClick={() => {props.unfollow(u.id)}}>Unfollow</button> :
-                                <button  onClick={() => {props.follow(u.id)}}>Follow</button>
+                            u.followed ? <div className={s.followed} onClick={() => {props.unfollow(u.id)}}>Unfollow</div> :
+                                <div  className={s.unfollowed} onClick={() => {props.follow(u.id)}}>Follow</div>
                         }</div>
                     </div>
                     <div className={s.UserInfo}>
-                        <div>
-                            <div>name</div>
-                            <div>status</div>
+                        <div className={s.left}>
+                            <div className={s.nick}>{u.nickname}</div>
+                            <div className={s.status}>{u.status}</div>
                         </div>
-                        <div>
-                            <div>city</div>
-                            <div>country</div>
+                        <div className={s.right}>
+                            <div className={s.city}>{u.city}</div>
+                            <div className={s.country}>{u.country}</div>
                         </div>
                     </div>
                 </div>

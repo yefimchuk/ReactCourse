@@ -19,7 +19,7 @@ let initialState = {
             status: "i'm love all Nastya in the world",
             avatar: "https://images.aif.by/007/318/b53425339c1eab74cda53465696a4aaf.jpg",
             city: "Bila cerkva",
-            country: "sting",
+            country: "Ukraine",
             followed: true
         },
         {
@@ -27,8 +27,8 @@ let initialState = {
             nickname: "Luba",
             status: "u are all bitches",
             avatar: "https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU3MTAwNTIzNDc5MTE1MDY1/lana-del-rey-attends-the-60th-annual-grammy-awards-at-madison-square-garden-on-january-28-2018-in-new-york-city-photo-by-dimitrios-kambouris_getty-images-for-naras-square.jpg",
-            city: "Kryshchul",
-            country: "Florida",
+            city: "Florida",
+            country: "America",
             followed: false
         },
     ]

@@ -16,8 +16,9 @@
     height: 65px;
     justify-content: space-between;
     width: 85%;
-    border-radius: 15px;
-    border: 2px solid white;
+    border-radius: 13px;
+    border: 2px solid #bdbdbd;
+    color: white;
 }
 
 .avatar {
@@ -26,4 +27,64 @@
     border-radius: 100px;
     background: lightgray;
     object-fit: cover;
+}
+
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.right {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.nick {
+    font-size: 22px;
+}
+
+.status {
+    font-size: 15px;
+    color: #d7d7d7;
+}
+
+.city {
+    font-size: 18px;
+    font-weight: 100;
+}
+
+.country {
+    font-size: 18px;
+    font-weight: 100;
+
+}
+.followed{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border: 1px solid #bdbdbd;
+    font-size: 14px;
+    font-weight: 500;
+border-radius: 6px;
+    width: 80px;
+    height: 25px;
+}
+.unfollowed{
+    margin: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: #4ca2d7;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 6px;
+    width: 80px;
+    height: 25px;
 }

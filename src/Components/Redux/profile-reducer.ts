@@ -1,4 +1,4 @@
-import {UsersAPI} from "../../API/API";
+import {HeaderAPI, UsersAPI} from "../../API/API";
 
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
@@ -128,13 +128,13 @@ export const setId = (id: object) => {
 export const AuthMeThunk = (userId: any) => {
     return (dispatch: any) => {
 
-        UsersAPI.AuthMe().then((a: any) => {
+        HeaderAPI.AuthMe().then((a: any) => {
 
             dispatch(setId(a))
 
             if (!userId) {
 
-                userId = a.data.id
+                userId = a.data.data.id
             }
 
             UsersAPI.SetMyId(userId).then((response: any) => {
@@ -146,3 +146,4 @@ export const AuthMeThunk = (userId: any) => {
 
     }
 }
+

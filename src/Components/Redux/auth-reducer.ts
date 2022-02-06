@@ -1,3 +1,5 @@
+import {HeaderAPI} from "../../API/API";
+
 const SET_AUTH_USER_DATA = "SET-AUTH-USER-DATA";
 const SET_USER_DATA = "SET-USER-DATA";
 let initialState = {
@@ -40,7 +42,7 @@ export const AuthReducer = (state: any = initialState, action: any) => {
 
 }
 
-type SetUserDataT = (id: number, email: string, login: string) => object
+type SetUserDataT = (id: number, email?: string, login?: string) => object
 export let SetAuthUserData: SetUserDataT = (text, email, login) => ({
 
     type: SET_AUTH_USER_DATA,
@@ -51,6 +53,32 @@ export let SetUserData: SetUserDataT = (data: any) => ({
     type: SET_USER_DATA,
     data: data
 })
+
+//thunk
+export const HeaderLoginThunk = () => {
+    return (dispatch: any) => {
+
+        HeaderAPI.AuthMe().then((a: any) => {
+
+            if (a.data.resultCode === 0) {
+                let {id, email, login} = a.data.data;
+                dispatch((SetAuthUserData(id, email, login)))
+
+                HeaderAPI.Login(login).then((b: any) => {
+
+                    b.data.items.filter((u: any) => {
+                        if (id === u.id) {
+                            dispatch(SetUserData(u))
+
+                        }
+                    })
+
+                })
+            }
+        })
+
+    }
+}
 
 
 

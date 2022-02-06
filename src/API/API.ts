@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import axios from 'axios';
 
 let instance = axios.create({
     withCredentials: true,
@@ -9,43 +9,54 @@ let instance = axios.create({
 })
 
 export const UsersAPI = {
-    GetUsers: (pageSize) => {
+    GetUsers: (pageSize: number) => {
         return instance.get(`users?count=${pageSize}`).then(response => {
                 return response.data
             }
         )
     },
-        OnPageUsersChange: (currentPage, pageSize) => {
+    OnPageUsersChange: (currentPage: number, pageSize: number) => {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`, {
             withCredentials: true
         })
     },
 
-    Unfollow: (id) => {
+    Unfollow: (id: number) => {
         return instance.delete(`follow/${id}`).then(response => {
 
             return response.data
         })
     },
 
-    Follow: (id) => {
+    Follow: (id: number) => {
         return instance.post(`follow/${id}`, {}).then(response => {
 
             return response.data
         })
     },
-    AuthMe: () => {
-        return instance.get(`auth/me`, {
-            withCredentials: true
-        }).then(response => {
-            return response.data
-        })
-    },
-    SetMyId: (userId) => {
+    SetMyId: (userId: number) => {
         return instance.get(`profile/${userId}`,
             {
                 withCredentials: true
             }
         )
     }
+}
+export const HeaderAPI = {
+    Login: (login: string) => {
+        console.log(login)
+
+        return instance.get(`users?term=${login}`).then((response: any) => {
+            return response
+        })
+    },
+    AuthMe: () => {
+
+        return instance.get(`auth/me`, {
+            withCredentials: true
+        }).then(response => {
+            return response
+        })
+    },
+
 }

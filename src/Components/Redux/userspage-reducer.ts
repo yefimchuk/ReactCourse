@@ -1,4 +1,4 @@
-import {UsersAPI} from "../../API/API";
+import {HeaderAPI, UsersAPI} from "../../API/API";
 
 const Follow = "FOLLOW";
 const UnFollow = "UNFOLLOW";
@@ -151,3 +151,4 @@ export const onChangeUsersThunk = (currentPage: number, pageSize: number) => {
         })
     }
 }
+

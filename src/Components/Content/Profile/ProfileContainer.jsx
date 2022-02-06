@@ -18,7 +18,7 @@ const withRouter = WrappedComponent => props => {
 class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
-        debugger
+
         let userId = this.props.params.userId;
         this.props.AuthMeThunk(userId)
     }

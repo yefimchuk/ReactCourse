@@ -2,8 +2,9 @@ import {addReview, AuthMeThunk, isLogin, like, newTextReview} from "../../Redux/
 import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -32,8 +33,6 @@ class ProfileAPIContainer extends React.Component {
         return <Profile {...this.props} IDD={this.props.id}/>
     }
 }
-let UrlDataContainerComponent = withRouter(ProfileAPIContainer);
-
 let mapStateToProps = (state) => {
 
 
@@ -52,14 +51,15 @@ let mapStateToProps = (state) => {
     }
 
 }
-let AuthRedirectComponent = withAuthRedirect(UrlDataContainerComponent)
-let ProfileContainer = connect(mapStateToProps, {
-
-    addReview,
-    newTextReview,
-    like,
-    AuthMeThunk,
-    isLogin
-})(AuthRedirectComponent);
-
-export default ProfileContainer;
+export default compose(
+    withRouter,
+    withAuthRedirect,
+    connect(mapStateToProps, {
+        addReview,
+        newTextReview,
+        like,
+        AuthMeThunk,
+        isLogin
+    }),
+)
+(ProfileAPIContainer);

@@ -4,6 +4,7 @@ import React from "react";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 
 class UsersAPIContainer extends React.Component {
@@ -45,12 +46,16 @@ let mapStateToProps = (state) => {
         authMe: state.auth.isLogin
     }
 }
-let AuthRedirectComponent = withAuthRedirect(UsersAPIContainer)
-let UsersContainer = connect(mapStateToProps, {
-    unfollowThunk,
-    followThunk,
-    getUsersThunk,
-    onChangeUsersThunk,
-    isLogin
-})(AuthRedirectComponent)
-export default UsersContainer;
+
+
+export default compose(
+    connect(mapStateToProps, {
+        unfollowThunk,
+        followThunk,
+        getUsersThunk,
+        onChangeUsersThunk,
+        isLogin
+    }),
+    withAuthRedirect,
+)
+(UsersAPIContainer);

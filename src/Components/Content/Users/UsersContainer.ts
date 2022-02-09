@@ -13,9 +13,10 @@ let mapDispatchToProps = (dispatch: any) => {
             const action = unfollowActionCreator(id);
             dispatch(action)
         },
-        setUsers: (id: number) => {
+        setUsers: (users: any) => {
 
-            let action = SetUsersActionCreator(id)
+            let action = SetUsersActionCreator(users)
+
             dispatch(action)
         }
 

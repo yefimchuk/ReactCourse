@@ -1,6 +1,6 @@
 const follow = "FOLLOW";
 const unFollow = "UNFOLLOW";
-const setUsers = "UNFOLLOW";
+const setUsers = "SET-USERS";
 
 let initialState = {
     users: [
@@ -8,7 +8,9 @@ let initialState = {
             id: 1,
             nickname: "Illya",
             status: "pipapupipu",
-            avatar: "https://www.meme-arsenal.com/memes/91e83b00c27bf4d5bb849a6ac2b81fe5.jpg",
+            photos:{
+                small: "https://www.meme-arsenal.com/memes/91e83b00c27bf4d5bb849a6ac2b81fe5.jpg"
+            } ,
             city: "Belogorodka",
             country: "Ukraine",
             followed: true
@@ -17,7 +19,9 @@ let initialState = {
             id: 2,
             nickname: "Arthur",
             status: "i'm love all Nastya in the world",
-            avatar: "https://images.aif.by/007/318/b53425339c1eab74cda53465696a4aaf.jpg",
+            photos:{
+                small: "https://images.aif.by/007/318/b53425339c1eab74cda53465696a4aaf.jpg"
+            } ,
             city: "Bila cerkva",
             country: "Ukraine",
             followed: true
@@ -26,7 +30,9 @@ let initialState = {
             id: 3,
             nickname: "Luba",
             status: "u are all bitches",
-            avatar: "https://www.biography.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU3MTAwNTIzNDc5MTE1MDY1/lana-del-rey-attends-the-60th-annual-grammy-awards-at-madison-square-garden-on-january-28-2018-in-new-york-city-photo-by-dimitrios-kambouris_getty-images-for-naras-square.jpg",
+            photos: {
+                small: "https://mfm.ua/wp-content/uploads/2015/12/lana_del_Rey2.jpg",
+            },
             city: "Florida",
             country: "America",
             followed: false
@@ -51,6 +57,7 @@ export const UsersReducers = (state = initialState, action: any) => {
             }
         }
         case unFollow: {
+            debugger
             return {
                 ...state,
                 users: state.users.map((u: { id: number }) => {
@@ -63,8 +70,10 @@ export const UsersReducers = (state = initialState, action: any) => {
             }
         }
         case setUsers: {
+
             return {
                 ...state, users: [...state.users, ...action.users]
+
             }
         }
 
@@ -81,7 +90,7 @@ export const followActionCreator = (userid: number) => {
 export const unfollowActionCreator = (userid: number) => {
     return {type: unFollow, id: userid}
 }
-export const SetUsersActionCreator = (userid: number) => {
-    return {type: setUsers, id: userid}
+export const SetUsersActionCreator = (users: any) => {
+    return {type: setUsers, users: users}
 }
 

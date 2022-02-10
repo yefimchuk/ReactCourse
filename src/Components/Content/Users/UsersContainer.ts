@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {followActionCreator, SetUsersActionCreator, unfollowActionCreator,} from "../../Redux/userspage-reducer";
 import Profile from "../Profile/Profile";
-import Users from "./Users";
+import Users from "./Usersc";
 
 let mapDispatchToProps = (dispatch: any) => {
     return {

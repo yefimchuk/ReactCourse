@@ -6,7 +6,7 @@ let initialState = {
     users: [
         {
             id: 1,
-            nickname: "Illya",
+            name: "Illya",
             status: "pipapupipu",
             photos:{
                 small: "https://www.meme-arsenal.com/memes/91e83b00c27bf4d5bb849a6ac2b81fe5.jpg"
@@ -17,7 +17,7 @@ let initialState = {
         },
         {
             id: 2,
-            nickname: "Arthur",
+            name: "Arthur",
             status: "i'm love all Nastya in the world",
             photos:{
                 small: "https://images.aif.by/007/318/b53425339c1eab74cda53465696a4aaf.jpg"
@@ -28,7 +28,7 @@ let initialState = {
         },
         {
             id: 3,
-            nickname: "Luba",
+            name: "Luba",
             status: "u are all bitches",
             photos: {
                 small: "https://mfm.ua/wp-content/uploads/2015/12/lana_del_Rey2.jpg",

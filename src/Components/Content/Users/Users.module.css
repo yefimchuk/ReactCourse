@@ -89,4 +89,7 @@ border-radius: 6px;
     height: 25px;
 }
 
-
+.selected {
+    font-size: 15px;
+    font-weight: 600;
+}

@@ -1,6 +1,7 @@
 const follow = "FOLLOW";
 const unFollow = "UNFOLLOW";
 const setUsers = "SET-USERS";
+const setCurrentPage = "SET-CURRENT-PAGE";
 
 let initialState = {
     users: [
@@ -37,7 +38,10 @@ let initialState = {
             country: "America",
             followed: false
         },
-    ]
+    ],
+    pageSize: 5,
+    totalUserCount: 19,
+    currentPage: 4
 }
 export const UsersReducers = (state = initialState, action: any) => {
 
@@ -57,7 +61,7 @@ export const UsersReducers = (state = initialState, action: any) => {
             }
         }
         case unFollow: {
-            debugger
+
             return {
                 ...state,
                 users: state.users.map((u: { id: number }) => {
@@ -72,7 +76,14 @@ export const UsersReducers = (state = initialState, action: any) => {
         case setUsers: {
 
             return {
-                ...state, users: [...state.users, ...action.users]
+                ...state, users: action.users
+
+            }
+        }
+        case setCurrentPage: {
+
+            return {
+                ...state, currentPage: action.currentPage
 
             }
         }
@@ -93,4 +104,8 @@ export const unfollowActionCreator = (userid: number) => {
 export const SetUsersActionCreator = (users: any) => {
     return {type: setUsers, users: users}
 }
+export const SetCurrentPageActionCreator = (currentPage: number) => {
+    return {type: setCurrentPage, currentPage: currentPage}
+}
+
 

@@ -2,10 +2,10 @@ const follow = "FOLLOW";
 const unFollow = "UNFOLLOW";
 const setUsers = "SET-USERS";
 const setCurrentPage = "SET-CURRENT-PAGE";
-
+const setTotalUserCount = "SET-TOTAL-USER-COUNT"
 let initialState = {
     users: [
-        {
+        /*{
             id: 1,
             name: "Illya",
             status: "pipapupipu",
@@ -37,11 +37,11 @@ let initialState = {
             city: "Florida",
             country: "America",
             followed: false
-        },
+        },*/
     ],
-    pageSize: 5,
-    totalUserCount: 19,
-    currentPage: 4
+    pageSize: 100,
+    totalUserCount: 0,
+    currentPage: 0
 }
 export const UsersReducers = (state = initialState, action: any) => {
 
@@ -87,7 +87,13 @@ export const UsersReducers = (state = initialState, action: any) => {
 
             }
         }
+        case setTotalUserCount: {
 
+            return {
+                ...state, totalUserCount: action.totalUserCount
+
+            }
+        }
         default:
             return state
     }
@@ -107,5 +113,9 @@ export const SetUsersActionCreator = (users: any) => {
 export const SetCurrentPageActionCreator = (currentPage: number) => {
     return {type: setCurrentPage, currentPage: currentPage}
 }
+export const SetNewTotalCountActionCreator = (totalUserCount: number) => {
+    return {type: setTotalUserCount, totalUserCount: totalUserCount}
+}
+
 
 

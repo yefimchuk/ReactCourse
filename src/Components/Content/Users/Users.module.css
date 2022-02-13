@@ -93,3 +93,15 @@ border-radius: 6px;
     font-size: 15px;
     font-weight: 600;
 }
+.loading {
+
+    display: flex;
+justify-content: center;
+width: 100%;
+    align-items: center;
+
+}
+.loading1
+{
+    width: 7%;
+}

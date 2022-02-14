@@ -5,7 +5,6 @@ import App from './App';
 import store from "./Components/Redux/store-redux.ts";
 import {Provider} from "react-redux";
 
-
 let Rerender = (state) => {
 
     ReactDOM.render(

@@ -28,7 +28,9 @@ class UsersAPIContainer extends React.Component {
     }
 
     onPageChanged = (currentPage) => {
+        console.log("currentPage:", currentPage)
         this.props.isLogin(true)
+
         this.props.setCurrentPage(currentPage)
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(a => {
             this.props.isLogin(false)

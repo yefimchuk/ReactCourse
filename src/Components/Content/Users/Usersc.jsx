@@ -1,6 +1,11 @@
 import React from "react";
 import s from "./Users.module.css"
 import photo from "../../../img/user.png"
+import Pagination from "../../../common/pagination";
+
+function onChange(pageNumber) {
+    console.log('Page: ', pageNumber);
+}
 
 let Users = (props) => {
 
@@ -37,22 +42,14 @@ let Users = (props) => {
                             <div className={s.country}>{u.country}</div>
                         </div>
                     </div>
+
+
                 </div>
             </div>)
         }
         <div>
-            {
-                pages.map(a => {
-                    return <button
-                        className={props.currentPage === a && s.selected}
 
-                        onClick={(p) => {
-
-                            props.onPageChanged(a)
-
-                        }}>{a}</button>
-                })
-            }
+<Pagination currentPage={props.currentPage} onPageChanged={props.onPageChanged} pageCount={pageCount}/>
         </div>
     </div>
 

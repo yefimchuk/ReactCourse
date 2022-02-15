@@ -6,7 +6,7 @@ const setTotalUserCount = "SET-TOTAL-USER-COUNT"
 const IsLogin = "IS-LOGIN"
 let initialState = {
     users: [],
-    pageSize: 5,
+    pageSize: 100,
     totalUserCount: 0,
     currentPage: 0,
     isLogin: true

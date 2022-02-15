@@ -18,7 +18,7 @@ let mapDispatchToProps = (dispatch: any) => {
             const action = updateReviewTextActionCreator(text);
             dispatch(action)
         },
-        like: (props: any)  => {
+        like: (props: number)  => {
 
             let action = sendLikesActionCreator(props)
             dispatch(action)

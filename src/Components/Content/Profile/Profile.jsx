@@ -7,7 +7,7 @@ let Profile = (props) => {
 
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
                                                             message={review.message} like={props.like}
-                                                            id={review.id} />)
+                                                            id={review.id} data={props.ReviewData} />)
     let newReviewElement = React.createRef()
     let addReview = () => {
 

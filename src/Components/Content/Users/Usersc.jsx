@@ -1,6 +1,6 @@
 import React from "react";
 import s from "./Users.module.css"
-import photo from "../../../img/user.png"
+import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png"
 import Pagination from "../../../common/pagination";
 
 function onChange(pageNumber) {
@@ -49,7 +49,7 @@ let Users = (props) => {
         }
         <div>
 
-<Pagination currentPage={props.currentPage} onPageChanged={props.onPageChanged} pageCount={pageCount}/>
+<Pagination currentPage={props.currentPage} onPageChanged={props.onPageChanged} total={props.totalUserCount} pageCount={pageCount}/>
         </div>
     </div>
 

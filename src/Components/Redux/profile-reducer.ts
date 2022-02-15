@@ -1,12 +1,13 @@
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
+
 let initialState = {
     ReviewData: [
         {
             id: 1,
             avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8KJh4iMd90SSfuNCU02ss6lX6CokNaWwzQ&usqp=CAU",
-            likes: 1112,
+            likes: 0,
             message: "Hello, i am is a doctor"
         },
         {
@@ -48,7 +49,7 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
             let NewReview = {
                 id: 5,
                 avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
-                likes: "0",
+                likes: 1,
                 message: state.NewReviewText
             }
             return {
@@ -65,14 +66,20 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
             }
         }
         case sendLike: {
+
             return {
+
                 ...state,
-                ReviewData: [...state.ReviewData].filter((el: any) =>
+                ReviewData: [...state.ReviewData].map((el: any) =>
+
                     el.id === action.numberLikes.id ? el.likes++ : el.likes
+
                 )
 
             }
+
         }
+
         default:
             return state
 

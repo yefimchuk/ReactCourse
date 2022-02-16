@@ -7,7 +7,7 @@ let initialState = {
         {
             id: 1,
             avatar: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSp8KJh4iMd90SSfuNCU02ss6lX6CokNaWwzQ&usqp=CAU",
-            likes: 0,
+            likes: 1,
             message: "Hello, i am is a doctor"
         },
         {
@@ -70,7 +70,7 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
             return {
 
                 ...state,
-                ReviewData: [...state.ReviewData].map((el: any) =>
+                ReviewData: [...state.ReviewData].filter((el: any) =>
 
                     el.id === action.numberLikes.id ? el.likes++ : el.likes
 
@@ -87,14 +87,14 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
 
 
 }
-export const addNewReviewActionCreator = () => {
+export const addReview = () => {
     return {type: addnewreview}
 }
-export const updateReviewTextActionCreator = (text: string) => {
+export const newTextReview = (text: string) => {
 
     return {type: updatereviewtext, newText: text}
 }
-export const sendLikesActionCreator = (numberLikes: number) => {
+export const like = (numberLikes: number) => {
 
 
     return {type: sendLike, numberLikes: numberLikes}

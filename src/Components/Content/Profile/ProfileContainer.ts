@@ -1,31 +1,6 @@
-import React from "react";
-import {
-    addNewReviewActionCreator,
-    sendLikesActionCreator,
-    updateReviewTextActionCreator
-} from "../../Redux/profile-reducer";
+import {addReview, like, newTextReview} from "../../Redux/profile-reducer";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import Review from "./ProfileInfo/Review";
-
-let mapDispatchToProps = (dispatch: any) => {
-    return {
-        addReview: (text: string) => {
-            const action = addNewReviewActionCreator();
-            dispatch(action)
-        },
-        newTextReview: (text: string) => {
-            const action = updateReviewTextActionCreator(text);
-            dispatch(action)
-        },
-        like: (props: number)  => {
-
-            let action = sendLikesActionCreator(props)
-            dispatch(action)
-        }
-
-    }
-}
 
 let mapStateToProps = (state: any) => {
 
@@ -40,6 +15,10 @@ let mapStateToProps = (state: any) => {
         NewReviewText: state.profilePage.NewReviewText
     }
 }
-let ProfileContainer = connect(mapStateToProps, mapDispatchToProps)(Profile);
+let ProfileContainer = connect(mapStateToProps, {
+    addReview,
+    newTextReview,
+    like,
+})(Profile);
 
 export default ProfileContainer;

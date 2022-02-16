@@ -69,10 +69,10 @@ export const MessageReducer = (state: any = initialState, action: any) => {
 }
 
 
-export const addNewMessageActionCreator = () => {
+export const AddNewMessage = () => {
     return {type: addnewmessage}
 }
-export const updateMessageTextActionCreator = (text: string) => {
+export const UpdateMessage = (text: string) => {
 
     return {type: updatemessagetext, newText: text}
 }

@@ -3,8 +3,8 @@ import {connect} from "react-redux";
 import React from "react";
 import * as axios from "axios";
 import Profile from "./Profile";
-import {useHistory, useParams, useRouteMatch} from "react-router-dom";
-import {useLocation, useMatch} from "react-router";
+import { useParams } from "react-router-dom";
+
 
 
 const withRouter = WrappedComponent => props => {

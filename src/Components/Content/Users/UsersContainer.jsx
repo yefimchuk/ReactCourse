@@ -12,7 +12,7 @@ import {
 import React from "react";
 import * as axios from "axios";
 import Users from "./Usersc";
-import Loading from "../../../common/loading";
+import Loading from "../../../common/Loading/loading";
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {

@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import Loading from "../../../common/loading";
+import Loading from "../../../common/Loading/loading";
 
 let Profile = (props) => {
 

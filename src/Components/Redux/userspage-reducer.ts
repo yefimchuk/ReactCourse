@@ -1,8 +1,8 @@
-const follow = "FOLLOW";
-const unFollow = "UNFOLLOW";
-const setUsers = "SET-USERS";
-const setCurrentPage = "SET-CURRENT-PAGE";
-const setTotalUserCount = "SET-TOTAL-USER-COUNT"
+const Follow = "FOLLOW";
+const UnFollow = "UNFOLLOW";
+const SetUsers = "SET-USERS";
+const SetCurrentPage = "SET-CURRENT-PAGE";
+const SetTotalUserCount = "SET-TOTAL-USER-COUNT"
 const IsLogin = "IS-LOGIN"
 let initialState = {
     users: [],
@@ -14,7 +14,7 @@ let initialState = {
 export const UsersReducers = (state = initialState, action: any) => {
 
     switch (action.type) {
-        case follow: {
+        case Follow: {
             return {
 
                 ...state,
@@ -28,7 +28,7 @@ export const UsersReducers = (state = initialState, action: any) => {
 
             }
         }
-        case unFollow: {
+        case UnFollow: {
 
             return {
                 ...state,
@@ -41,21 +41,21 @@ export const UsersReducers = (state = initialState, action: any) => {
 
             }
         }
-        case setUsers: {
+        case SetUsers: {
 
             return {
                 ...state, users: action.users
 
             }
         }
-        case setCurrentPage: {
+        case SetCurrentPage: {
 
             return {
                 ...state, currentPage: action.currentPage
 
             }
         }
-        case setTotalUserCount: {
+        case SetTotalUserCount: {
 
             return {
                 ...state, totalUserCount: action.totalUserCount
@@ -77,23 +77,24 @@ export const UsersReducers = (state = initialState, action: any) => {
 }
 
 
-export const followActionCreator = (userid: number) => {
-    return {type: follow, id: userid}
+export const follow = (userid: number) => {
+    return {type: Follow, id: userid}
 }
-export const unfollowActionCreator = (userid: number) => {
-    return {type: unFollow, id: userid}
+export const unfollow = (userid: number) => {
+    return {type: UnFollow, id: userid}
 }
-export const SetUsersActionCreator = (users: any) => {
-    return {type: setUsers, users: users}
+export const setUsers = (users: any) => {
+    return {type: SetUsers, users: users}
 }
-export const SetCurrentPageActionCreator = (currentPage: number) => {
-    return {type: setCurrentPage, currentPage: currentPage}
+export const setCurrentPage = (currentPage: number) => {
+    return {type: SetCurrentPage, currentPage: currentPage}
 }
-export const SetNewTotalCountActionCreator = (totalUserCount: number) => {
-    return {type: setTotalUserCount, totalUserCount: totalUserCount}
+export const setNewTotalCount = (totalUserCount: number) => {
+
+    return {type: SetTotalUserCount, totalUserCount: totalUserCount}
 }
 
-export const IsLoginActionCreator = (isLogin: boolean) => {
+export const isLogin = (isLogin: boolean) => {
     return {type: IsLogin, isLogin: isLogin}
 }
 

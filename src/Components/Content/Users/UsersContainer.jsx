@@ -1,11 +1,11 @@
 import {connect} from "react-redux";
 import {
-    followActionCreator,
-    IsLoginActionCreator,
-    SetCurrentPageActionCreator,
-    SetNewTotalCountActionCreator,
-    SetUsersActionCreator,
-    unfollowActionCreator,
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setNewTotalCount,
+    isLogin
 } from "../../Redux/userspage-reducer";
 
 import loading from "../../../img/35771931234507.564a1d2403b3a.gif"
@@ -53,39 +53,6 @@ class UsersAPIContainer extends React.Component {
     }
 }
 
-let mapDispatchToProps = (dispatch) => {
-    return {
-        follow: (id) => {
-            const action = followActionCreator(id);
-            dispatch(action)
-        },
-        unfollow: (id) => {
-            const action = unfollowActionCreator(id);
-            dispatch(action)
-        },
-        setUsers: (users) => {
-
-            let action = SetUsersActionCreator(users)
-
-            dispatch(action)
-        },
-        setCurrentPage: (currentPage) => {
-            let action = SetCurrentPageActionCreator(currentPage)
-            dispatch(action);
-
-        },
-        setNewTotalCount: (total) => {
-            let action = SetNewTotalCountActionCreator(total);
-            dispatch(action)
-        },
-        isLogin: (isLogin) => {
-            let action = IsLoginActionCreator(isLogin)
-
-            dispatch(action)
-
-        }
-    }
-}
 
 let mapStateToProps = (state) => {
 
@@ -98,6 +65,13 @@ let mapStateToProps = (state) => {
     }
 }
 
-let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIContainer)
+let UsersContainer = connect(mapStateToProps, {
+    follow,
+    unfollow,
+    setUsers,
+    setCurrentPage,
+    setNewTotalCount,
+    isLogin
+})(UsersAPIContainer)
 
 export default UsersContainer;

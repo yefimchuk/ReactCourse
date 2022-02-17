@@ -26,7 +26,7 @@ let Profile = (props) => {
                  src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"/>
 
 
-            <PersonalInformation avatar={props.avatar}
+            <PersonalInformation avatar={props.Profile.photos.large }
                                  name={props.name} city={props.city}
                                  born={props.born}
                                  education={props.education}

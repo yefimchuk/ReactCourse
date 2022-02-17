@@ -1,7 +1,7 @@
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
-
+const setProfile = "SET-PROFILE"
 let initialState = {
     ReviewData: [
         {
@@ -31,7 +31,10 @@ let initialState = {
     ],
     PersonalData:
         {
-            avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
+            photos: {
+                "small": "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
+                "large": "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png"
+            },
             name: "Dmitriy Yefimchuk",
             city: "Bakhmach",
             born: "2003-01-12",
@@ -39,10 +42,11 @@ let initialState = {
             site: "https://github.com/yefimchuk"
         },
 
-    NewReviewText: ""
+    NewReviewText: "",
+    Profile: null,
 
 }
-export const ProfileReducer = (state: any = initialState, action: { type: string; newText: string; numberLikes: { id: number; likes: number }; }) => {
+export const ProfileReducer = (state: any = initialState, action: { profile: object; type: string; newText: string; numberLikes: { id: number; likes: number }; }) => {
 
     switch (action.type) {
         case addnewreview: {
@@ -73,12 +77,22 @@ export const ProfileReducer = (state: any = initialState, action: { type: string
                 ReviewData: [...state.ReviewData].filter((el: any) =>
 
                     el.id === action.numberLikes.id ? el.likes++ : el.likes
-
                 )
 
             }
 
         }
+        case setProfile: {
+
+            return {
+
+                ...state,
+                Profile: action.profile,
+            }
+
+
+        }
+
 
         default:
             return state
@@ -91,11 +105,12 @@ export const addReview = () => {
     return {type: addnewreview}
 }
 export const newTextReview = (text: string) => {
-
     return {type: updatereviewtext, newText: text}
 }
 export const like = (numberLikes: number) => {
-
-
     return {type: sendLike, numberLikes: numberLikes}
+}
+
+export const setNewProfile = (profile: object) => {
+    return {type: setProfile, profile: profile}
 }

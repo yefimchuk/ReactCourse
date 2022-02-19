@@ -13,8 +13,16 @@ let PersonalInformation = (props) => {
             <div className={s.personalData}>
                 <div className={s.text1}>Name: <div className={s.text2}>{props.name}</div></div>
                 <div className={s.text}>Job: {props.job}</div>
-                <div className={s.text}>Web Site: <a href={props.site} className={s.text2}> GitHub</a>
+                <div className={s.text}>GitHub:
+                        <a href={`https://` + props.git} className={s.text2}> {props.git}</a>
                 </div>
+                <div className={s.text}>Instagram:
+                    <a href={`https://` + props.youTube} className={s.text2}> {props.youTube}</a>
+                </div>
+                <div className={s.text}>YouTube:
+                    <a href={`https://` + props.instagram} className={s.text2}> {props.instagram}</a>
+                </div>
+
 
             </div>
         </div>

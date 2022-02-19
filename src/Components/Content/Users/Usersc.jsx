@@ -45,7 +45,7 @@ let Users = (props) => {
                         </div>
                         <div className={s.right}>
                             <div className={s.city}>{u.city}</div>
-                            <div className={s.country}>{u.country}</div>
+    
                         </div>
 
                     </NavLink>

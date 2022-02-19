@@ -33,7 +33,9 @@ let Profile = (props) => {
             <PersonalInformation avatar={props.Profile.photos.large}
                                  name={props.Profile.fullName}
                                  job={props.Profile.lookingForAJobDescription}
-                                 site={props.Profile.contacts.mainLink}/>
+                                 git={props.Profile.contacts.mainLink}
+                                 youTube={props.Profile.contacts.youtube}
+                                 instagram={props.Profile.contacts.instagram}/>
 
 
             <div className={s.Post}>

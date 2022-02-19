@@ -9,7 +9,7 @@ let Sidebar = (props) => {
         <nav className={s.Sidebar}>
             <div className={s.ItemFlex}>
                 <div className={s.item}>
-                    <NavLink  activeClassName="active"  to="/profile/:id" >Profile</NavLink>
+                    <NavLink  activeClassName="active"  to="/profile" >Profile</NavLink>
                 </div>
 
                 <div className={s.item}>

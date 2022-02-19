@@ -16,7 +16,7 @@
     flex-direction: row;
     align-items: center;
      color: white;
-     font-size: 30px;
+     font-size: 25px;
 
 
 
@@ -33,13 +33,19 @@
 .text {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
+
     color: white;
     font-size: 20px;
     text-decoration: none;
 }
 
+.websites{
 
+    display: flex;
+    flex-direction: column;
+
+}
 @keyframes super-rainbow {
     0% {
         color: #ff0000;

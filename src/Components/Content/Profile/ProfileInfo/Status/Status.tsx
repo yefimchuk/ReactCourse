@@ -26,8 +26,8 @@ export class Status extends React.Component<any, any> {
     render() {
         return <div className={s.status}>
             {this.state.editMode ? <div>
-                <input className={s.input}value={this.props.status} autoFocus={true} onBlur={this.deactivatedEditMode}/>
-            </div> : <div className={s.textStatus} onClick={this.activatedEditMode}>{this.props.status}</div>}
+                <input className={s.input} value={`status: ${this.props.status}`} autoFocus={true} onBlur={this.deactivatedEditMode}/>
+            </div> : <div className={s.textStatus} onClick={this.activatedEditMode}>{`${this.props.status}`}</div>}
         </div>
     }
 }

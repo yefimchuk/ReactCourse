@@ -14,7 +14,7 @@ import LoginContainer from "./Components/Header/Login/LoginContainer";
 import Login from "./Components/Header/Login/Login";
 
 const App = (props: any) => {
-    debugger
+
     return (
         <HashRouter>
 

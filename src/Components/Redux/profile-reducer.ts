@@ -5,6 +5,7 @@ const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
 const setProfile = "SET-PROFILE"
 const SET_ID = "SET-ID"
+const SET_STATUS = "SET-STATUS"
 const IsLogin = "IS-LOGIN"
 let initialState = {
     ReviewData: [
@@ -50,6 +51,7 @@ let initialState = {
     Profile: null,
     id: null,
     isLogin: false,
+    status: null,
 
 }
 export const ProfileReducer = (state: any = initialState, action: any) => {
@@ -111,6 +113,14 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
             }
 
         }
+        case SET_STATUS: {
+            return {
+
+                ...state,
+                status: action.status ,
+            }
+
+        }
         default:
             return state
     }
@@ -133,6 +143,9 @@ export const setId = (id: object) => {
 export const isLogin = (isLogin: boolean) => {
     return {type: IsLogin, isLogin: isLogin}
 }
+export const setStatus = (status: number) => {
+    return {type: SET_STATUS, status: status}
+}
 //thunk
 
 export const AuthMeThunk = (userId: any) => {
@@ -153,9 +166,20 @@ export const AuthMeThunk = (userId: any) => {
 
                 })
             }
+            UsersAPI.SetStatus(userId).then((response: any) => {
+
+                dispatch(setStatus(response.data))
+            })
         })
 
 
     }
 }
+export const SetStatusThunk = (id: number) => {
+    return (dispatch: any) => {
+        UsersAPI.SetStatus(id).then((response: any) => {
 
+            dispatch(setStatus(response.data))
+        })
+    }
+}

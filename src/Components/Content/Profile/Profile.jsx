@@ -42,7 +42,7 @@ let Profile = (props) => {
                                  youTube={props.Profile.contacts.youtube}
                                  instagram={props.Profile.contacts.instagram}/>
 
-            <Status status={"hello work :)"}/>
+            <Status status={props.status}/>
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
 

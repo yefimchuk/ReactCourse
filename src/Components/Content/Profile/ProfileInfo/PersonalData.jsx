@@ -3,7 +3,7 @@ import s from "../ProfileInfo/PersonalData.module.css"
 import photo from "../../../../img/—Pngtree—vector avatar icon_4013749.png";
 
 let PersonalInformation = (props) => {
-    debugger
+
     return (
         <div className={s.account}>
             <div>

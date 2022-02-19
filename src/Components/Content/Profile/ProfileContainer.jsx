@@ -1,4 +1,4 @@
-import {addReview, AuthMeThunk, isLogin, like, newTextReview} from "../../Redux/profile-reducer";
+import {addReview, AuthMeThunk, isLogin, like, newTextReview, SetStatusThunk} from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
@@ -23,6 +23,7 @@ class ProfileAPIContainer extends React.Component {
 
         let userId = this.props.params.userId;
         this.props.AuthMeThunk(userId)
+
     }
 
     componentWillUnmount() {
@@ -30,6 +31,7 @@ class ProfileAPIContainer extends React.Component {
     }
 
     render() {
+
         return <Profile {...this.props} IDD={this.props.id}/>
     }
 }
@@ -48,6 +50,7 @@ let mapStateToProps = (state) => {
         site: state.profilePage.PersonalData.site,
         NewReviewText: state.profilePage.NewReviewText,
         Profile: state.profilePage.Profile,
+        status: state.profilePage.status
     }
 
 }
@@ -59,7 +62,8 @@ export default compose(
         newTextReview,
         like,
         AuthMeThunk,
-        isLogin
+        isLogin,
+        SetStatusThunk,
     }),
 )
 (ProfileAPIContainer);

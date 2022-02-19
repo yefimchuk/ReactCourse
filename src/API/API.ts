@@ -35,11 +35,11 @@ export const UsersAPI = {
         })
     },
     SetMyId: (userId: number) => {
-        return instance.get(`profile/${userId}`,
-            {
-                withCredentials: true
-            }
-        )
+        return instance.get(`profile/${userId}`)
+    },
+    SetStatus: (id: number) => {
+
+        return instance.get(`profile/status/${id}`)
     }
 }
 export const HeaderAPI = {

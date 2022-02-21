@@ -1,25 +1,35 @@
 import React from "react";
 import Header from "./Header"
 import {connect} from "react-redux";
-import {SetUserData} from "../Redux/auth-reducer";
+import {SetAuthUserData, SetUserData} from "../Redux/auth-reducer";
 
 interface IRecipeProps {
         SetUserData?: any;
+    SetAuthUserData?: any
 }
 
 
 class HeaderContainerAPI extends React.Component <IRecipeProps> {
 
+
     componentDidMount() {
-
         let axios = require('axios').default;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then((a: any) => {
 
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then((a: any) => {
             if (a.data.resultCode === 0) {
                 let {id, email, login} = a.data.data
-                debugger
-                this.props.SetUserData(id, email, login)
+                this.props.SetAuthUserData(id, email, login)
 
+                axios.get(`https://social-network.samuraijs.com/api/1.0/users?term=${login}`).then((b: any) => {
+
+                    b.data.items.filter((u: any) => {
+                        if (id === u.id) {
+                            this.props.SetUserData(u)
+
+                        }
+                    })
+
+                })
             }
             console.log(a)
         })
@@ -35,9 +45,11 @@ class HeaderContainerAPI extends React.Component <IRecipeProps> {
 let mapStateToProps = (state: any) => {
 
     return {
-        id: state.auth.id
+        id: state.auth.id,
+        isLogin: state.auth.isLogin,
+        date: state.auth.date
     }
 }
-let HeaderContainer = connect(mapStateToProps, {SetUserData})(HeaderContainerAPI);
+let HeaderContainer = connect(mapStateToProps, {SetAuthUserData, SetUserData})(HeaderContainerAPI);
 
 export default HeaderContainer

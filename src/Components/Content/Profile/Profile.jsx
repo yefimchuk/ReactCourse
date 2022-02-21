@@ -22,6 +22,7 @@ let Profile = (props) => {
         props.newTextReview(text)
     }
     if (!props.Profile) {
+
         return <Loading/>
     }
     return (

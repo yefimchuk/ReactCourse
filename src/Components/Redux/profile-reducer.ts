@@ -2,6 +2,7 @@ const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
 const setProfile = "SET-PROFILE"
+const SET_ID = "SET-ID"
 let initialState = {
     ReviewData: [
         {
@@ -44,9 +45,12 @@ let initialState = {
 
     NewReviewText: "",
     Profile: null,
+    id: null
 
 }
-export const ProfileReducer = (state: any = initialState, action: { profile: object; type: string; newText: string; numberLikes: { id: number; likes: number }; }) => {
+export const ProfileReducer = (state: any = initialState, action: {
+    id: any;
+    profile: object; type: string; newText: string; numberLikes: { id: number; likes: number }; }) => {
 
     switch (action.type) {
         case addnewreview: {
@@ -69,6 +73,14 @@ export const ProfileReducer = (state: any = initialState, action: { profile: obj
                 NewReviewText: action.newText
             }
         }
+        case SET_ID: {
+
+            return {
+
+                ...state,
+                id: action.id.data.data.id
+            }
+        }
         case sendLike: {
 
             return {
@@ -83,23 +95,16 @@ export const ProfileReducer = (state: any = initialState, action: { profile: obj
 
         }
         case setProfile: {
-
             return {
 
                 ...state,
                 Profile: action.profile,
             }
 
-
         }
-
-
         default:
             return state
-
     }
-
-
 }
 export const addReview = () => {
     return {type: addnewreview}
@@ -110,7 +115,9 @@ export const newTextReview = (text: string) => {
 export const like = (numberLikes: number) => {
     return {type: sendLike, numberLikes: numberLikes}
 }
-
-export const setNewProfile = (profile: object) => {
+export const setNewProfile = (profile: any) => {
     return {type: setProfile, profile: profile}
+}
+export const setId = (id: object) => {
+    return {type: SET_ID, id: id}
 }

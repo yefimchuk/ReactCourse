@@ -1,10 +1,9 @@
-import {addReview, like, newTextReview, setNewProfile} from "../../Redux/profile-reducer";
+import {addReview, like, newTextReview, setId, setNewProfile} from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
 import React from "react";
 import * as axios from "axios";
 import Profile from "./Profile";
-import { useParams } from "react-router-dom";
-
+import {useParams} from "react-router-dom";
 
 
 const withRouter = WrappedComponent => props => {
@@ -21,23 +20,28 @@ const withRouter = WrappedComponent => props => {
 class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
-
         let userId = this.props.params.userId;
-        if (!userId){
-            userId = 2
-        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then((a) => {
+            this.props.setId(a)
+            if (!userId) {
 
+                userId = this.props.id
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(a => {
-this.props.setNewProfile(a.data)
+            }
 
+            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(a => {
+
+                this.props.setNewProfile(a.data)
+
+            })
         })
+
     }
 
 
     render() {
 
-        return <Profile {...this.props}/>
+        return <Profile {...this.props} IDD={this.props.id}/>
     }
 }
 let UrlDataContainerComponent = withRouter(ProfileAPIContainer);
@@ -46,6 +50,7 @@ let mapStateToProps = (state) => {
 
 
     return {
+        UserId: state.auth.id,
         id: state.profilePage.id,
         ReviewData: state.profilePage.ReviewData,
         name: state.profilePage.PersonalData.name,
@@ -63,7 +68,8 @@ let ProfileContainer = connect(mapStateToProps, {
     addReview,
     newTextReview,
     like,
-    setNewProfile
+    setNewProfile,
+    setId
 })(UrlDataContainerComponent);
 
 export default ProfileContainer;

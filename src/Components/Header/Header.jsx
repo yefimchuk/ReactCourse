@@ -20,7 +20,7 @@ let Header = (props) => {
 
                 {
 
-                    props.date === null ? <NavLink to={"login"}> Login</NavLink> : props.IsLogin !== null ? <div className={s.info}>
+                    props.date === null ? <a href={"https://social-network.samuraijs.com/login"}> Login</a> : props.IsLogin !== null ? <div className={s.info}>
 
                         <div className={s.name}>{props.date.name}</div>
                         <img className={s.avatar} src={props.date.photos.large}/>

@@ -19,7 +19,7 @@ class UsersAPIContainer extends React.Component {
 
         this.props.isLogin(true)
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=173&count=${this.props.pageSize}`).then(a => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=173&count=${this.props.pageSize}`, {withCredentials:true}).then(a => {
             this.props.isLogin(false)
 
             this.props.setUsers(a.data.items)
@@ -32,7 +32,7 @@ class UsersAPIContainer extends React.Component {
         this.props.isLogin(true)
 
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`).then(a => {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials:true}).then(a => {
             this.props.isLogin(false)
             this.props.setUsers(a.data.items)
         })

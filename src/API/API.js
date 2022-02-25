@@ -1,54 +1,52 @@
 import * as axios from "axios";
 
-export const GetUsers = (pageSize) => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/users?count=${pageSize}`,
-        {
+let instance = axios.create({
+    withCredentials: true,
+    baseURL: "https://social-network.samuraijs.com/api/1.0/",
+    headers: {
+        "API-KEY": "a34bc872-f389-4ef8-b403-cb71dff0b676",
+    },
+})
+
+export const UsersAPI = {
+    GetUsers: (pageSize) => {
+        return instance.get(`users?count=${pageSize}`).then(response => {
+                return response.data
+            }
+        )
+    },
+        OnPageUsersChange: (currentPage, pageSize) => {
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`, {
+            withCredentials: true
+        })
+    },
+
+    Unfollow: (id) => {
+        return instance.delete(`follow/${id}`).then(response => {
+
+            return response.data
+        })
+    },
+
+    Follow: (id) => {
+        return instance.post(`follow/${id}`, {}).then(response => {
+
+            return response.data
+        })
+    },
+    AuthMe: () => {
+        return instance.get(`auth/me`, {
             withCredentials: true
         }).then(response => {
             return response.data
-        }
-    )
-}
-export const OnPageUsersChange = (currentPage, pageSize) => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${pageSize}`, {
-        withCredentials: true
-    })
-}
+        })
+    },
+    SetMyId: (userId) => {
 
-export const Unfollow = (id) => {
-
-    return axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {
-        withCredentials: true,
-        headers: {
-            "API-KEY": "40c673c9-7c95-4006-810b-f4926e37ac22",
-        }
-    }).then(response => {
-        return response.data
-    })
-}
-
-export const Follow = (id) => {
-    return axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${id}`, {}, {
-        withCredentials: true,
-        headers: {
-            "API-KEY": "40c673c9-7c95-4006-810b-f4926e37ac22",
-        }
-    }).then(response => {
-        return response.data
-    })
-}
-export const AuthMe = () => {
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-        withCredentials: true
-    }).then(response => {
-        return response.data
-    })
-}
-export const SetMyId = (userId) => {
-
-    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`,
-        {
-            withCredentials: true
-        }
-    )
+        return instance.get(`profile/${userId}`,
+            {
+                withCredentials: true
+            }
+        )
+    }
 }

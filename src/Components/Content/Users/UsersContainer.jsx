@@ -6,7 +6,7 @@ import React from "react";
 import * as axios from "axios";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
-import {GetUsers} from "../../../API/API";
+import {UsersAPI} from "../../../API/API";
 
 class UsersAPIContainer extends React.Component {
 
@@ -14,7 +14,7 @@ class UsersAPIContainer extends React.Component {
 
         this.props.isLogin(true)
 
-        GetUsers(this.props.pageSize).then(data => {
+        UsersAPI.GetUsers(this.props.pageSize).then(data => {
 
             this.props.isLogin(false)
             this.props.setUsers(data.items)
@@ -27,7 +27,7 @@ class UsersAPIContainer extends React.Component {
         this.props.isLogin(true)
 
         this.props.setCurrentPage(currentPage)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${currentPage}&count=${this.props.pageSize}`, {withCredentials:true}).then(a => {
+      UsersAPI.OnPageUsersChange(currentPage,this.props.pageSize).then(a => {
             this.props.isLogin(false)
             this.props.setUsers(a.data.items)
         })

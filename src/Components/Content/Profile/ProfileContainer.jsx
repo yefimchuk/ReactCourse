@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
-import {AuthMe, SetMyId} from "../../../API/API";
+import {AuthMe, SetMyId, UsersAPI} from "../../../API/API";
 
 
 const withRouter = WrappedComponent => props => {
@@ -21,7 +21,7 @@ class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.params.userId;
-        AuthMe().then((a) => {
+        UsersAPI.AuthMe().then((a) => {
             this.props.setId(a)
             if (!userId) {
 
@@ -29,7 +29,7 @@ class ProfileAPIContainer extends React.Component {
 
             }
 
-            SetMyId(userId).then(a => {
+            UsersAPI.SetMyId(userId).then(a => {
 
                 this.props.setNewProfile(a.data)
 

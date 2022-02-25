@@ -3,7 +3,7 @@ import s from "./Users.module.css"
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png"
 import Pagination from "../../../common/pagination";
 import {NavLink} from "react-router-dom";
-import {Follow, Unfollow} from "../../../API/API";
+import {UsersAPI} from "../../../API/API";
 
 function onChange(pageNumber) {
     console.log('Page: ', pageNumber);
@@ -32,10 +32,9 @@ let Users = (props) => {
                             </NavLink>
                             <div>{
                                 u.followed ? <div className={s.followed} onClick={() => {
+                                        UsersAPI.Unfollow(u.id).then(data => {
 
-                                        Follow(u.id).then(data => {
-
-                                            if (data.resultCode)
+                                            if (data.resultCode === 0)
                                                 props.unfollow(u.id)
                                         })
 
@@ -43,7 +42,7 @@ let Users = (props) => {
                                     }}>Unfollow</div> :
                                     <div className={s.unfollowed} onClick={() => {
 
-                                        Unfollow(u.id).then(data => {
+                                        UsersAPI.Follow(u.id).then(data => {
 
                                             if (data.resultCode === 0)
                                                 props.follow(u.id)

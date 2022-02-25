@@ -1,9 +1,9 @@
 import {addReview, like, newTextReview, setId, setNewProfile} from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
 import React from "react";
-import * as axios from "axios";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
+import {AuthMe, SetMyId} from "../../../API/API";
 
 
 const withRouter = WrappedComponent => props => {
@@ -21,7 +21,7 @@ class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
         let userId = this.props.params.userId;
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {withCredentials: true}).then((a) => {
+        AuthMe().then((a) => {
             this.props.setId(a)
             if (!userId) {
 
@@ -29,7 +29,7 @@ class ProfileAPIContainer extends React.Component {
 
             }
 
-            axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(a => {
+            SetMyId(userId).then(a => {
 
                 this.props.setNewProfile(a.data)
 

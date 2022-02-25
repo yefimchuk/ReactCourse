@@ -78,7 +78,7 @@ export const ProfileReducer = (state: any = initialState, action: {
             return {
 
                 ...state,
-                id: action.id.data.data.id
+                id: action.id.data.id
             }
         }
         case sendLike: {

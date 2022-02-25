@@ -37,3 +37,18 @@ export const Follow = (id) => {
         return response.data
     })
 }
+export const AuthMe = () => {
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
+        withCredentials: true
+    }).then(response => {
+        return response.data
+    })
+}
+export const SetMyId = (userId) => {
+
+    return axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`,
+        {
+            withCredentials: true
+        }
+    )
+}

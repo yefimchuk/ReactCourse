@@ -1,9 +1,16 @@
 import {connect} from "react-redux";
-import {follow, isLogin, setCurrentPage, setNewTotalCount, setUsers, unfollow} from "../../Redux/userspage-reducer";
+import {
+    follow,
+    isLogin,
+    setCurrentPage,
+    setNewTotalCount,
+    setUsers,
+    unfollow,
+    ToggleWaitingFollow
+} from "../../Redux/userspage-reducer";
 
 
 import React from "react";
-import * as axios from "axios";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
 import {UsersAPI} from "../../../API/API";
@@ -39,10 +46,13 @@ class UsersAPIContainer extends React.Component {
 
             {this.props.IsLogin ? <Loading/> : null}
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
-                   pageSize={this.props.pageSize} currentPage={this.props.currentPage}
-                   onPageChanged={this.onPageChanged}
-                   follow={this.props.follow}
-                   unfollow={this.props.unfollow}/>
+                                          pageSize={this.props.pageSize} currentPage={this.props.currentPage}
+                                          onPageChanged={this.onPageChanged}
+                                          follow={this.props.follow}
+                                          unfollow={this.props.unfollow}
+                                          WaitingFollow={this.props.WaitingFollow}
+                                          ToggleWaitingFollow={this.props.ToggleWaitingFollow}
+                />
                 : null}
         </>
     }
@@ -56,7 +66,9 @@ let mapStateToProps = (state) => {
         pageSize: state.userPage.pageSize,
         totalUserCount: state.userPage.totalUserCount,
         currentPage: state.userPage.currentPage,
-        IsLogin: state.userPage.isLogin
+        IsLogin: state.userPage.isLogin,
+        WaitingFollow: state.userPage.WaitingFollow,
+
     }
 }
 
@@ -66,7 +78,8 @@ let UsersContainer = connect(mapStateToProps, {
     setUsers,
     setCurrentPage,
     setNewTotalCount,
-    isLogin
+    isLogin,
+    ToggleWaitingFollow
 })(UsersAPIContainer)
 
 export default UsersContainer;

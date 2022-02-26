@@ -4,12 +4,14 @@ const SetUsers = "SET-USERS";
 const SetCurrentPage = "SET-CURRENT-PAGE";
 const SetTotalUserCount = "SET-TOTAL-USER-COUNT"
 const IsLogin = "IS-LOGIN"
+const WAITING_FOLLOW = "WAITING-FOLLOW"
 let initialState = {
     users: [],
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 0,
-    isLogin: true
+    isLogin: true,
+    WaitingFollow: [22678]
 }
 export const UsersReducers = (state = initialState, action: any) => {
 
@@ -55,6 +57,13 @@ export const UsersReducers = (state = initialState, action: any) => {
 
             }
         }
+        case WAITING_FOLLOW: {
+debugger
+            return {
+                ...state,
+                WaitingFollow:  state.WaitingFollow.filter((id => id != action.id))
+            }
+        }
         case SetTotalUserCount: {
 
             return {
@@ -98,3 +107,6 @@ export const isLogin = (isLogin: boolean) => {
     return {type: IsLogin, isLogin: isLogin}
 }
 
+export const ToggleWaitingFollow = (WaitingFollow: any, id: number) => {
+    return {type: WAITING_FOLLOW, WaitingFollow, id}
+}

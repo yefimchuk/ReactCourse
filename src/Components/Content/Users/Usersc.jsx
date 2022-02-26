@@ -5,10 +5,6 @@ import Pagination from "../../../common/pagination";
 import {NavLink} from "react-router-dom";
 import {UsersAPI} from "../../../API/API";
 
-function onChange(pageNumber) {
-    console.log('Page: ', pageNumber);
-}
-
 let Users = (props) => {
 
     let pageCount = Math.ceil(props.totalUserCount / props.pageSize);
@@ -31,26 +27,31 @@ let Users = (props) => {
                                      src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
                             </NavLink>
                             <div>{
-                                u.followed ? <div className={s.followed} onClick={() => {
+                                u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
+                                                     className={s.followed} onClick={() => {
+                                        props.ToggleWaitingFollow(true, u.id)
                                         UsersAPI.Unfollow(u.id).then(data => {
 
                                             if (data.resultCode === 0)
                                                 props.unfollow(u.id)
+                                            props.ToggleWaitingFollow(false)
                                         })
 
 
-                                    }}>Unfollow</div> :
-                                    <div className={s.unfollowed} onClick={() => {
+                                    }}>Unfollow</button> :
 
+                                    <button disabled={props.WaitingFollow.some(id => id === u.id)}
+                                            className={s.unfollowed} onClick={() => {
+                                        props.ToggleWaitingFollow(true)
                                         UsersAPI.Follow(u.id).then(data => {
 
                                             if (data.resultCode === 0)
                                                 props.follow(u.id)
-
+                                            props.ToggleWaitingFollow(false)
                                         })
 
 
-                                    }}>Follow</div>
+                                    }}>Follow</button>
                             }</div>
                         </div>
                     <NavLink className={s.UserInfo} to={"/profile/" + u.id}>

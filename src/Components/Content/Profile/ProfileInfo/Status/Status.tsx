@@ -21,6 +21,7 @@ export class Status extends React.Component<any, any> {
 
     }
     deactivatedEditMode = () => {
+
         this.setState({
             editMode: false
         })
@@ -41,7 +42,7 @@ export class Status extends React.Component<any, any> {
                        value={this.state.status}
                        autoFocus={true}
                        onBlur={this.deactivatedEditMode}/>
-            </div> : <div className={s.textStatus} onClick={this.activatedEditMode}>{`${this.props.status}`}</div>}
+            </div> : <div className={s.textStatus} onClick={this.activatedEditMode}>{`${this.props.status || "none"}`}</div>}
         </div>
     }
 }

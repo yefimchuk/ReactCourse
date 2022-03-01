@@ -29,12 +29,12 @@ let Users = (props) => {
                             <div>{
                                 u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
                                                      className={s.followed} onClick={() => {
-                                        props.ToggleWaitingFollow(true, u.id)
+                                        props.ToggleWaitingFollow(true,u.id)
                                         UsersAPI.Unfollow(u.id).then(data => {
 
                                             if (data.resultCode === 0)
                                                 props.unfollow(u.id)
-                                            props.ToggleWaitingFollow(false)
+                                            props.ToggleWaitingFollow(false, u.id)
                                         })
 
 
@@ -42,12 +42,12 @@ let Users = (props) => {
 
                                     <button disabled={props.WaitingFollow.some(id => id === u.id)}
                                             className={s.unfollowed} onClick={() => {
-                                        props.ToggleWaitingFollow(true)
+                                        props.ToggleWaitingFollow(true, u.id)
                                         UsersAPI.Follow(u.id).then(data => {
 
                                             if (data.resultCode === 0)
                                                 props.follow(u.id)
-                                            props.ToggleWaitingFollow(false)
+                                            props.ToggleWaitingFollow(false, u.id)
                                         })
 
 

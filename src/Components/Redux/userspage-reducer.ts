@@ -58,10 +58,11 @@ export const UsersReducers = (state = initialState, action: any) => {
             }
         }
         case WAITING_FOLLOW: {
-debugger
+
             return {
                 ...state,
-                WaitingFollow:  state.WaitingFollow.filter((id => id != action.id))
+
+                WaitingFollow: action.WaitingFollow ? [...state.WaitingFollow, action.id] : state.WaitingFollow.filter((id => id != action.id))
             }
         }
         case SetTotalUserCount: {

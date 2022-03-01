@@ -3,7 +3,6 @@ import s from "./Users.module.css"
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png"
 import Pagination from "../../../common/pagination";
 import {NavLink} from "react-router-dom";
-import {UsersAPI} from "../../../API/API";
 
 let Users = (props) => {
 
@@ -29,28 +28,13 @@ let Users = (props) => {
                             <div>{
                                 u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
                                                      className={s.followed} onClick={() => {
-                                        props.ToggleWaitingFollow(true,u.id)
-                                        UsersAPI.Unfollow(u.id).then(data => {
-
-                                            if (data.resultCode === 0)
-                                                props.unfollow(u.id)
-                                            props.ToggleWaitingFollow(false, u.id)
-                                        })
-
-
-                                    }}>Unfollow</button> :
+                                        props.unfollow(u.id)
+                                    }
+                                    }>Unfollow</button> :
 
                                     <button disabled={props.WaitingFollow.some(id => id === u.id)}
                                             className={s.unfollowed} onClick={() => {
-                                        props.ToggleWaitingFollow(true, u.id)
-                                        UsersAPI.Follow(u.id).then(data => {
-
-                                            if (data.resultCode === 0)
-                                                props.follow(u.id)
-                                            props.ToggleWaitingFollow(false, u.id)
-                                        })
-
-
+                                        props.follow(u.id)
                                     }}>Follow</button>
                             }</div>
                         </div>

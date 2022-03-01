@@ -1,12 +1,11 @@
 import {connect} from "react-redux";
 import {
-    follow,
+    followThunk,
     isLogin,
     setCurrentPage,
     setNewTotalCount,
     setUsers,
-    unfollow,
-    ToggleWaitingFollow
+    unfollowThunk
 } from "../../Redux/userspage-reducer";
 
 
@@ -48,8 +47,8 @@ class UsersAPIContainer extends React.Component {
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
                                           pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                                           onPageChanged={this.onPageChanged}
-                                          follow={this.props.follow}
-                                          unfollow={this.props.unfollow}
+                                          follow={this.props.followThunk}
+                                          unfollow={this.props.unfollowThunk}
                                           WaitingFollow={this.props.WaitingFollow}
                                           ToggleWaitingFollow={this.props.ToggleWaitingFollow}
                 />
@@ -73,13 +72,12 @@ let mapStateToProps = (state) => {
 }
 
 let UsersContainer = connect(mapStateToProps, {
-    follow,
-    unfollow,
     setUsers,
     setCurrentPage,
     setNewTotalCount,
     isLogin,
-    ToggleWaitingFollow
+    unfollowThunk,
+    followThunk
 })(UsersAPIContainer)
 
 export default UsersContainer;

@@ -1,3 +1,5 @@
+import {UsersAPI} from "../../API/API";
+
 const Follow = "FOLLOW";
 const UnFollow = "UNFOLLOW";
 const SetUsers = "SET-USERS";
@@ -14,7 +16,6 @@ let initialState = {
     WaitingFollow: [22678]
 }
 export const UsersReducers = (state = initialState, action: any) => {
-
     switch (action.type) {
         case Follow: {
             return {
@@ -83,10 +84,8 @@ export const UsersReducers = (state = initialState, action: any) => {
         default:
             return state
     }
-
 }
-
-
+//action creators
 export const follow = (userid: number) => {
     return {type: Follow, id: userid}
 }
@@ -103,11 +102,33 @@ export const setNewTotalCount = (totalUserCount: number) => {
 
     return {type: SetTotalUserCount, totalUserCount: totalUserCount}
 }
-
 export const isLogin = (isLogin: boolean) => {
     return {type: IsLogin, isLogin: isLogin}
 }
-
 export const ToggleWaitingFollow = (WaitingFollow: any, id: number) => {
     return {type: WAITING_FOLLOW, WaitingFollow, id}
+}
+
+// thunk
+export const followThunk = (id: number) => {
+    return (dispatch: any) => {
+
+        dispatch(ToggleWaitingFollow(true, id))
+        UsersAPI.Follow(id).then((data: any) => {
+            if (data.resultCode === 0)
+                dispatch(follow(id))
+            dispatch(ToggleWaitingFollow(false, id))
+        })
+    }
+}
+export const unfollowThunk = (id: number) => {
+    return (dispatch: any) => {
+debugger
+        dispatch(ToggleWaitingFollow(true, id))
+        UsersAPI.Unfollow(id).then((data: any) => {
+            if (data.resultCode === 0)
+                dispatch(unfollow(id))
+            dispatch(ToggleWaitingFollow(false, id))
+        })
+    }
 }

@@ -4,11 +4,14 @@ import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 import Loading from "../../../common/Loading/loading";
 
+
 let Profile = (props) => {
 
+
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                            message={review.message} like={props.like}
-                                                            id={review.id} data={props.ReviewData} />)
+                                                                      message={review.message} like={props.like}
+                                                                      id={review.id} data={props.ReviewData}/>)
+
     let newReviewElement = React.createRef()
     let addReview = () => {
 

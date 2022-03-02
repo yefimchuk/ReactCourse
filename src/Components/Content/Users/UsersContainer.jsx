@@ -1,42 +1,19 @@
 import {connect} from "react-redux";
-import {
-    followThunk,
-    isLogin,
-    setCurrentPage,
-    setNewTotalCount,
-    setUsers,
-    unfollowThunk
-} from "../../Redux/userspage-reducer";
+import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
 
 
 import React from "react";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
-import {UsersAPI} from "../../../API/API";
 
 class UsersAPIContainer extends React.Component {
 
     componentDidMount() {
-
-        this.props.isLogin(true)
-
-        UsersAPI.GetUsers(this.props.pageSize).then(data => {
-
-            this.props.isLogin(false)
-            this.props.setUsers(data.items)
-            this.props.setNewTotalCount(data.totalCount)
-        })
+        this.props.getUsersThunk(this.props.pageSize);
     }
-
     onPageChanged = (currentPage) => {
-        console.log("currentPage:", currentPage)
-        this.props.isLogin(true)
 
-        this.props.setCurrentPage(currentPage)
-      UsersAPI.OnPageUsersChange(currentPage,this.props.pageSize).then(a => {
-            this.props.isLogin(false)
-            this.props.setUsers(a.data.items)
-        })
+        this.props.onChangeUsersThunk(currentPage, this.props.pageSize)
     }
 
     render() {
@@ -51,6 +28,8 @@ class UsersAPIContainer extends React.Component {
                                           unfollow={this.props.unfollowThunk}
                                           WaitingFollow={this.props.WaitingFollow}
                                           ToggleWaitingFollow={this.props.ToggleWaitingFollow}
+                                          isLoading={this.props.IsLogin}
+                                          IsLoading={this.props.isLogin}
                 />
                 : null}
         </>
@@ -72,12 +51,11 @@ let mapStateToProps = (state) => {
 }
 
 let UsersContainer = connect(mapStateToProps, {
-    setUsers,
-    setCurrentPage,
-    setNewTotalCount,
-    isLogin,
     unfollowThunk,
-    followThunk
+    followThunk,
+    getUsersThunk,
+    onChangeUsersThunk,
+    isLogin
 })(UsersAPIContainer)
 
 export default UsersContainer;

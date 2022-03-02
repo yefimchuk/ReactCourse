@@ -12,7 +12,7 @@ let initialState = {
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 0,
-    isLogin: true,
+    isLogin: false,
     WaitingFollow: [22678]
 }
 export const UsersReducers = (state = initialState, action: any) => {
@@ -123,12 +123,31 @@ export const followThunk = (id: number) => {
 }
 export const unfollowThunk = (id: number) => {
     return (dispatch: any) => {
-debugger
         dispatch(ToggleWaitingFollow(true, id))
         UsersAPI.Unfollow(id).then((data: any) => {
             if (data.resultCode === 0)
                 dispatch(unfollow(id))
             dispatch(ToggleWaitingFollow(false, id))
+        })
+    }
+}
+export const getUsersThunk = (pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(isLogin(true))
+        UsersAPI.GetUsers(pageSize).then((data: any) => {
+            dispatch(isLogin(false))
+            dispatch(setUsers(data.items))
+            dispatch(setNewTotalCount(data.totalCount))
+        })
+    }
+}
+export const onChangeUsersThunk = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(isLogin(true))
+        dispatch(setCurrentPage(currentPage))
+        UsersAPI.OnPageUsersChange(currentPage, pageSize).then((response: any) => {
+            dispatch(isLogin(false))
+            dispatch(setUsers(response.data.items))
         })
     }
 }

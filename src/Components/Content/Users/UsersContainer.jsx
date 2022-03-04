@@ -1,10 +1,9 @@
 import {connect} from "react-redux";
 import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
-
-
 import React from "react";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
+
 
 class UsersAPIContainer extends React.Component {
 
@@ -15,11 +14,8 @@ class UsersAPIContainer extends React.Component {
 
         this.props.onChangeUsersThunk(currentPage, this.props.pageSize)
     }
-
     render() {
-
         return <>
-
             {this.props.IsLogin ? <Loading/> : null}
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
                                           pageSize={this.props.pageSize} currentPage={this.props.currentPage}
@@ -35,10 +31,7 @@ class UsersAPIContainer extends React.Component {
         </>
     }
 }
-
-
 let mapStateToProps = (state) => {
-
     return {
         users: state.userPage.users,
         pageSize: state.userPage.pageSize,
@@ -46,10 +39,8 @@ let mapStateToProps = (state) => {
         currentPage: state.userPage.currentPage,
         IsLogin: state.userPage.isLogin,
         WaitingFollow: state.userPage.WaitingFollow,
-
     }
 }
-
 let UsersContainer = connect(mapStateToProps, {
     unfollowThunk,
     followThunk,
@@ -57,5 +48,4 @@ let UsersContainer = connect(mapStateToProps, {
     onChangeUsersThunk,
     isLogin
 })(UsersAPIContainer)
-
 export default UsersContainer;

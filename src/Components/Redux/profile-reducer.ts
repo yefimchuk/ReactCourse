@@ -1,3 +1,5 @@
+import {UsersAPI} from "../../API/API";
+
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
@@ -74,7 +76,6 @@ export const ProfileReducer = (state: any = initialState, action: {
             }
         }
         case SET_ID: {
-
             return {
 
                 ...state,
@@ -120,4 +121,28 @@ export const setNewProfile = (profile: any) => {
 }
 export const setId = (id: object) => {
     return {type: SET_ID, id: id}
+}
+
+//thunk
+
+export const AuthMeThunk = (userId: any) => {
+    return (dispatch: any) => {
+
+        UsersAPI.AuthMe().then((a: any) => {
+
+            dispatch(setId(a))
+
+            if (!userId) {
+
+                userId = a.data.id
+            }
+
+            UsersAPI.SetMyId(userId).then((response: any) => {
+
+                dispatch(setNewProfile(response.data))
+
+            })
+        })
+
+    }
 }

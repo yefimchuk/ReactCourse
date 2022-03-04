@@ -4,7 +4,6 @@ import s from "./Loading.module.css"
 
 let Loading = () => {
     return <div className={s.loading}>
-        fa
         <img className={s.loading1} src={loading}/>
     </div>
 }

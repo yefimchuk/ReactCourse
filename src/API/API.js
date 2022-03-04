@@ -42,7 +42,6 @@ export const UsersAPI = {
         })
     },
     SetMyId: (userId) => {
-
         return instance.get(`profile/${userId}`,
             {
                 withCredentials: true

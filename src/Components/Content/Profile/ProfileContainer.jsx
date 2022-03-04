@@ -1,10 +1,8 @@
-import {addReview, like, newTextReview, setId, setNewProfile} from "../../Redux/profile-reducer";
+import {addReview, AuthMeThunk, like, newTextReview} from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
-import {AuthMe, SetMyId, UsersAPI} from "../../../API/API";
-
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -20,22 +18,9 @@ const withRouter = WrappedComponent => props => {
 class ProfileAPIContainer extends React.Component {
 
     componentDidMount() {
+        debugger
         let userId = this.props.params.userId;
-        UsersAPI.AuthMe().then((a) => {
-            this.props.setId(a)
-            if (!userId) {
-
-                userId = this.props.id
-
-            }
-
-            UsersAPI.SetMyId(userId).then(a => {
-
-                this.props.setNewProfile(a.data)
-
-            })
-        })
-
+        this.props.AuthMeThunk(userId)
     }
 
 
@@ -68,8 +53,7 @@ let ProfileContainer = connect(mapStateToProps, {
     addReview,
     newTextReview,
     like,
-    setNewProfile,
-    setId
+    AuthMeThunk,
 })(UrlDataContainerComponent);
 
 export default ProfileContainer;

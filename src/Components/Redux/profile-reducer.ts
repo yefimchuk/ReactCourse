@@ -5,6 +5,7 @@ const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
 const setProfile = "SET-PROFILE"
 const SET_ID = "SET-ID"
+const IsLogin = "IS-LOGIN"
 let initialState = {
     ReviewData: [
         {
@@ -47,12 +48,11 @@ let initialState = {
 
     NewReviewText: "",
     Profile: null,
-    id: null
+    id: null,
+    isLogin: false,
 
 }
-export const ProfileReducer = (state: any = initialState, action: {
-    id: any;
-    profile: object; type: string; newText: string; numberLikes: { id: number; likes: number }; }) => {
+export const ProfileReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
         case addnewreview: {
@@ -68,6 +68,14 @@ export const ProfileReducer = (state: any = initialState, action: {
                 NewReviewText: ''
 
             }
+        }
+        case IsLogin: {
+
+            return {
+
+                ...state, isLogin: action.isLogin
+            }
+
         }
         case updatereviewtext: {
             return {
@@ -122,14 +130,15 @@ export const setNewProfile = (profile: any) => {
 export const setId = (id: object) => {
     return {type: SET_ID, id: id}
 }
-
+export const isLogin = (isLogin: boolean) => {
+    return {type: IsLogin, isLogin: isLogin}
+}
 //thunk
 
 export const AuthMeThunk = (userId: any) => {
+
     return (dispatch: any) => {
-
         HeaderAPI.AuthMe().then((a: any) => {
-
             dispatch(setId(a))
 
             if (!userId) {
@@ -137,12 +146,15 @@ export const AuthMeThunk = (userId: any) => {
                 userId = a.data.data.id
             }
 
-            UsersAPI.SetMyId(userId).then((response: any) => {
+            if (userId) {
+                UsersAPI.SetMyId(userId).then((response: any) => {
 
-                dispatch(setNewProfile(response.data))
+                    dispatch(setNewProfile(response.data))
 
-            })
+                })
+            }
         })
+
 
     }
 }

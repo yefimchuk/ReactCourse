@@ -10,6 +10,8 @@ import MessageContainer from "./Components/Content/Message/messageContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
+import LoginContainer from "./Components/Header/Login/LoginContainer";
+import Login from "./Components/Header/Login/Login";
 
 const App = (props: any) => {
 
@@ -28,6 +30,7 @@ const App = (props: any) => {
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>
+                            <Route path="/login" element={<LoginContainer/>}/>
 
                     </Routes>
                 </div>

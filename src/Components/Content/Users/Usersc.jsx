@@ -2,7 +2,7 @@ import React from "react";
 import s from "./Users.module.css"
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png"
 import Pagination from "../../../common/pagination";
-import {NavLink} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 
 let Users = (props) => {
 
@@ -13,6 +13,11 @@ let Users = (props) => {
         pages.push(i)
     }
 
+    if (!props.authMe) {
+
+        return <Navigate to={"/login"}/>
+    }
+
     return <div>
 
         {
@@ -20,24 +25,24 @@ let Users = (props) => {
 
                 <div className={s.User}>
 
-                        <div>
-                            <NavLink to={"/profile/" + u.id}>
-                                <img className={s.avatar}
-                                     src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
-                            </NavLink>
-                            <div>{
-                                u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
-                                                     className={s.followed} onClick={() => {
-                                        props.unfollow(u.id)
-                                    }
-                                    }>Unfollow</button> :
+                    <div>
+                        <NavLink to={"/profile/" + u.id}>
+                            <img className={s.avatar}
+                                 src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
+                        </NavLink>
+                        <div>{
+                            u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
+                                                 className={s.followed} onClick={() => {
+                                    props.unfollow(u.id)
+                                }
+                                }>Unfollow</button> :
 
-                                    <button disabled={props.WaitingFollow.some(id => id === u.id)}
-                                            className={s.unfollowed} onClick={() => {
-                                        props.follow(u.id)
-                                    }}>Follow</button>
-                            }</div>
-                        </div>
+                                <button disabled={props.WaitingFollow.some(id => id === u.id)}
+                                        className={s.unfollowed} onClick={() => {
+                                    props.follow(u.id)
+                                }}>Follow</button>
+                        }</div>
+                    </div>
                     <NavLink className={s.UserInfo} to={"/profile/" + u.id}>
 
                         <div className={s.left}>
@@ -46,7 +51,7 @@ let Users = (props) => {
                         </div>
                         <div className={s.right}>
                             <div className={s.city}>{u.city}</div>
-    
+
                         </div>
 
                     </NavLink>

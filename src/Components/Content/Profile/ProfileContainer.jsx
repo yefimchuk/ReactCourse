@@ -28,10 +28,10 @@ class ProfileAPIContainer extends React.Component {
     }
 
     render() {
-debugger
-        if (this.props.isLogin === false) {
-            alert("unlogin")
+        if (!this.props.IsLogin) {
+            return <Navigate to={"/login"}/>
         }
+
         return <Profile {...this.props} IDD={this.props.id}/>
     }
 }
@@ -52,7 +52,7 @@ let mapStateToProps = (state) => {
         site: state.profilePage.PersonalData.site,
         NewReviewText: state.profilePage.NewReviewText,
         Profile: state.profilePage.Profile,
-isLogin: state.auth.isLogin
+        IsLogin: state.auth.isLogin
     }
 
 }

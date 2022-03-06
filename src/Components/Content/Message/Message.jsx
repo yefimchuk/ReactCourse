@@ -2,6 +2,7 @@ import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
+import {Navigate} from "react-router-dom";
 
 let Message = (props) => {
 
@@ -26,6 +27,10 @@ let Message = (props) => {
 
     let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
     )
+
+    if (!props.IsLogin) {
+        return <Navigate to={"/login"}/>
+    }
     return (
         <div className={s.message}>
             <div className={s.account}>

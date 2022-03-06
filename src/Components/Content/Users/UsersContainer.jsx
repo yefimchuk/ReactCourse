@@ -14,7 +14,9 @@ class UsersAPIContainer extends React.Component {
 
         this.props.onChangeUsersThunk(currentPage, this.props.pageSize)
     }
+
     render() {
+
         return <>
             {this.props.IsLogin ? <Loading/> : null}
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
@@ -25,7 +27,7 @@ class UsersAPIContainer extends React.Component {
                                           WaitingFollow={this.props.WaitingFollow}
                                           ToggleWaitingFollow={this.props.ToggleWaitingFollow}
                                           isLoading={this.props.IsLogin}
-                                          IsLoading={this.props.isLogin}
+                                          authMe={this.props.authMe}
                 />
                 : null}
         </>
@@ -39,6 +41,7 @@ let mapStateToProps = (state) => {
         currentPage: state.userPage.currentPage,
         IsLogin: state.userPage.isLogin,
         WaitingFollow: state.userPage.WaitingFollow,
+        authMe: state.auth.isLogin
     }
 }
 let UsersContainer = connect(mapStateToProps, {

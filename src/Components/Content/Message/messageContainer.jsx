@@ -1,4 +1,3 @@
-
 import {AddNewMessage, UpdateMessage} from "../../Redux/message-reducer";
 import Message from "./Message";
 import {connect} from "react-redux";
@@ -12,7 +11,7 @@ const mapStateToProps = (state) => {
         messageData: state.messagePage.messageData,
         dialogsData: state.messagePage.dialogsData,
         NewReviewText: state.messagePage.NewMessageText,
-
+        IsLogin: state.auth.isLogin
     }
 }
 

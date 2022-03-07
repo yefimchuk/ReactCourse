@@ -13,10 +13,7 @@ let Users = (props) => {
         pages.push(i)
     }
 
-    if (!props.authMe) {
 
-        return <Navigate to={"/login"}/>
-    }
 
     return <div>
 

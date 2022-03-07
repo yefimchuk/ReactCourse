@@ -3,6 +3,7 @@ import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} 
 import React from "react";
 import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
+import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 
 
 class UsersAPIContainer extends React.Component {
@@ -44,11 +45,12 @@ let mapStateToProps = (state) => {
         authMe: state.auth.isLogin
     }
 }
+let AuthRedirectComponent = withAuthRedirect(UsersAPIContainer)
 let UsersContainer = connect(mapStateToProps, {
     unfollowThunk,
     followThunk,
     getUsersThunk,
     onChangeUsersThunk,
     isLogin
-})(UsersAPIContainer)
+})(AuthRedirectComponent)
 export default UsersContainer;

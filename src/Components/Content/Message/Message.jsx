@@ -28,9 +28,6 @@ let Message = (props) => {
     let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
     )
 
-    if (!props.IsLogin) {
-        return <Navigate to={"/login"}/>
-    }
     return (
         <div className={s.message}>
             <div className={s.account}>

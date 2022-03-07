@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
 import {Navigate, useParams} from "react-router-dom";
+import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -28,10 +29,6 @@ class ProfileAPIContainer extends React.Component {
     }
 
     render() {
-        if (!this.props.IsLogin) {
-            return <Navigate to={"/login"}/>
-        }
-
         return <Profile {...this.props} IDD={this.props.id}/>
     }
 }
@@ -52,11 +49,10 @@ let mapStateToProps = (state) => {
         site: state.profilePage.PersonalData.site,
         NewReviewText: state.profilePage.NewReviewText,
         Profile: state.profilePage.Profile,
-        IsLogin: state.auth.isLogin
     }
 
 }
-
+let AuthRedirectComponent = withAuthRedirect(UrlDataContainerComponent)
 let ProfileContainer = connect(mapStateToProps, {
 
     addReview,
@@ -64,6 +60,6 @@ let ProfileContainer = connect(mapStateToProps, {
     like,
     AuthMeThunk,
     isLogin
-})(UrlDataContainerComponent);
+})(AuthRedirectComponent);
 
 export default ProfileContainer;

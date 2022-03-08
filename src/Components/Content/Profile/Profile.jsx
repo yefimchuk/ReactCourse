@@ -3,7 +3,7 @@ import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 import Loading from "../../../common/Loading/loading";
-import {Navigate} from "react-router-dom";
+import {Status} from "./ProfileInfo/Status/Status";
 
 
 let Profile = (props) => {
@@ -42,7 +42,7 @@ let Profile = (props) => {
                                  youTube={props.Profile.contacts.youtube}
                                  instagram={props.Profile.contacts.instagram}/>
 
-
+            <Status status={"hello work :)"}/>
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
 

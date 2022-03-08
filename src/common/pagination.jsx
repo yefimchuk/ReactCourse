@@ -3,7 +3,6 @@ import {Pagination} from 'antd';
 import "antd/dist/antd.css";
 
 let pagination = (props) => {
-let a = props.pageCount + 1
 
     return <div>
 

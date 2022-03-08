@@ -1,0 +1,21 @@
+.status {
+  display: flex;
+  align-items: center;
+  height: 30px;
+margin-left: 25px;
+}
+.textStatus{
+  color: #c0c0c0;
+  font-size: 25px;
+  font-weight: 300;
+  margin-left: 3px;
+}
+.input{
+  background-color: rgba(0, 0, 0, 0);
+  border: 1px solid #b4b4b4;
+  outline: 0;
+  font-size: 25px;
+  font-weight: 300;
+  color: #c0c0c0;
+  border-radius: 7px;
+}

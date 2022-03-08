@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
@@ -11,9 +11,10 @@ import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
+import Login from "./Components/Header/Login/Login";
 
 const App = (props: any) => {
-
+    debugger
     return (
         <BrowserRouter>
 
@@ -21,6 +22,7 @@ const App = (props: any) => {
                 <HeaderContainer/>
                 <Sidebar friendsData={props.state.sideBar.friendsData}/>
                 <div className='app-wrapper-content'>
+
                     <Routes>
                         <Route path="/message/:id" element={<MessageContainer/>}/>
                         <Route path='/profile/:userId' element={<ProfileContainer/>}/>

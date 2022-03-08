@@ -12,6 +12,7 @@ let Rerender = (state: any) => {
     ReactDOM.render(
         <React.StrictMode>
             <Provider store={store}>
+
                 <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
             </Provider>
         </React.StrictMode>,

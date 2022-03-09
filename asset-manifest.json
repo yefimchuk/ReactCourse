@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/social-network-React/static/css/main.d38747e1.css",
+    "main.js": "/social-network-React/static/js/main.c8534a8e.js",
+    "static/media/35771931234507.564a1d2403b3a.gif": "/social-network-React/static/media/35771931234507.564a1d2403b3a.df1e3eaf65d9d3112bee.gif",
+    "static/media/—Pngtree—vector avatar icon_4013749.png": "/social-network-React/static/media/—Pngtree—vector avatar icon_4013749.d7f0e99a072186ca4adc.png",
+    "static/media/logo.svg": "/social-network-React/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/social-network-React/index.html",
+    "main.d38747e1.css.map": "/social-network-React/static/css/main.d38747e1.css.map",
+    "main.c8534a8e.js.map": "/social-network-React/static/js/main.c8534a8e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d38747e1.css",
+    "static/js/main.c8534a8e.js"
+  ]
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
-import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes,HashRouter} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
@@ -16,7 +16,7 @@ import Login from "./Components/Header/Login/Login";
 const App = (props: any) => {
     debugger
     return (
-        <BrowserRouter>
+        <HashRouter>
 
             <div className='App'>
                 <HeaderContainer/>
@@ -36,7 +36,7 @@ const App = (props: any) => {
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
+        </HashRouter>
 
     );
 }

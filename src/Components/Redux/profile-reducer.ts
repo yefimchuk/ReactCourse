@@ -1,4 +1,4 @@
-import {HeaderAPI, UsersAPI} from "../../API/API";
+import {HeaderAPI, ProfileAPI, UsersAPI} from "../../API/API";
 
 const addnewreview = "ADD-NEW-REVIEW";
 const updatereviewtext = "UPDATE-REVIEW-TEXT";
@@ -51,7 +51,7 @@ let initialState = {
     Profile: null,
     id: null,
     isLogin: false,
-    status: null,
+    status: "none",
 
 }
 export const ProfileReducer = (state: any = initialState, action: any) => {
@@ -89,7 +89,7 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
             return {
 
                 ...state,
-                id: action.id.data.id
+                id: action.id
             }
         }
         case sendLike: {
@@ -114,6 +114,7 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
 
         }
         case SET_STATUS: {
+
             return {
 
                 ...state,
@@ -144,42 +145,74 @@ export const isLogin = (isLogin: boolean) => {
     return {type: IsLogin, isLogin: isLogin}
 }
 export const setStatus = (status: number) => {
+
     return {type: SET_STATUS, status: status}
 }
 //thunk
+export const GetNewProfile = (id: number) => {
 
+    return (dispatch: any) => {
+
+        if (!id) {
+
+            HeaderAPI.AuthMe().then((a: any) => {
+
+                dispatch(setId(a.data.data.id))
+                UsersAPI.SetMyId(a.data.data.id).then((response: any) => {
+
+                    dispatch(setNewProfile(response.data))
+                })
+            })
+        }
+        UsersAPI.SetMyId(id).then((response: any) => {
+            dispatch(setNewProfile(response.data))
+        })
+
+    }
+}
 export const AuthMeThunk = (userId: any) => {
 
     return (dispatch: any) => {
         HeaderAPI.AuthMe().then((a: any) => {
-            dispatch(setId(a))
+            dispatch(setId(a.data.data.id))
 
-            if (!userId) {
+        })
+    }
+}
 
-                userId = a.data.data.id
-            }
+export const GetStatusThunk = (id: number) => {
 
-            if (userId) {
-                UsersAPI.SetMyId(userId).then((response: any) => {
-
-                    dispatch(setNewProfile(response.data))
-
+    return (dispatch: any) => {
+        if (!id) {
+            HeaderAPI.AuthMe().then((a: any) => {
+                dispatch(setId(a.data.data.id))
+                ProfileAPI.SetStatus(a.data.data.id).then((response: any) => {
+                    if (response.data !== null) {
+                        dispatch(setStatus(response.data))
+                    }
                 })
-            }
-            UsersAPI.SetStatus(userId).then((response: any) => {
-
+            })
+        }
+        ProfileAPI.SetStatus(id).then((response: any) => {
+            debugger
+            if (response.data !== null) {
                 dispatch(setStatus(response.data))
+            }
+        })
+    }
+}
+export const UpdateStatusThunk = (status: string) => {
+
+    return (dispatch: any) => {
+        HeaderAPI.AuthMe().then((a: any) => {
+            debugger
+            ProfileAPI.UpdateStatus(status).then((response: any) => {
+                debugger
+                if (response.resultCode === 0) {
+                    dispatch(setStatus(response.data))
+                }
             })
         })
 
-
-    }
-}
-export const SetStatusThunk = (id: number) => {
-    return (dispatch: any) => {
-        UsersAPI.SetStatus(id).then((response: any) => {
-
-            dispatch(setStatus(response.data))
-        })
     }
 }

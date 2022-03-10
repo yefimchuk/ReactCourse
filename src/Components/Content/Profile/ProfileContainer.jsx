@@ -1,4 +1,13 @@
-import {addReview, AuthMeThunk, isLogin, like, newTextReview, SetStatusThunk} from "../../Redux/profile-reducer";
+import {
+    addReview,
+    AuthMeThunk,
+    GetNewProfile,
+    GetStatusThunk,
+    isLogin,
+    like,
+    newTextReview,
+    UpdateStatusThunk
+} from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
 import React from "react";
 import Profile from "./Profile";
@@ -18,11 +27,12 @@ const withRouter = WrappedComponent => props => {
 }
 
 class ProfileAPIContainer extends React.Component {
-    debugger
+
     componentDidMount() {
 
-        let userId = this.props.params.userId;
-        this.props.AuthMeThunk(userId)
+            let userId = this.props.params.userId;
+            this.props.GetNewProfile(userId)
+            this.props.GetStatusThunk(userId)
 
     }
 
@@ -32,7 +42,8 @@ class ProfileAPIContainer extends React.Component {
 
     render() {
 
-        return <Profile {...this.props} IDD={this.props.id}/>
+        return <Profile {...this.props} Status={this.props.status} updateStatus={this.props.UpdateStatusThunk}
+                        IDD={this.props.id}/>
     }
 }
 let mapStateToProps = (state) => {
@@ -42,12 +53,6 @@ let mapStateToProps = (state) => {
         UserId: state.auth.id,
         id: state.profilePage.id,
         ReviewData: state.profilePage.ReviewData,
-        name: state.profilePage.PersonalData.name,
-        avatar: state.profilePage.PersonalData.avatar,
-        born: state.profilePage.PersonalData.born,
-        education: state.profilePage.PersonalData.education,
-        city: state.profilePage.PersonalData.city,
-        site: state.profilePage.PersonalData.site,
         NewReviewText: state.profilePage.NewReviewText,
         Profile: state.profilePage.Profile,
         status: state.profilePage.status
@@ -63,7 +68,9 @@ export default compose(
         like,
         AuthMeThunk,
         isLogin,
-        SetStatusThunk,
+        UpdateStatusThunk,
+        GetStatusThunk,
+        GetNewProfile
     }),
 )
 (ProfileAPIContainer);

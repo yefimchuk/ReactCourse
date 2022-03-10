@@ -8,7 +8,6 @@ import {Status} from "./ProfileInfo/Status/Status";
 
 let Profile = (props) => {
 
-
     let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
                                                             message={review.message} like={props.like}
                                                             id={review.id} data={props.ReviewData}/>)
@@ -42,7 +41,7 @@ let Profile = (props) => {
                                  youTube={props.Profile.contacts.youtube}
                                  instagram={props.Profile.contacts.instagram}/>
 
-            <Status status={props.status}/>
+            <Status status={props.Status} updateStatus={props.updateStatus}/>
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
 

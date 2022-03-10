@@ -37,10 +37,7 @@ export const UsersAPI = {
     SetMyId: (userId: number) => {
         return instance.get(`profile/${userId}`)
     },
-    SetStatus: (id: number) => {
 
-        return instance.get(`profile/status/${id}`)
-    }
 }
 export const HeaderAPI = {
     Login: (login: string) => {
@@ -59,4 +56,14 @@ export const HeaderAPI = {
         })
     },
 
+}
+
+export const ProfileAPI = {
+    SetStatus: (id: number) => {
+
+        return instance.get(`profile/status/${id}`)
+    },
+    UpdateStatus: (status: string) => {
+        return instance.put(`profile/status`, {status: status})
+    }
 }

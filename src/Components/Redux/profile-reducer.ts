@@ -184,6 +184,7 @@ export const AuthMeThunk = (userId: any) => {
 export const GetStatusThunk = (id: number) => {
 
     return (dispatch: any) => {
+        debugger
         if (!id) {
             HeaderAPI.AuthMe().then((a: any) => {
                 dispatch(setId(a.data.data.id))
@@ -195,11 +196,14 @@ export const GetStatusThunk = (id: number) => {
             })
         }
         ProfileAPI.SetStatus(id).then((response: any) => {
-            debugger
-            if (response.data !== null) {
-                dispatch(setStatus(response.data))
+
+            if (response.data === null) {
+                response.data = ""
             }
-        })
+
+                dispatch(setStatus(response.data))
+
+    })
     }
 }
 export const UpdateStatusThunk = (status: string) => {

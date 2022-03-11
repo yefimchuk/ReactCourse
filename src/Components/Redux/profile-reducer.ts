@@ -184,7 +184,7 @@ export const AuthMeThunk = (userId: any) => {
 export const GetStatusThunk = (id: number) => {
 
     return (dispatch: any) => {
-        debugger
+
         if (!id) {
             HeaderAPI.AuthMe().then((a: any) => {
                 dispatch(setId(a.data.data.id))

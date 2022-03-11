@@ -28,11 +28,19 @@ export class Status extends React.Component<any, any> {
         this.props.updateStatus(this.state.status);
     }
     onChangeInput = (e: any) => {
-
+        console.warn("onChangeInput")
         this.setState({
             status: e.currentTarget.value
         })
     }
+componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
+debugger
+    if (this.props.status !== prevProps.status) {
+        this.setState({
+            status: this.props.status
+        })
+    }
+}
 
     render() {
 

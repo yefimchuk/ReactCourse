@@ -16,7 +16,7 @@ import LoginContainer from "./Components/Header/Login/LoginContainer";
 const App = (props: any) => {
 
     return (
-        <HashRouter>
+        <BrowserRouter>
 
             <div className='App'>
                 <HeaderContainer/>
@@ -36,7 +36,7 @@ const App = (props: any) => {
                     </Routes>
                 </div>
             </div>
-        </HashRouter>
+        </BrowserRouter>
 
     );
 }

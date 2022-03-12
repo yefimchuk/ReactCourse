@@ -3,9 +3,13 @@ import 'antd/dist/antd.css';
 import {Button, Checkbox, Form, Input} from 'antd';
 import s from "./login.module.css"
 import {useFormik} from 'formik';
+import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import {compose} from "redux";
+import {connect} from "react-redux";
+import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
 
 const Login = () => {
-
+    withAuthRedirect(<LoginForm/>)
 
     return (
         <div className={s.Login}>

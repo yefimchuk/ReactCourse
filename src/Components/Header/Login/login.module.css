@@ -1,0 +1,9 @@
+.Login {
+
+    height: 50% !important;
+    background-color: red;
+    width: 50% !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}

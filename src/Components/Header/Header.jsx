@@ -1,11 +1,10 @@
 import React from "react";
 import logo from "../../logo.svg"
 import s from "./Header.module.css"
-import {NavLink} from "react-router-dom";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 
 let Header = (props) => {
-
+debugger
     if (props.date !== null) {
         if (props.date.photos.large === null) {
 

@@ -11,6 +11,7 @@ import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
+import store from "./Components/Redux/store-redux";
 
 
 const App = (props: any) => {

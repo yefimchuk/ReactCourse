@@ -42,7 +42,7 @@ export const UsersAPI = {
 export const HeaderAPI = {
     Login: (login: string) => {
         console.log(login)
-
+debugger
         return instance.get(`users?term=${login}`).then((response: any) => {
             return response
         })
@@ -57,7 +57,6 @@ export const HeaderAPI = {
     },
 
 }
-
 export const ProfileAPI = {
     SetStatus: (id: number) => {
 
@@ -66,5 +65,15 @@ export const ProfileAPI = {
     UpdateStatus: (status: string) => {
 
         return instance.put(`profile/status`, {status: status})
+    }
+}
+export const AuthAPI = {
+    Login: (data: any) => {
+        return instance.post("auth/login", {
+            email: data.email,
+            password: data.password,
+            rememberMe: data.rememberMe,
+            captcha: data.captcha
+        })
     }
 }

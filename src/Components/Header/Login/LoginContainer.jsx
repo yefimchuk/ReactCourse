@@ -6,12 +6,8 @@ import {compose} from "redux";
 import {withAuthRedirectToProfile} from "../../../hoc/WithAuthRedirectToProfile";
 import {LoginThunk} from "../../Redux/auth-reducer";
 
-interface IProps {
-    LoginThunk?: any;
-    login?: any
-}
 
-class LoginAPIContainer extends React.Component<IProps> {
+class LoginAPIContainer extends React.Component {
 
     componentDidMount() {
 
@@ -28,7 +24,7 @@ class LoginAPIContainer extends React.Component<IProps> {
     }
 }
 
-let mapStateToProps = (state:any ) => {
+let mapStateToProps = (state ) => {
 
 
     return {}

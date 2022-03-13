@@ -5,6 +5,9 @@ import thunk from 'redux-thunk'
 import {SidebarReducer} from "./sidebar-reducer";
 import {UsersReducers} from "./userspage-reducer";
 import {AuthReducer} from "./auth-reducer";
+declare global {
+    interface Window { store: any; }
+}
 
 let reducers = combineReducers({
     messagePage: MessageReducer,
@@ -14,5 +17,8 @@ let reducers = combineReducers({
     auth: AuthReducer,
 
 })
+
 let store = createStore(reducers, applyMiddleware(thunk));
+window.store = store
 export default store
+

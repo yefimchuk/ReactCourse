@@ -4,17 +4,14 @@ import {Button, Checkbox, Form, Input} from 'antd';
 import s from "./login.module.css"
 import {useFormik} from 'formik';
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
-import {compose} from "redux";
-import {connect} from "react-redux";
-import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
 
-const Login = () => {
+const Login = (props) => {
     withAuthRedirect(<LoginForm/>)
 
     return (
         <div className={s.Login}>
             <div className={s.Text}>Login in to Social Network</div>
-            <LoginForm/>
+            <LoginForm login={props.login}/>
         </div>
     );
 };
@@ -22,19 +19,25 @@ const Login = () => {
 export default Login
 
 
-let LoginForm = () => {
+let LoginForm = (props) => {
+
     const formik = useFormik({
 
-        initialValues: {},
+        initialValues: {
+            email: "",
+            password: "",
+            rememberMe: false,
+            captcha: false,
+        },
 
         onSubmit: values => {
-            alert(JSON.stringify(values, null, 2));
+            props.login(values)
         },
     });
 
     return <div className={s.LoginBlock}>
 
-        <Form onFinish={formik.handleSubmit} name="basic" labelCol={{
+        <Form onFinish={formik.handleSubmit} labelCol={{
             span: 8,
         }} wrapperCol={{
             span: 20,
@@ -43,17 +46,18 @@ let LoginForm = () => {
         }} autoComplete="off">
 
 
-            <Form.Item
-                label="Username"
-                name="username"
-                onChange={formik.handleChange}
-                value={formik.values.username}
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input your username!',
-                    },
-                ]}>
+            <Form.Item htmlFor="email" id="email"
+                       label="Username"
+                       name="email"
+                       type="email"
+                       onChange={formik.handleChange}
+                       value={formik.values.username}
+                       rules={[
+                           {
+                               required: true,
+                               message: 'Please input your email!',
+                           },
+                       ]}>
                 <Input className={s.input}/>
             </Form.Item>
 
@@ -69,13 +73,13 @@ let LoginForm = () => {
                        ]}>
                 <Input.Password className={s.input}/>
             </Form.Item>
-            <Form.Item
-                name="remember"
-                valuePropName="checked"
-                wrapperCol={{
-                    offset: 8,
-                    span: 16,
-                }}>
+            <Form.Item onChange={formik.handleChange}
+                       name="rememberMe"
+                       valuePropName="checked"
+                       wrapperCol={{
+                           offset: 8,
+                           span: 16,
+                       }}>
                 <Checkbox>Remember me</Checkbox>
             </Form.Item>
             <Form.Item

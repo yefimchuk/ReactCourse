@@ -60,3 +60,6 @@ span {
     color: white;
     margin-bottom: 20px;
 }
+.ad{
+flex-direction: column;
+}

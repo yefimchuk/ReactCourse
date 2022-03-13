@@ -10,7 +10,9 @@ import {Provider} from "react-redux";
 let Rerender = (state: any) => {
 
     ReactDOM.render(
+
         <React.StrictMode>
+
             <Provider store={store}>
 
                 <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
@@ -21,6 +23,7 @@ let Rerender = (state: any) => {
 
 }
 
-Rerender(store.getState())
+Rerender(store.getState() )
+
 
 

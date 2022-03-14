@@ -5,6 +5,7 @@ import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 import {LoginOutlined, LogoutOutlined} from "@ant-design/icons";
 import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons';
 import {UnLoginThunk} from "../Redux/auth-reducer";
+import {NavLink} from "react-router-dom";
 setTwoToneColor('#eb2f96');
 
 let Header = (props) => {
@@ -26,7 +27,7 @@ let logOut = () => {
 
                 {
 
-                    props.date === null ? <div><a href={"https://social-network.samuraijs.com/login"}> Login</a> <LoginOutlined   className={s.login} /></div> : props.IsLogin !== null ?
+                    props.date === null ? <div><NavLink to={"/login"} > Login <LoginOutlined   className={s.login} /></NavLink> </div> : props.IsLogin !== null ?
                         <div className={s.info}>
 
                             <div className={s.name}>{props.date.name}</div>

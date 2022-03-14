@@ -3,6 +3,7 @@ import {AuthAPI, HeaderAPI} from "../../API/API";
 const SET_AUTH_USER_DATA = "SET-AUTH-USER-DATA";
 const SET_USER_DATA = "SET-USER-DATA";
 const SET_LOGIN = "SET-LOGIN";
+const SET_LOG_OUT = "SET-LOG-OUT"
 let initialState = {
     id: null,
     email: null,
@@ -21,7 +22,7 @@ export const AuthReducer = (state: any = initialState, action: any) => {
             return {
                 ...state,
                 ...action.data,
-                isLogin: true,
+
 
             }
         }
@@ -32,7 +33,16 @@ export const AuthReducer = (state: any = initialState, action: any) => {
                 date: action.data,
             }
         }
-
+        case SET_LOG_OUT: {
+                return {
+                    ...state,
+                    id: null,
+                    email: null,
+                    login: null,
+                    isLogin: false,
+                    date: null
+                }
+        }
         default:
             return state
     }
@@ -44,6 +54,11 @@ export let SetAuthUserData: SetUserDataT = (id, email, login, isLogin) => ({
 
     type: SET_AUTH_USER_DATA,
     data: {id, email, login, isLogin}
+})
+export let SetLogOut = () => ({
+
+    type: SET_LOG_OUT,
+
 })
 export let SetUserData: SetUserDataT = (data: any) => ({
 
@@ -96,7 +111,7 @@ export const UnLoginThunk = () => {
         AuthAPI.LogOut().then((response: any) => {
 
             if (response.data.resultCode === 0) {
-                dispatch(SetUserData(null, null, null, false))
+                dispatch(SetLogOut())
             }
         })
     }

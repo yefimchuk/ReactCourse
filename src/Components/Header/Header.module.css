@@ -18,7 +18,19 @@
     height: 40px;
     background-color: white;
     border-radius: 11px;
-
+margin-right: 20px;
+}
+.login{
+    font-size: 30px;
+    color: white;
+}
+.login:hover{
+    color: greenyellow!important;
+}
+ a{
+     font-size: 30px;
+     margin-right: 10px;
+    color: white;
 }
 .info{
     display: flex;
@@ -30,4 +42,12 @@
     color: white;
     font-size: 20px;
     margin-right: 10px;
+}
+.logout{
+    font-size: 30px;
+    transition: all linear .2s;
+}
+.logout:hover{
+    color: #ff2323 !important;
+    font-size: 35px;
 }

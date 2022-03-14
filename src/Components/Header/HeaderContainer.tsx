@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header"
 import {connect} from "react-redux";
-import {HeaderLoginThunk} from "../Redux/auth-reducer";
+import {HeaderLoginThunk, UnLoginThunk} from "../Redux/auth-reducer";
 
 interface IRecipeProps {
     HeaderLoginThunk?: any
@@ -31,6 +31,6 @@ let mapStateToProps = (state: any) => {
         date: state.auth.date
     }
 }
-let HeaderContainer = connect(mapStateToProps, {HeaderLoginThunk})(HeaderContainerAPI);
+let HeaderContainer = connect(mapStateToProps, {HeaderLoginThunk,UnLoginThunk})(HeaderContainerAPI);
 
 export default HeaderContainer

@@ -2,9 +2,16 @@ import React from "react";
 import logo from "../../logo.svg"
 import s from "./Header.module.css"
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
+import {LoginOutlined, LogoutOutlined} from "@ant-design/icons";
+import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons';
+import {UnLoginThunk} from "../Redux/auth-reducer";
+setTwoToneColor('#eb2f96');
 
 let Header = (props) => {
-debugger
+let logOut = () => {
+    debugger
+    props.UnLoginThunk(null)
+}
     if (props.date !== null) {
         if (props.date.photos.large === null) {
 
@@ -19,11 +26,14 @@ debugger
 
                 {
 
-                    props.date === null ? <a href={"https://social-network.samuraijs.com/login"}> Login</a> : props.IsLogin !== null ? <div className={s.info}>
+                    props.date === null ? <div><a href={"https://social-network.samuraijs.com/login"}> Login</a> <LoginOutlined   className={s.login} /></div> : props.IsLogin !== null ?
+                        <div className={s.info}>
 
-                        <div className={s.name}>{props.date.name}</div>
-                        <img className={s.avatar} src={props.date.photos.large}/>
-                    </div> : null
+                            <div className={s.name}>{props.date.name}</div>
+                            <img className={s.avatar} src={props.date.photos.large}/>
+
+                            <LogoutOutlined className={s.logout} onClick={logOut}/>
+                        </div> : null
                 }
 
             </div>

@@ -75,5 +75,8 @@ export const AuthAPI = {
             rememberMe: data.rememberMe,
             captcha: data.captcha
         })
+    },
+    LogOut: () => {
+        return instance.delete("auth/login",)
     }
 }

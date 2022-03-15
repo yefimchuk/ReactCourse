@@ -1,7 +1,7 @@
 import {HeaderAPI, ProfileAPI, UsersAPI} from "../../API/API";
+import  photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
+const ADD_NEW_REVIEW = "ADD-NEW-REVIEW";
 
-const addnewreview = "ADD-NEW-REVIEW";
-const updatereviewtext = "UPDATE-REVIEW-TEXT";
 const sendLike = "SEND-LIKE";
 const setProfile = "SET-PROFILE"
 const SET_ID = "SET-ID"
@@ -46,8 +46,6 @@ let initialState = {
             education: "National Aviation University",
             site: "https://github.com/yefimchuk"
         },
-
-    NewReviewText: "",
     Profile: null,
     id: null,
     isLogin: false,
@@ -57,13 +55,14 @@ let initialState = {
 export const ProfileReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
-        case addnewreview: {
+        case ADD_NEW_REVIEW: {
             let NewReview = {
                 id: 5,
-                avatar: "https://www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png",
+                avatar: photo,
                 likes: 1,
-                message: state.NewReviewText
+                message: action.NewReviewText
             }
+
             return {
                 ...state,
                 ReviewData: [...state.ReviewData, NewReview],
@@ -72,18 +71,11 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
             }
         }
         case IsLogin: {
-
             return {
 
                 ...state, isLogin: action.isLogin
             }
 
-        }
-        case updatereviewtext: {
-            return {
-                ...state,
-                NewReviewText: action.newText
-            }
         }
         case SET_ID: {
             return {
@@ -127,11 +119,8 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
             return state
     }
 }
-export const addReview = () => {
-    return {type: addnewreview}
-}
-export const newTextReview = (text: string) => {
-    return {type: updatereviewtext, newText: text}
+export const addReview = (NewReviewText: string) => {
+    return {type: ADD_NEW_REVIEW, NewReviewText: NewReviewText}
 }
 export const like = (numberLikes: number) => {
     return {type: sendLike, numberLikes: numberLikes}
@@ -180,7 +169,6 @@ export const AuthMeThunk = (userId: any) => {
         })
     }
 }
-
 export const GetStatusThunk = (id: number) => {
 
     return (dispatch: any) => {

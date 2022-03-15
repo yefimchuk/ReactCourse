@@ -1,6 +1,5 @@
 import React from "react";
 import s from "../Profile.module.css"
-
 let Review = (props) => {
 
     let Like = () => {

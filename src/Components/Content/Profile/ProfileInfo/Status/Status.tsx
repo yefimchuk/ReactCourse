@@ -34,7 +34,7 @@ export class Status extends React.Component<any, any> {
         })
     }
 componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
-debugger
+
     if (this.props.status !== prevProps.status) {
         this.setState({
             status: this.props.status

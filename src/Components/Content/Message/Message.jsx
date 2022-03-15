@@ -24,6 +24,7 @@ let Message = (props) => {
         onSubmit: values => {
 
             props.AddNewMessage(values.input)
+            return values.input = ''
         },
     });
     return (
@@ -41,8 +42,6 @@ let Message = (props) => {
                     {dialogsDataBll}
                 </div>
 
-
-                    {/*  <textarea onChange={onUpdateMessage} ref={newReviewElement} value={props.NewReviewText}> </textarea>*/}
                     <form onSubmit={formik.handleSubmit}>
                         <div className={s.postFlex}>
                         <TextArea id="input"

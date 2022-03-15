@@ -12,8 +12,17 @@
 }
 
 .postFlex {
-    width: 81%;
+flex-direction: column;
+    width: 80%;
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    padding: 7px;
+}
+.submitButton{
+    width: 80.7%;
+    display: flex;
+    align-items: flex-start;
     justify-content: flex-end;
     padding: 7px;
 }
@@ -46,6 +55,7 @@ text-decoration: none;
     background: green;
     width: 100px;
     height: 40px;
+    border: 0px ;
     border-radius: 4px;
 }
 
@@ -53,9 +63,10 @@ text-decoration: none;
     width: 75px;
     height: 75px;
     border-radius: 100px;
-    background: lightgray;
+    background: rgba(30, 144, 255, 0);
     margin: 10px;
     object-fit:cover;
+    ;
 }
 
 .review {

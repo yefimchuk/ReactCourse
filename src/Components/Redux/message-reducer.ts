@@ -1,5 +1,4 @@
-const addnewmessage = "ADD-NEW-MESSAGE";
-const updatemessagetext = "UPDATE-MESSAGE-TEXT";
+const ADD_NEW_MESSAGE = "ADD-NEW-MESSAGE";
 let initialState = {
     messageData: [
         {
@@ -40,26 +39,21 @@ let initialState = {
         {message: "Bye"},
 
     ],
-    NewMessageText: "4"
+
 }
 export const MessageReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
 
-        case updatemessagetext: {
-            return {
-                ...state,
-                NewMessageText: {...state.NewMessageText} = action.newText
-            }
-        }
-        case addnewmessage: {
+        case ADD_NEW_MESSAGE: {
+
             let NewMessage = {
-                message: state.NewMessageText
+                message: action.NewMessageText
             }
             return {
                 ...state,
                 dialogsData: [...state.dialogsData, NewMessage],
-                NewMessageText: ''
+
             }
         }
         default:
@@ -69,11 +63,6 @@ export const MessageReducer = (state: any = initialState, action: any) => {
 }
 
 
-export const AddNewMessage = () => {
-    return {type: addnewmessage}
+export const AddNewMessage = (NewMessageText: string) => {
+    return {type: ADD_NEW_MESSAGE, NewMessageText: NewMessageText}
 }
-export const UpdateMessage = (text: string) => {
-
-    return {type: updatemessagetext, newText: text}
-}
-

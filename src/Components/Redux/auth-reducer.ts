@@ -16,14 +16,11 @@ let initialState = {
 export const AuthReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
-
         case SET_AUTH_USER_DATA: {
 
             return {
                 ...state,
                 ...action.data,
-
-
             }
         }
         case SET_USER_DATA: {
@@ -116,5 +113,4 @@ export const UnLoginThunk = () => {
         })
     }
 }
-
 

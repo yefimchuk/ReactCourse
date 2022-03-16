@@ -98,7 +98,7 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
 
         }
         case setProfile: {
-
+debugger
             return {
 
                 ...state,

@@ -21,10 +21,7 @@ let Profile = (props) => {
                                                             message={review.message} like={props.like}
                                                             id={review.id} data={props.ReviewData}/>)
 
-    if (!props.Profile) {
 
-        return <Loading/>
-    }
 
     return (
 

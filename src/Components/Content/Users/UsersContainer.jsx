@@ -56,6 +56,5 @@ export default compose(
         onChangeUsersThunk,
         isLogin
     }),
-    withAuthRedirect,
 )
 (UsersAPIContainer);

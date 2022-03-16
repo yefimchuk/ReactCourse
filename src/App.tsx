@@ -14,6 +14,7 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Loading from "./common/Loading/loading";
 import {initializingThunk} from "./Components/Redux/app-reduce";
+import {withAuthRedirect} from "./hoc/WithAuthRedirect";
 
 
 class App extends React.Component<any> {
@@ -26,8 +27,8 @@ class App extends React.Component<any> {
         if (!this.props.initialized) {
             return <Loading/>
         }
+
         return (
-            <BrowserRouter>
 
                 <div className='App'>
                     <HeaderContainer/>
@@ -46,7 +47,7 @@ class App extends React.Component<any> {
                         </Routes>
                     </div>
                 </div>
-            </BrowserRouter>
+
 
         );
     }

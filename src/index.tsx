@@ -6,24 +6,28 @@ import App from './App';
 // @ts-ignore
 import store from "./Components/Redux/store-redux.ts";
 import {Provider} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
 
 let Rerender = (state: any) => {
 
     ReactDOM.render(
-
         <React.StrictMode>
 
             <Provider store={store}>
+                <BrowserRouter>
 
-                <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+                    <App state={state} dispatch={store.dispatch.bind(store)} store={store}/>
+                </BrowserRouter>
             </Provider>
+
         </React.StrictMode>,
+
         document.getElementById('root')
     );
 
 }
 
-Rerender(store.getState() )
+Rerender(store.getState())
 
 
 

@@ -22,7 +22,6 @@ class HeaderContainerAPI extends React.Component <IRecipeProps> {
     render() {
 
         if (!this.props.isLogin){
-            debugger
             <Navigate to={"/login"}/>
         }
         return <Header {...this.props}/>

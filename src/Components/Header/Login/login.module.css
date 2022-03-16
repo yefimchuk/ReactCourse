@@ -17,7 +17,7 @@
     background-color: #1c1e23;
     border-radius: 20px;
     width: 40%;
-    height: 60%;
+    height: 80%;
     border: 1px solid #282c34;
 }
 
@@ -33,7 +33,15 @@ background-color: #01a41a;
     width: 100%;
     border: 0;
 }
+.captcha{
+    padding: 10px;
+}
 .error{
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     color: red;
     font-size: 17px;
     margin-top: 10px;

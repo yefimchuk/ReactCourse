@@ -20,14 +20,14 @@ class LoginAPIContainer extends React.Component {
 
     render() {
 
-        return <Login login={this.props.LoginThunk}/>
+        return <Login login={this.props.LoginThunk} captchaURL={this.props.captchaURL}/>
     }
 }
 
 let mapStateToProps = (state ) => {
-
-
-    return {}
+    return {
+        captchaURL: state.auth.captchaURL
+    }
 
 }
 

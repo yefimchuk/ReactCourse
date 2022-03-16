@@ -12,7 +12,7 @@ const Login = (props) => {
         <div className={s.Login}>
 
             <div className={s.Text}>Login in to Social Network</div>
-            <LoginForm login={props.login}/>
+            <LoginForm login={props.login} captchaURL={props.captchaURL}/>
         </div>
     );
 };
@@ -28,7 +28,7 @@ let LoginForm = (props) => {
             email: "",
             password: "",
             rememberMe: false,
-            captcha: false,
+            captcha: "",
         },
 
         onSubmit: (values, action) => {
@@ -97,7 +97,22 @@ let LoginForm = (props) => {
                 </Button>
                 <div className={s.error}>
                     {formik.status && formik.status.error}
+                    {props.captchaURL ? <img className={s.captcha} src={props.captchaURL}/> : null}
+                    {props.captchaURL ?
+                        <Form.Item
+                            rules={[
+                                {
+                                    required: true,
+                                    message: 'Please input your captcha!',
+                                },
+                            ]}>
+                            <Input onChange={formik.handleChange}
+                                   value={formik.values.captcha}
+                                   name="captcha"
+                                   className={s.input}/>
+                        </Form.Item> : null}
                 </div>
+
             </Form.Item>
 
 

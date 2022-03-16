@@ -4,12 +4,14 @@ const SET_AUTH_USER_DATA = "SET-AUTH-USER-DATA";
 const SET_USER_DATA = "SET-USER-DATA";
 const SET_LOGIN = "SET-LOGIN";
 const SET_LOG_OUT = "SET-LOG-OUT"
+const GET_CAPTCHA = "GET-CAPTCHA"
 let initialState = {
     id: null,
     email: null,
     login: null,
     isLogin: false,
-    date: null
+    date: null,
+    captchaURL: null,
 }
 
 
@@ -30,22 +32,28 @@ export const AuthReducer = (state: any = initialState, action: any) => {
                 date: action.data,
             }
         }
+        case GET_CAPTCHA: {
+
+            return {
+                ...state,
+                captchaURL: action.captcha.data.url
+            }
+        }
         case SET_LOG_OUT: {
-                return {
-                    ...state,
-                    id: null,
-                    email: null,
-                    login: null,
-                    isLogin: false,
-                    date: null
-                }
+            return {
+                ...state,
+                id: null,
+                email: null,
+                login: null,
+                isLogin: false,
+                date: null
+            }
         }
         default:
             return state
     }
 
 }
-
 type SetUserDataT = (id: any, email?: any, login?: any, isLogin?: any) => object
 export let SetAuthUserData: SetUserDataT = (id, email, login, isLogin) => ({
 
@@ -62,7 +70,10 @@ export let SetUserData: SetUserDataT = (data: any) => ({
     type: SET_USER_DATA,
     data: data
 })
-
+export let GetCaptcha = (captchaURL: string) => ({
+    type: GET_CAPTCHA,
+    captcha: captchaURL
+})
 //thunk
 export const HeaderLoginThunk = () => {
 
@@ -89,17 +100,18 @@ export const HeaderLoginThunk = () => {
 
     }
 }
-
 export const LoginThunk = (data: any, setStatus: any) => {
     return (dispatch: any) => {
 
         AuthAPI.Login(data).then((response: any) => {
 
             if (response.data.resultCode === 0) {
-
                 dispatch(HeaderLoginThunk())
             } else {
-                 setStatus({error: response.data.messages})
+                if (response.data.resultCode === 10) {
+                    dispatch(GetCaptchaURL())
+                }
+                setStatus({error: response.data.messages})
             }
         })
     }
@@ -115,4 +127,10 @@ export const UnLoginThunk = () => {
         })
     }
 }
-
+export const GetCaptchaURL = () => {
+    return (dispatch: any) => {
+        AuthAPI.GetCaptcha().then((captchaURL: any) => {
+            dispatch(GetCaptcha(captchaURL))
+        })
+    }
+}

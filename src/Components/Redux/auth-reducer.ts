@@ -90,7 +90,7 @@ export const HeaderLoginThunk = () => {
     }
 }
 
-export const LoginThunk = (data: any) => {
+export const LoginThunk = (data: any, setStatus: any) => {
     return (dispatch: any) => {
 
         AuthAPI.Login(data).then((response: any) => {
@@ -98,6 +98,8 @@ export const LoginThunk = (data: any) => {
             if (response.data.resultCode === 0) {
 
                 dispatch(HeaderLoginThunk())
+            } else {
+                 setStatus({error: response.data.messages})
             }
         })
     }

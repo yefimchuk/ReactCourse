@@ -10,6 +10,7 @@ const Login = (props) => {
 
     return (
         <div className={s.Login}>
+
             <div className={s.Text}>Login in to Social Network</div>
             <LoginForm login={props.login}/>
         </div>
@@ -30,12 +31,15 @@ let LoginForm = (props) => {
             captcha: false,
         },
 
-        onSubmit: values => {
-            props.login(values)
+        onSubmit: (values, action) => {
+
+            props.login(values, action.setStatus)
+
         },
     });
 
     return <div className={s.LoginBlock}>
+
 
         <Form onFinish={formik.handleSubmit} labelCol={{
             span: 8,
@@ -91,7 +95,9 @@ let LoginForm = (props) => {
                 <Button className={s.submit} type="primary" htmlType="submit">
                     Submit
                 </Button>
-
+                <div className={s.error}>
+                    {formik.status && formik.status.error}
+                </div>
             </Form.Item>
 
 

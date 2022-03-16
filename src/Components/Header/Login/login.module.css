@@ -33,6 +33,11 @@ background-color: #01a41a;
     width: 100%;
     border: 0;
 }
+.error{
+    color: red;
+    font-size: 17px;
+    margin-top: 10px;
+}
 .input {
     background-color: #1c1e23 !important;
     border-radius: 7px;

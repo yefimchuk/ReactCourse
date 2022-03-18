@@ -4,7 +4,7 @@ let instance = axios.create({
     withCredentials: true,
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     headers: {
-        "API-KEY": "02e26adb-3640-4bf5-8fdb-2832b11eecf3",
+        "API-KEY": "a8795b57-6a5a-472e-a9f7-6a0c34e4175a",
     },
 })
 
@@ -42,7 +42,6 @@ export const UsersAPI = {
 export const HeaderAPI = {
     Login: (login: string) => {
         console.log(login)
-debugger
         return instance.get(`users?term=${login}`).then((response: any) => {
             return response
         })

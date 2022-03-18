@@ -1,45 +1,60 @@
 import React from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
-import {BrowserRouter, Navigate, Route, Routes,HashRouter} from "react-router-dom";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
-
 import MessageContainer from "./Components/Content/Message/messageContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
-import store from "./Components/Redux/store-redux";
+import {connect} from "react-redux";
+import {compose} from "redux";
+import Loading from "./common/Loading/loading";
+import {initializingThunk} from "./Components/Redux/app-reduce";
 
 
-const App = (props: any) => {
+class App extends React.Component<any> {
+    componentDidMount() {
+        this.props.initializingThunk()
+    }
 
-    return (
-        <BrowserRouter>
+    render() {
 
-            <div className='App'>
-                <HeaderContainer/>
-                <Sidebar friendsData={props.state.sideBar.friendsData}/>
-                <div className='app-wrapper-content'>
+        if (!this.props.initialized) {
+            return <Loading/>
+        }
+        return (
+            <BrowserRouter>
 
-                    <Routes>
-                        <Route path="/message/:id" element={<MessageContainer/>}/>
-                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
-                        <Route path='/profile' element={<ProfileContainer/>}/>
-                        <Route path="/news" element={<News/>}/>
-                        <Route path="/music" element={<Music/>}/>
-                        <Route path="/settings" element={<Settings/>}/>
-                        <Route path="/users" element={<UsersContainer/>}/>
-                        <Route path="/login" element={<LoginContainer/>}/>
+                <div className='App'>
+                    <HeaderContainer/>
+                    <Sidebar friendsData={this.props.state.sideBar.friendsData}/>
+                    <div className='app-wrapper-content'>
+                        <Routes>
+                            <Route path="/message/:id" element={<MessageContainer/>}/>
+                            <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                            <Route path='/profile' element={<ProfileContainer/>}/>
+                            <Route path="/news" element={<News/>}/>
+                            <Route path="/music" element={<Music/>}/>
+                            <Route path="/settings" element={<Settings/>}/>
+                            <Route path="/users" element={<UsersContainer/>}/>
+                            <Route path="/login" element={<LoginContainer/>}/>
 
-                    </Routes>
+                        </Routes>
+                    </div>
                 </div>
-            </div>
-        </BrowserRouter>
+            </BrowserRouter>
 
-    );
+        );
+    }
 }
 
-export default App;
+let mapStateToProps = (state: any) => {
+    return {
+        initialized: state.app.initialized
+    }
+}
+export default compose(connect(mapStateToProps, {initializingThunk}))(App);

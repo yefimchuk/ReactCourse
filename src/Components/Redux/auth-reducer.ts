@@ -75,21 +75,19 @@ export let GetCaptcha = (captchaURL: string) => ({
     captcha: captchaURL
 })
 //thunk
-export const HeaderLoginThunk = () => {
+export const HeaderLoginThunk = () => (dispatch: any) => {
 
-    return (dispatch: any) => {
+    return HeaderAPI.AuthMe().then((a: any) => {
 
-        HeaderAPI.AuthMe().then((a: any) => {
+        if (a.data.resultCode === 0) {
+            let {id, email, login} = a.data.data;
+            dispatch((SetAuthUserData(id, email, login, true)))
 
-            if (a.data.resultCode === 0) {
-                let {id, email, login} = a.data.data;
-                dispatch((SetAuthUserData(id, email, login, true)))
+            HeaderAPI.Login(login).then((b: any) => {
 
-                HeaderAPI.Login(login).then((b: any) => {
-
-                    b.data.items.filter((u: any) => {
-                        if (id === u.id) {
-                            dispatch(SetUserData(u))
+                b.data.items.filter((u: any) => {
+                    if (id === u.id) {
+                        dispatch(SetUserData(u))
 
                         }
                     })
@@ -97,8 +95,6 @@ export const HeaderLoginThunk = () => {
                 })
             }
         })
-
-    }
 }
 export const LoginThunk = (data: any, setStatus: any) => {
     return (dispatch: any) => {

@@ -14,8 +14,6 @@ class HeaderContainerAPI extends React.Component <IRecipeProps> {
 
 
     componentDidMount() {
-        let axios = require('axios').default;
-        this.props.HeaderLoginThunk();
 
     }
 
@@ -37,6 +35,6 @@ let mapStateToProps = (state: any) => {
         date: state.auth.date
     }
 }
-let HeaderContainer = connect(mapStateToProps, {HeaderLoginThunk,UnLoginThunk})(HeaderContainerAPI);
+let HeaderContainer = connect(mapStateToProps, {UnLoginThunk})(HeaderContainerAPI);
 
 export default HeaderContainer

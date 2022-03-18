@@ -26,7 +26,6 @@ let logOut = () => {
                 <img src={logo} className="App-logo" alt={logo}/>
 
                 {
-
                     props.date === null ? <div><NavLink to={"/login"} > Login <LoginOutlined   className={s.login} /></NavLink> </div> : props.IsLogin !== null ?
                         <div className={s.info}>
 

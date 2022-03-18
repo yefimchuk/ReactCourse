@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
@@ -14,8 +14,8 @@ import {connect} from "react-redux";
 import {compose} from "redux";
 import Loading from "./common/Loading/loading";
 import {initializingThunk} from "./Components/Redux/app-reduce";
-import {withAuthRedirect} from "./hoc/WithAuthRedirect";
 
+let i = 0
 
 class App extends React.Component<any> {
     componentDidMount() {
@@ -28,25 +28,27 @@ class App extends React.Component<any> {
             return <Loading/>
         }
 
+
         return (
 
-                <div className='App'>
-                    <HeaderContainer/>
-                    <Sidebar friendsData={this.props.state.sideBar.friendsData}/>
-                    <div className='app-wrapper-content'>
-                        <Routes>
-                            <Route path="/message/:id" element={<MessageContainer/>}/>
-                            <Route path='/profile/:userId' element={<ProfileContainer/>}/>
-                            <Route path='/profile' element={<ProfileContainer/>}/>
-                            <Route path="/news" element={<News/>}/>
-                            <Route path="/music" element={<Music/>}/>
-                            <Route path="/settings" element={<Settings/>}/>
-                            <Route path="/users" element={<UsersContainer/>}/>
-                            <Route path="/login" element={<LoginContainer/>}/>
+            <div className='App'>
+     
+                <HeaderContainer/>
+                <Sidebar friendsData={this.props.state.sideBar.friendsData}/>
+                <div className='app-wrapper-content'>
+                    <Routes>
+                        <Route path="/message/:id" element={<MessageContainer/>}/>
+                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                        <Route path='/profile' element={<ProfileContainer/>}/>
+                        <Route path="/news" element={<News/>}/>
+                        <Route path="/music" element={<Music/>}/>
+                        <Route path="/settings" element={<Settings/>}/>
+                        <Route path="/users" element={<UsersContainer/>}/>
+                        <Route path="/login" element={<LoginContainer/>}/>
 
-                        </Routes>
-                    </div>
+                    </Routes>
                 </div>
+            </div>
 
 
         );
@@ -55,6 +57,7 @@ class App extends React.Component<any> {
 
 let mapStateToProps = (state: any) => {
     return {
+        authMe: state.auth.isLogin,
         initialized: state.app.initialized
     }
 }

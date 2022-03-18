@@ -13,6 +13,7 @@ import Profile from "./Profile";
 import {Navigate, useParams} from "react-router-dom";
 import {compose} from "redux";
 import Loading from "../../../common/Loading/loading";
+import {GetAuthMeId, GetId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -63,11 +64,11 @@ let mapStateToProps = (state) => {
 
     return {
 
-        UserId: state.auth.id,
-        id: state.profilePage.id,
-        ReviewData: state.profilePage.ReviewData,
-        Profile: state.profilePage.Profile,
-        status: state.profilePage.status
+        UserId: GetAuthMeId(state),
+        id: GetId(state),
+        ReviewData: GetReviewData(state),
+        Profile: GetProfile(state),
+        status: GetStatus(state),
     }
 
 }

@@ -6,6 +6,10 @@
     align-items: center;
 
 }
+.img{
+
+    background-color: rgba(255, 0, 0, 0);
+}
 .loading1
 {
     width: 6%;

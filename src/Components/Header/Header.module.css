@@ -27,9 +27,9 @@ margin-right: 20px;
 .login:hover{
     color: greenyellow!important;
 }
- a{
+.nlink{
      font-size: 30px;
-     margin-right: 10px;
+margin-right: 10px;
     color: white;
 }
 .info{

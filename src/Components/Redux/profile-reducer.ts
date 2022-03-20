@@ -51,6 +51,7 @@ let initialState = {
     isLogin: false,
     status: "",
 
+
 }
 export const ProfileReducer = (state: any = initialState, action: any) => {
 
@@ -98,7 +99,7 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
 
         }
         case setProfile: {
-debugger
+
             return {
 
                 ...state,
@@ -195,7 +196,7 @@ export const GetStatusThunk = (id: number) => {
     }
 }
 export const UpdateStatusThunk = (status: string) => {
-
+debugger
     return (dispatch: any) => {
         HeaderAPI.AuthMe().then((a: any) => {
 

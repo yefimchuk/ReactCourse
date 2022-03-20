@@ -61,14 +61,13 @@ class ProfileAPIContainer extends React.Component {
 }
 let mapStateToProps = (state) => {
 
-
+console.info("mapState to Props")
     return {
-
         UserId: GetAuthMeId(state),
         id: GetId(state),
         ReviewData: GetReviewData(state),
         Profile: GetProfile(state),
-        status: GetStatus(state),
+        status: GetStatus(state)
     }
 
 }

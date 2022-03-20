@@ -31,7 +31,6 @@ let logOut = () => {
 
                             <div className={s.name}>{props.date.name}</div>
                             <img className={s.avatar} src={props.date.photos.large}/>
-
                             <LogoutOutlined className={s.logout} onClick={logOut}/>
                         </div> : null
                 }

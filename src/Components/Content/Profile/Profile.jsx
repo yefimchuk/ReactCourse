@@ -5,6 +5,7 @@ import PersonalInformation from "./ProfileInfo/PersonalData";
 import Loading from "../../../common/Loading/loading";
 import {Status} from "./ProfileInfo/Status/Status";
 import {useFormik} from "formik";
+import StatusHook from "./ProfileInfo/Status/statusHook";
 
 
 let Profile = (props) => {
@@ -37,7 +38,7 @@ let Profile = (props) => {
                                  youTube={props.Profile.contacts.youtube}
                                  instagram={props.Profile.contacts.instagram}/>
 
-            <Status status={props.Status} updateStatus={props.updateStatus}/>
+            <StatusHook status={props.Status} updateStatus={props.updateStatus}/>
             <div className={s.Post}>
                 <div className={s.textPost}>My post</div>
                 <form className={s.postFlex} onSubmit={formik.handleSubmit}>

@@ -44,6 +44,7 @@ margin-right: 10px;
     margin-right: 10px;
 }
 .logout{
+    color: white!important;
     font-size: 30px;
     transition: all linear .2s;
 }

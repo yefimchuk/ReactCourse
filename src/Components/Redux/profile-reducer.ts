@@ -196,7 +196,7 @@ export const GetStatusThunk = (id: number) => {
     }
 }
 export const UpdateStatusThunk = (status: string) => {
-debugger
+
     return (dispatch: any) => {
         HeaderAPI.AuthMe().then((a: any) => {
 

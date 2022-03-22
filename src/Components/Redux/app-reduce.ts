@@ -28,6 +28,7 @@ export let initializingWasSuccess = () => ({
 
 export let initializingThunk = () => (dispatch: any) => {
     let auth = dispatch(HeaderLoginThunk())
+
     Promise.all([auth]).then(() => {
         dispatch(initializingWasSuccess())
     })

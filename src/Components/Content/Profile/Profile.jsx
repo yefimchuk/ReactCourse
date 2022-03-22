@@ -7,7 +7,7 @@ import StatusHook from "./ProfileInfo/Status/statusHook";
 
 
 let Profile = (props) => {
-
+console.log("render")
     const formik = useFormik({
         initialValues: {
             review: '',
@@ -16,9 +16,9 @@ let Profile = (props) => {
             props.addReview(values.review)
         },
     });
-    let ReviewItem = props.ReviewData.map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                            message={review.message} like={props.like}
-                                                            id={review.id} data={props.ReviewData}/>)
+    let ReviewItem = [...props.ReviewData].reverse().map(review => <Review avatar={review.avatar} likes={review.likes}
+                                                                           message={review.message} like={props.like}
+                                                                           id={review.id} data={props.ReviewData}/>)
 
 
     window.props.push(props)

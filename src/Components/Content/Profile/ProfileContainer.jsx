@@ -32,16 +32,8 @@ let ProfileAPIContainer = (props) => {
 
     let [state, SetState] = useState(props)
 
-    const prevCountRef = useRef();
-
-    useEffect(() => {
-        prevCountRef.current = state
-
-    }, [props.Profile]);
-
     useEffect(() => {
 
-        console.log("effect")
         let userId = props.params.userId;
         if (!userId) {
             userId = props.UserId
@@ -53,7 +45,7 @@ let ProfileAPIContainer = (props) => {
     }, [props.UserId])
 
 
-    if (!props.Profile) {
+    if (!props.Profile || props.Status === null) {
         return <Loading/>
     }
 

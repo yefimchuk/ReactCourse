@@ -108,7 +108,7 @@ export const ProfileReducer = (state: any = initialState, action: any) => {
 
         }
         case SET_STATUS: {
-debugger
+
             return {
 
                 ...state,

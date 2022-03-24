@@ -8,11 +8,10 @@ import {
     UpdateStatusThunk
 } from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useState} from "react";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
-import Loading from "../../../common/Loading/loading";
 import {GetAuthMeId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 import MyLoader from "../../../common/Loading/skele";
@@ -43,8 +42,18 @@ let ProfileAPIContainer = (props) => {
         props.GetStatusThunk(userId)
 
 
-    }, [props.UserId])
+    }, [])
+    useEffect(() => {
 
+        let userId = props.params.userId;
+        if (!userId) {
+            userId = props.UserId
+        }
+        props.GetNewProfile(userId)
+        props.GetStatusThunk(userId)
+
+
+    }, [props.UserId])
 
     if (!props.Profile || props.Status === null) {
         return <MyLoader/>
@@ -53,7 +62,6 @@ let ProfileAPIContainer = (props) => {
     if (props === state) {
         return <MyLoader/>
     }
-
     return <Profile {...props} Status={props.Status} updateStatus={props.UpdateStatusThunk}/>
 
 }

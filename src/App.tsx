@@ -1,7 +1,7 @@
-import React from "react";
+import React, {useEffect} from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import News from "./Components/Content/News/News";
 import Music from "./Components/Content/Music/Music";
 import Settings from "./Components/Content/Settings/Settings";
@@ -15,50 +15,48 @@ import {compose} from "redux";
 import Loading from "./common/Loading/loading";
 import {initializingThunk} from "./Components/Redux/app-reduce";
 
-let i = 0
 
-class App extends React.Component<any> {
-    componentDidMount() {
-        this.props.initializingThunk()
-    }
+let App = (props: any) => {
 
-    render() {
-
-        if (!this.props.initialized) {
-            return <Loading/>
+    useEffect(() => {
+            props.initializingThunk()
         }
+    )
 
-
-        return (
-
-            <div className='App'>
-     
-                <HeaderContainer/>
-                <Sidebar friendsData={this.props.state.sideBar.friendsData}/>
-                <div className='app-wrapper-content'>
-                    <Routes>
-                        <Route path="/message/:id" element={<MessageContainer/>}/>
-                        <Route path='/profile/:userId' element={<ProfileContainer/>}/>
-                        <Route path='/profile' element={<ProfileContainer/>}/>
-                        <Route path="/news" element={<News key={this.props.initialized}/>}/>
-                        <Route path="/music" element={<Music/>}/>
-                        <Route path="/settings" element={<Settings/>}/>
-                        <Route path="/users" element={<UsersContainer/>}/>
-                        <Route path="/login" element={<LoginContainer/>}/>
-
-                    </Routes>
-                </div>
-            </div>
-
-
-        );
+    if (!props.initialized) {
+        return <Loading/>
     }
+    return (
+
+        <div className='App'>
+
+            <HeaderContainer/>
+            <Sidebar friendsData={props.friendsData}/>
+            <div className='app-wrapper-content'>
+                <Routes>
+                    <Route path="/message/:id" element={<MessageContainer/>}/>
+                    <Route path='/profile/:userId' element={<ProfileContainer/>}/>
+                    <Route path='/profile' element={<ProfileContainer/>}/>
+                    <Route path="/news" element={<News key={props.initialized}/>}/>
+                    <Route path="/music" element={<Music/>}/>
+                    <Route path="/settings" element={<Settings/>}/>
+                    <Route path="/users" element={<UsersContainer/>}/>
+                    <Route path="/login" element={<LoginContainer/>}/>
+
+                </Routes>
+            </div>
+        </div>
+
+
+    );
+
 }
 
 let mapStateToProps = (state: any) => {
     return {
         authMe: state.auth.isLogin,
-        initialized: state.app.initialized
+        initialized: state.app.initialized,
+        friendsData: state.sideBar.friendsData
     }
 }
 export default compose(connect(mapStateToProps, {initializingThunk}))(App);

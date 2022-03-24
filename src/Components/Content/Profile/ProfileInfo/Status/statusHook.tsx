@@ -6,7 +6,10 @@ let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) =>
     let [editMode, setEditMode] = useState(false)
     let [UseStatus, setNewStatus] = useState("")
     let activatedEditMode = () => {
+        debugger
+        setNewStatus(status)
         setEditMode(true)
+
     }
     let deactivatedEditMode = () => {
 
@@ -23,6 +26,7 @@ let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) =>
         },
     });
     useEffect(() => {
+
         setNewStatus(formik.values.status)
     }, [formik.values.status])
 
@@ -33,7 +37,7 @@ let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) =>
                     id="status"
                     name="status"
                     onChange={formik.handleChange}
-                    value={formik.values.status}
+                    value={UseStatus}
                     autoFocus={true}
                     onBlur={deactivatedEditMode}
                 />

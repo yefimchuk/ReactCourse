@@ -40,7 +40,7 @@ class App extends React.Component<any> {
                         <Route path="/message/:id" element={<MessageContainer/>}/>
                         <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                         <Route path='/profile' element={<ProfileContainer/>}/>
-                        <Route path="/news" element={<News/>}/>
+                        <Route path="/news" element={<News key={this.props.initialized}/>}/>
                         <Route path="/music" element={<Music/>}/>
                         <Route path="/settings" element={<Settings/>}/>
                         <Route path="/users" element={<UsersContainer/>}/>

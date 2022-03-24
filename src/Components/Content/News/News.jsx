@@ -1,23 +1,21 @@
-import React, {useEffect, useState} from "react";
+import React, {useRef} from "react";
 
+function getFetchUrl(query) {
+    return 'https://hn.algolia.com/api/v1/search?query=' + query;
+}
 
-let News = () => {
-    const [count, setCount] = useState(0);
-
-    useEffect(() => {
-        setTimeout(() => {
-            console.log(`You clicked ${count} times`);
-        }, 3000);
-    });
-
+let News = (props) => {
+    const inputEl = useRef(null);
+    debugger
+    const onButtonClick = () => {
+        // `current` points to the mounted text input element
+        inputEl.current.value();
+    };
     return (
-        <div>
-            <p>You clicked {count} times</p>
-            <button onClick={() => setCount(count + 1)}>
-                Click me
-            </button>
-        </div>
+        <>
+            <input ref={inputEl} type="text"/>
+            <button onClick={onButtonClick}>Focus the input</button>
+        </>
     );
-
 }
 export default News

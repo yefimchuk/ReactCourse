@@ -1,6 +1,6 @@
 import React from "react";
 import logo from "../../logo.svg"
-import s from "./Header.module.css"
+import s from './Header.module.css'
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 import {LoginOutlined, LogoutOutlined} from "@ant-design/icons";
 import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons';
@@ -8,7 +8,7 @@ import {UnLoginThunk} from "../Redux/auth-reducer";
 import {NavLink} from "react-router-dom";
 setTwoToneColor('#eb2f96');
 
-let Header = (props) => {
+let Header = (props: any) => {
 let logOut = () => {
     debugger
     props.UnLoginThunk(null)

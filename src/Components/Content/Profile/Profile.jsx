@@ -2,8 +2,6 @@ import React from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import Loading from "../../../common/Loading/loading";
-import {Status} from "./ProfileInfo/Status/Status";
 import {useFormik} from "formik";
 import StatusHook from "./ProfileInfo/Status/statusHook";
 

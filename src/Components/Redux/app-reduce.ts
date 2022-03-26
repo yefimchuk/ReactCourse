@@ -2,7 +2,7 @@ import {HeaderLoginThunk} from "./auth-reducer";
 
 const INITIALIZING_WAS_SUCCESS = "INITIALIZING-WAS-SUCCESS"
 let initialState = {
-    initialized: true
+    initialized: false
 }
 
 

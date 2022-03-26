@@ -8,12 +8,13 @@ import {
     UpdateStatusThunk
 } from "../../Redux/profile-reducer";
 import {connect} from "react-redux";
-import React from "react";
+import React, {useEffect, useRef, useState} from "react";
 import Profile from "./Profile";
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import Loading from "../../../common/Loading/loading";
-import {GetAuthMeId, GetId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
+import {GetAuthMeId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
+import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -26,53 +27,58 @@ const withRouter = WrappedComponent => props => {
     );
 }
 
-class ProfileAPIContainer extends React.Component {
+let ProfileAPIContainer = (props) => {
 
-    componentDidMount() {
 
-        let userId = this.props.params.userId;
+    let [state, SetState] = useState(props)
+
+    const prevCountRef = useRef();
+
+    useEffect(() => {
+        prevCountRef.current = state
+
+    }, [props.Profile]);
+
+    useEffect(() => {
+
+        console.log("effect")
+        let userId = props.params.userId;
         if (!userId) {
-
-            userId = this.props.UserId
-
-
+            userId = props.UserId
         }
-        this.props.GetNewProfile(userId)
-        this.props.GetStatusThunk(userId)
+        props.GetNewProfile(userId)
+        props.GetStatusThunk(userId)
 
+
+    }, [props.UserId])
+
+
+    if (!props.Profile) {
+        return <Loading/>
     }
 
-    componentWillUnmount() {
-
+    if (props === state) {
+        return <Loading/>
     }
 
-    render() {
+    return <Profile {...props} Status={props.Status} updateStatus={props.UpdateStatusThunk}/>
 
-        if (!this.props.params.userId && !this.props.UserId) {
-            return <Navigate to={"/login"}/>
-        }
-
-        if (!this.props.Profile) {
-
-            return <Loading/>
-        }
-        return <Profile {...this.props} Status={this.props.status} updateStatus={this.props.UpdateStatusThunk}/>
-    }
 }
+
+
 let mapStateToProps = (state) => {
 
-console.info("mapState to Props")
     return {
         UserId: GetAuthMeId(state),
-        id: GetId(state),
         ReviewData: GetReviewData(state),
         Profile: GetProfile(state),
-        status: GetStatus(state)
+        Status: GetStatus(state)
     }
 
 }
 export default compose(
     withRouter,
+    withAuthRedirect,
     connect(mapStateToProps, {
         addReview,
         like,

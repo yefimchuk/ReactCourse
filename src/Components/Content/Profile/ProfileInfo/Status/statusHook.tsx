@@ -13,8 +13,10 @@ let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) =>
         setEditMode(false)
         updateStatus(formik.values.status)
     }
+
     const formik = useFormik({
         initialValues: {
+
             status: status,
         },
         onSubmit: values => {

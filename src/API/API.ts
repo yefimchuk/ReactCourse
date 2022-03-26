@@ -41,7 +41,7 @@ export const UsersAPI = {
 }
 export const HeaderAPI = {
     Login: (login: string) => {
-        console.log(login)
+
         return instance.get(`users?term=${login}`).then((response: any) => {
             return response
         })

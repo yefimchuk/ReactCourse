@@ -1,11 +1,10 @@
-import React from "react";
+import React, {memo} from "react";
 import s from "../Profile.module.css"
+window.props = []
 let Review = (props) => {
 
     let Like = () => {
-
         props.like(props)
-
     }
 
     return (
@@ -25,4 +24,4 @@ let Review = (props) => {
         </div>
     )
 }
-export default Review
+export default React.memo(Review);

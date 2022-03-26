@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useMemo} from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
@@ -9,17 +9,9 @@ import TextArea from "antd/es/input/TextArea";
 
 let Message = (props) => {
 
-
-    let messageDataBLL = props.messageData.map((review) => <MessageAccounts nickname={review.nickname}
-                                                                            address={review.address}
-                                                                            avatar={review.avatar}/>
-    )
-
-    let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
-    )
     const formik = useFormik({
         initialValues: {
-            email: '',
+            input: '',
         },
         onSubmit: values => {
 
@@ -27,6 +19,14 @@ let Message = (props) => {
             return values.input = ''
         },
     });
+    let messageDataBLL = props.messageData.map((review) => <MessageAccounts nickname={review.nickname}
+                                                                            address={review.address}
+                                                                            avatar={review.avatar}/>
+    )
+
+    let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
+    )
+console.log("hello")
     return (
         <div className={s.message}>
             <div className={s.account}>
@@ -54,12 +54,12 @@ let Message = (props) => {
                     </form>
 
 
-
-
             </div>
         </div>
 
 
     )
+
 }
+
 export default Message

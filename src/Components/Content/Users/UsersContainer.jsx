@@ -5,6 +5,7 @@ import Users from "./Usersc";
 import Loading from "../../../common/Loading/loading";
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
+import UsersLoading from "../../../common/Loading/UsersLoading";
 
 
 class UsersAPIContainer extends React.Component {
@@ -20,7 +21,7 @@ class UsersAPIContainer extends React.Component {
     render() {
 
         return <>
-            {this.props.IsLogin ? <Loading/> : null}
+            {this.props.IsLogin ? <UsersLoading/> : null}
             {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
                                           pageSize={this.props.pageSize} currentPage={this.props.currentPage}
                                           onPageChanged={this.onPageChanged}

@@ -15,6 +15,7 @@ import {compose} from "redux";
 import Loading from "../../../common/Loading/loading";
 import {GetAuthMeId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
 import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import MyLoader from "../../../common/Loading/skele";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -46,11 +47,11 @@ let ProfileAPIContainer = (props) => {
 
 
     if (!props.Profile || props.Status === null) {
-        return <Loading/>
+        return <MyLoader/>
     }
 
     if (props === state) {
-        return <Loading/>
+        return <MyLoader/>
     }
 
     return <Profile {...props} Status={props.Status} updateStatus={props.UpdateStatusThunk}/>

@@ -1,4 +1,4 @@
-import {HeaderAPI, UsersAPI} from "../../API/API";
+import {UsersAPI} from "../../API/API";
 
 const Follow = "FOLLOW";
 const UnFollow = "UNFOLLOW";
@@ -8,12 +8,22 @@ const SetTotalUserCount = "SET-TOTAL-USER-COUNT"
 const IsLogin = "IS-LOGIN"
 const WAITING_FOLLOW = "WAITING-FOLLOW"
 let initialState = {
-    users: [],
+    users: [{
+        followed: false,
+        id: 1,
+        name: "",
+        photos: {
+            small: '/social-network-React/static/media/—Pngtree—vector avatar icon_4013749.d7f0e99a072186ca4adc.png',
+            large: null
+        },
+        status: null,
+        uniqueUrlName: null
+    }],
     pageSize: 5,
     totalUserCount: 0,
     currentPage: 0,
     isLogin: false,
-    WaitingFollow: [22678]
+    WaitingFollow: []
 }
 export const UsersReducers = (state = initialState, action: any) => {
     switch (action.type) {

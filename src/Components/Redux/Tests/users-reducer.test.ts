@@ -7,7 +7,7 @@ import {
     ToggleWaitingFollow,
     unfollow,
     UsersReducers
-} from "./userspage-reducer";
+} from "../userspage-reducer";
 
 let state = {
     users: [{

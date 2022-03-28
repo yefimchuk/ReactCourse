@@ -54,7 +54,7 @@ export const AuthReducer = (state: any = initialState, action: any) => {
     }
 
 }
-type SetUserDataT = (id: any, email?: any, login?: any, isLogin?: any) => object
+type SetUserDataT = (id: number, email?: string, login?: string, isLogin?: boolean) => object
 export let SetAuthUserData: SetUserDataT = (id, email, login, isLogin) => ({
 
     type: SET_AUTH_USER_DATA,
@@ -70,7 +70,7 @@ export let SetUserData: SetUserDataT = (data: any) => ({
     type: SET_USER_DATA,
     data: data
 })
-export let GetCaptcha = (captchaURL: string) => ({
+export let GetCaptcha = (captchaURL: any) => ({
     type: GET_CAPTCHA,
     captcha: captchaURL
 })

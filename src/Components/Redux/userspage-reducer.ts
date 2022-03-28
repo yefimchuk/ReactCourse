@@ -55,7 +55,6 @@ export const UsersReducers = (state = initialState, action: any) => {
             }
         }
         case SetUsers: {
-
             return {
                 ...state, users: action.users
 
@@ -109,7 +108,6 @@ export const setCurrentPage = (currentPage: number) => {
     return {type: SetCurrentPage, currentPage: currentPage}
 }
 export const setNewTotalCount = (totalUserCount: number) => {
-
     return {type: SetTotalUserCount, totalUserCount: totalUserCount}
 }
 export const isLogin = (isLogin: boolean) => {

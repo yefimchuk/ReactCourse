@@ -116,27 +116,26 @@ export const isLogin = (isLogin: boolean) => {
 export const ToggleWaitingFollow = (WaitingFollow: any, id: number) => {
     return {type: WAITING_FOLLOW, WaitingFollow, id}
 }
+//func
 
+let FollowUnfollowFLow = async (dispatch: any, id: number, apiMethod: any, actionCreator: Function) => {
+    dispatch(ToggleWaitingFollow(true, id))
+    let response = await apiMethod(id)
+    debugger
+    if (response.resultCode === 0) {
+        dispatch(actionCreator(id))
+    }
+    dispatch(ToggleWaitingFollow(false, id))
+}
 // thunk
 export const followThunk = (id: number) => {
     return (dispatch: any) => {
-
-        dispatch(ToggleWaitingFollow(true, id))
-        UsersAPI.Follow(id).then((data: any) => {
-            if (data.resultCode === 0)
-                dispatch(follow(id))
-            dispatch(ToggleWaitingFollow(false, id))
-        })
+        FollowUnfollowFLow(dispatch, id, UsersAPI.Follow.bind((UsersAPI)), follow)
     }
 }
 export const unfollowThunk = (id: number) => {
     return (dispatch: any) => {
-        dispatch(ToggleWaitingFollow(true, id))
-        UsersAPI.Unfollow(id).then((data: any) => {
-            if (data.resultCode === 0)
-                dispatch(unfollow(id))
-            dispatch(ToggleWaitingFollow(false, id))
-        })
+        FollowUnfollowFLow(dispatch, id, UsersAPI.Unfollow.bind((UsersAPI)), unfollow)
     }
 }
 export const getUsersThunk = (pageSize: number) => {

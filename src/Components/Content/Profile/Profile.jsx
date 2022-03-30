@@ -2,61 +2,32 @@ import React, {memo} from "react";
 import s from "./Profile.module.css"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
-import {useFormik} from "formik";
+
 import StatusHook from "./ProfileInfo/Status/statusHook";
+import Post from "./Post";
 
 
-let Profile = (props) => {
+let Profile = ({ReviewData, addReview, updateStatus, Status, Profile, like}) => {
 
-console.log("render")
-    const formik = useFormik({
-        initialValues: {
-            review: '',
-        },
-        onSubmit: values => {
-            props.addReview(values.review)
-        },
-    });
-    let ReviewItem = [...props.ReviewData].reverse().map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                                           message={review.message} like={props.like}
-                                                                           id={review.id} data={props.ReviewData}/>)
+    let ReviewItem = [...ReviewData].reverse().map(review => <Review avatar={review.avatar} likes={review.likes}
+                                                                     message={review.message} like={like}
+                                                                     id={review.id} data={ReviewData}/>)
 
-
-    window.props.push(props)
     return (
 
         <div>
             <img className={s.ImageTop}
-                 src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"/>
+                 src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"
+                 alt={"theme"}/>
 
-
-            <PersonalInformation avatar={props.Profile.photos.large}
-                                 name={props.Profile.fullName}
-                                 job={props.Profile.lookingForAJobDescription}
-                                 git={props.Profile.contacts.mainLink}
-                                 youTube={props.Profile.contacts.youtube}
-                                 instagram={props.Profile.contacts.instagram}/>
-
-            <StatusHook status={props.Status} updateStatus={props.updateStatus}/>
-            <div className={s.Post}>
-                <div className={s.textPost}>My post</div>
-                <form className={s.postFlex} onSubmit={formik.handleSubmit}>
-
-                    <input id="review"
-                           name="review"
-                           onChange={formik.handleChange}
-                           value={formik.values.input}
-                           className={s.blockPost} align="top" placeholder="you post...">
-
-                    </input>
-                    <div className={s.submitButton}>
-                        <button type="submit" className={s.submit}>Send</button>
-
-                    </div>
-
-                </form>
-            </div>
-
+            <PersonalInformation avatar={Profile.photos.large}
+                                 name={Profile.fullName}
+                                 job={Profile.lookingForAJobDescription}
+                                 git={Profile.contacts.mainLink}
+                                 youTube={Profile.contacts.youtube}
+                                 instagram={Profile.contacts.instagram}/>
+            <StatusHook status={Status} updateStatus={updateStatus}/>
+            <Post addReview={addReview}/>
             {ReviewItem}
         </div>
     )

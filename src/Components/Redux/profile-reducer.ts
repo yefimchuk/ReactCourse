@@ -1,5 +1,6 @@
 import {HeaderAPI, ProfileAPI, UsersAPI} from "../../API/API";
-import  photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
+import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
+
 const ADD_NEW_REVIEW = "ADD-NEW-REVIEW";
 
 const sendLike = "SEND-LIKE";
@@ -46,7 +47,17 @@ let initialState = {
             education: "National Aviation University",
             site: "https://github.com/yefimchuk"
         },
-    Profile: null,
+    Profile: {
+        photos: {
+            large: null,
+        },
+        lookingForAJobDescription: null,
+        contacts: {
+            instagram: null,
+            youtube: null,
+            mainLink: null,
+        }
+    },
     id: null,
     isLogin: false,
     status: "",

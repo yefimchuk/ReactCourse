@@ -70,6 +70,7 @@ let ProfileAPIContainer = (props) => {
 let mapStateToProps = (state) => {
 
     return {
+
         UserId: GetAuthMeId(state),
         ReviewData: GetReviewData(state),
         Profile: GetProfile(state),

@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "./Header"
 import {connect} from "react-redux";
-import {HeaderLoginThunk, UnLoginThunk} from "../Redux/auth-reducer";
+import {UnLoginThunk} from "../Redux/auth-reducer";
 import {Navigate} from "react-router-dom";
 
 interface IRecipeProps {

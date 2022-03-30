@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import './App.css';
 import Sidebar from "./Components/Sidebar/Sidebar";
 import {Route, Routes} from "react-router-dom";
@@ -17,7 +17,7 @@ import {initializingThunk} from "./Components/Redux/app-reduce";
 
 
 let App = (props: any) => {
-
+    let [i, setI] = useState(0)
     useEffect(() => {
             props.initializingThunk()
         }
@@ -26,14 +26,17 @@ let App = (props: any) => {
     if (!props.initialized) {
         return <Loading/>
     }
+
     return (
 
         <div className='App'>
+
 
             <HeaderContainer/>
             <Sidebar friendsData={props.friendsData}/>
             <div className='app-wrapper-content'>
                 <Routes>
+
                     <Route path="/message/:id" element={<MessageContainer/>}/>
                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                     <Route path='/profile' element={<ProfileContainer/>}/>
@@ -42,7 +45,9 @@ let App = (props: any) => {
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
                     <Route path="/login" element={<LoginContainer/>}/>
+                    <Route path="/" element={<ProfileContainer/>}>
 
+                    </Route>
                 </Routes>
             </div>
         </div>

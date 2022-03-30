@@ -7,6 +7,7 @@ import StatusHook from "./ProfileInfo/Status/statusHook";
 
 
 let Profile = (props) => {
+
 console.log("render")
     const formik = useFormik({
         initialValues: {

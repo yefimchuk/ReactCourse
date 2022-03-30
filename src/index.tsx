@@ -6,19 +6,20 @@ import App from './App';
 // @ts-ignore
 import store from "./Components/Redux/store-redux.ts";
 import {Provider} from "react-redux";
-import {HashRouter} from "react-router-dom";
+import {BrowserRouter, Navigate} from "react-router-dom";
 
 
-    ReactDOM.render(
-        <React.StrictMode>
+ReactDOM.render(
+    <React.StrictMode>
 
-            <Provider store={store}>
-                <HashRouter >
-                    <App store={store}/>
-                </HashRouter>
-            </Provider>
+        <Provider store={store}>
+            <BrowserRouter>
 
-        </React.StrictMode>,
+                <App store={store}/>
+            </BrowserRouter>
+        </Provider>
+
+    </React.StrictMode>,
 
         document.getElementById('root')
     );

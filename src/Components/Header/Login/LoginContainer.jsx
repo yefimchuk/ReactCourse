@@ -1,39 +1,27 @@
 import React from "react";
-
 import Login from "./Login";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import {withAuthRedirectToProfile} from "../../../hoc/WithAuthRedirectToProfile";
 import {LoginThunk} from "../../Redux/auth-reducer";
+import {WithAuthRedirectToProfile} from "../../../hoc/WithAuthRedirectToProfile";
 
 
-class LoginAPIContainer extends React.Component {
 
-    componentDidMount() {
+let LoginAPIContainer = ({LoginThunk,captchaURL}) => {
 
-
-    }
-
-    componentWillUnmount() {
-
-    }
-
-    render() {
-
-        return <Login login={this.props.LoginThunk} captchaURL={this.props.captchaURL}/>
-    }
+    return <Login login={LoginThunk} captchaURL={captchaURL}/>
 }
 
 let mapStateToProps = (state ) => {
     return {
         captchaURL: state.auth.captchaURL
     }
-
 }
 
 export default compose(
-    withAuthRedirectToProfile,
+    WithAuthRedirectToProfile,
     connect(mapStateToProps, {LoginThunk}
     ),
+
 )
 (LoginAPIContainer);

@@ -113,7 +113,7 @@ export const LoginThunk = (data: any, setStatus: any) => {
     return async (dispatch: any) => {
 
         let response = await AuthAPI.Login(data)
-
+console.log(response)
         if (response.data.resultCode === 0) {
             dispatch(HeaderLoginThunk())
         } else {

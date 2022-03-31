@@ -1,4 +1,4 @@
-import React, {useMemo} from "react";
+import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
 import s from "./MessageInfo/Message.module.css"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
@@ -19,14 +19,13 @@ let Message = (props) => {
             return values.input = ''
         },
     });
-    let messageDataBLL = props.messageData.map((review) => <MessageAccounts nickname={review.nickname}
-                                                                            address={review.address}
-                                                                            avatar={review.avatar}/>
+    const messageDataBLL = props.messageData.map((review) =>
+        <MessageAccounts nickname={review.nickname} address={review.address} avatar={review.avatar}/>
+    )
+    let dialogsDataBll = props.dialogsData.map((reviews) =>
+        <Dialogs message={reviews.message}/>
     )
 
-    let dialogsDataBll = props.dialogsData.map((reviews) => <Dialogs message={reviews.message}/>
-    )
-console.log("hello")
     return (
         <div className={s.message}>
             <div className={s.account}>

@@ -1,5 +1,5 @@
 import React, {useRef} from "react";
-import MyLoader from "../../../common/Loading/skele";
+import MyLoader from "../../../common/Loading/Skeleton";
 import ListingWithThumbnail from "../../../common/Loading/UsersLoading";
 
 function getFetchUrl(query) {

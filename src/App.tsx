@@ -12,12 +12,12 @@ import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
 import {connect} from "react-redux";
 import {compose} from "redux";
-import Loading from "./common/Loading/loading";
+import Loading from "./common/Loading/Loading";
 import {initializingThunk} from "./Components/Redux/app-reduce";
 
 
 let App = (props: any) => {
-    let [i, setI] = useState(0)
+
     useEffect(() => {
             props.initializingThunk()
         }
@@ -26,7 +26,7 @@ let App = (props: any) => {
     if (!props.initialized) {
         return <Loading/>
     }
-
+    console.log("1")
     return (
 
         <div className='App'>

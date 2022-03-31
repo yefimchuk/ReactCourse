@@ -3,10 +3,10 @@ import 'antd/dist/antd.css';
 import {Button, Checkbox, Form, Input} from 'antd';
 import s from "./login.module.css"
 import {useFormik} from 'formik';
-import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
+import {WithAuthRedirectToLogin} from "../../../hoc/WithAuthRedirectToLogin";
+
 
 const Login = (props) => {
-    withAuthRedirect(<LoginForm/>)
 
     return (
         <div className={s.Login}>

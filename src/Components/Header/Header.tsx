@@ -2,20 +2,19 @@ import React from "react";
 import logo from "../../logo.svg"
 import s from './Header.module.css'
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
-import {LoginOutlined, LogoutOutlined} from "@ant-design/icons";
-import { getTwoToneColor, setTwoToneColor } from '@ant-design/icons';
-import {UnLoginThunk} from "../Redux/auth-reducer";
+import {LoginOutlined, LogoutOutlined, setTwoToneColor} from "@ant-design/icons";
+
 import {NavLink} from "react-router-dom";
+
 setTwoToneColor('#eb2f96');
 
 let Header = (props: any) => {
-let logOut = () => {
-    debugger
-    props.UnLoginThunk(null)
-}
+
+    let logOut = () => {
+        props.UnLoginThunk()
+    }
     if (props.date !== null) {
         if (props.date.photos.large === null) {
-
             props.date.photos.large = photo;
         }
     }

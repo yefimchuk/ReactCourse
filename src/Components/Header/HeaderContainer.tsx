@@ -10,21 +10,14 @@ interface IRecipeProps {
 }
 
 
-class HeaderContainerAPI extends React.Component <IRecipeProps> {
+let HeaderContainerAPI = (props: any) => {
 
-
-    componentDidMount() {
-
+    if (!props.isLogin) {
+        <Navigate to={"/login"}/>
     }
-
-    render() {
-
-        if (!this.props.isLogin){
-            <Navigate to={"/login"}/>
-        }
-        return <Header {...this.props}/>
-    }
-
+    return (
+        <Header {...props}/>
+    )
 }
 
 let mapStateToProps = (state: any) => {

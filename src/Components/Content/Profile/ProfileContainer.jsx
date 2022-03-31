@@ -13,8 +13,8 @@ import Profile from "./Profile";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {GetAuthMeId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
-import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
-import MyLoader from "../../../common/Loading/skele";
+import MyLoader from "../../../common/Loading/Skeleton";
+import {WithAuthRedirectToLogin} from "../../../hoc/WithAuthRedirectToLogin";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -80,7 +80,7 @@ let mapStateToProps = (state) => {
 }
 export default compose(
     withRouter,
-    withAuthRedirect,
+    WithAuthRedirectToLogin,
     connect(mapStateToProps, {
         addReview,
         like,

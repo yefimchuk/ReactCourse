@@ -2,8 +2,6 @@ import {connect} from "react-redux";
 import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
 import React from "react";
 import Users from "./Usersc";
-import Loading from "../../../common/Loading/loading";
-import {withAuthRedirect} from "../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import UsersLoading from "../../../common/Loading/UsersLoading";
 

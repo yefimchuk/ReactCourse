@@ -1,6 +1,6 @@
 import React from "react";
-import Pagination from "../../../common/pagination";
 import User from "./User";
+import PaginationUsers from "../../../common/Pagination";
 
 
 let Users = ({currentPage, onPageChanged, totalUserCount, pageSize, users, WaitingFollow, unfollow, follow}) => {
@@ -17,7 +17,7 @@ let Users = ({currentPage, onPageChanged, totalUserCount, pageSize, users, Waiti
 
         <User WaitingFollow={WaitingFollow} unfollow={unfollow} follow={follow} users={users}/>
         <div>
-            <Pagination currentPage={currentPage} onPageChanged={onPageChanged} total={totalUserCount}
+            <PaginationUsers currentPage={currentPage} onPageChanged={onPageChanged} total={totalUserCount}
                         pageCount={pageCount}/>
         </div>
     </div>

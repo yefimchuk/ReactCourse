@@ -1,5 +1,5 @@
 import React from "react";
-import PageUnavailable from "../../../common/page-unavailable";
+import PageUnavailable from "../../../common/Page-unavailable";
 
 let Settings = (props) => {
     return (

@@ -3,7 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
 
-  .account {
+  .message__form {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
@@ -11,7 +11,7 @@
     width: 30%;
   }
 
-  .dialogs {
+  .message__dialogs {
     color: white;
     font-size: 20px;
     display: flex;
@@ -21,13 +21,12 @@
     margin-bottom: 10px;
     margin-right: 10%;
 
-    .postFlex {
-      width: 81%;
+    .message__post_flex {
+      width: 100%;
       display: flex;
-      justify-content: flex-end;
-      padding: 7px;
+      justify-content: flex-start;
 
-      .submit {
+      .message__button_submit {
         color: white;
         display: flex;
         justify-content: center;
@@ -39,4 +38,9 @@
       }
     }
   }
+}
+
+.message__account-message {
+
+  margin-bottom: 10px;
 }

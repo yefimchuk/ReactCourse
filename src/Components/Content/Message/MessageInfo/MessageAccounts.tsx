@@ -2,12 +2,15 @@ import React from "react";
 import "./MessageAccounts.scss";
 import { NavLink } from "react-router-dom";
 
-const MessageAccounts = (props: any) => {
+interface IProps {
+  [index: string]: string;
+}
+const MessageAccounts = (props: IProps) => {
   return (
-    <div className="accountMessage ">
-      <img className="avatarMessage" src={props.avatar} />
+    <div className="message__account">
+      <img className="message__avatar" src={props.avatar} />
 
-      <NavLink to={"/message/" + props.address} className="userMessage ">
+      <NavLink to={"/message/" + props.address} className="message__user">
         {props.nickname}{" "}
       </NavLink>
     </div>

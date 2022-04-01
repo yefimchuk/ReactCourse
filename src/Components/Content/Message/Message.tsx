@@ -32,15 +32,14 @@ let Message = ({ messageData, dialogsData }: any) => {
 
   return (
     <div className="message">
-      <div className="account">
+      <div className="message__form">
         <div>{messageDataBLL}</div>
       </div>
 
-      <div className="dialogs">
+      <div className="message__dialogs">
         <div>{dialogsDataBll}</div>
-
         <form onSubmit={formik.handleSubmit}>
-          <div className="postFlex">
+          <div className="message__post_flex">
             <TextArea
               id="input"
               name="input"
@@ -48,7 +47,7 @@ let Message = ({ messageData, dialogsData }: any) => {
               value={formik.values.input}
               rows={1}
             />
-            <button type="submit" className="submit">
+            <button type="submit" className="message__button_submit">
               Send
             </button>
           </div>

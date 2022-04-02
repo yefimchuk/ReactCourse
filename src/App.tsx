@@ -3,7 +3,7 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import News from "./Components/Content/News/News";
-import Music from "./Components/Content/Music/Music";
+
 import Settings from "./Components/Content/Settings/Settings";
 import MessageContainer from "./Components/Content/Message/messageContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
@@ -40,10 +40,9 @@ let App: any = () => {
           <Route path="/profile/:userId" element={<ProfileContainer />} />
           <Route path="/profile" element={<ProfileContainer />} />
           <Route path="/news" element={<News />} />
-          <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/users" element={<UsersContainer />} />
-          <Route path="/" element={<ProfileContainer />}></Route>
+          <Route path="/" element={<ProfileContainer/>}/>
         </Routes>
       </div>
     </div>

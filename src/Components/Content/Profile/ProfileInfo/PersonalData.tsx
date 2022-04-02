@@ -19,32 +19,32 @@ let PersonalInformation = ({
   instagram,
 }: PropsT) => {
   return (
-    <div className="account">
+    <div className="profile__account">
       <div>
-        <img className="accountAvatar" src={avatar != null ? avatar : photo} />
+        <img className="profile__account-avatar" src={avatar != null ? avatar : photo} />
       </div>
-      <div className="personalData">
-        <div className="text1">
-          Name: <div className="text2">{name}</div>
+      <div className="profile__personal-data-form">
+        <div className="profile__personal-data-name">
+          Name: <div className="profile__personal-data_text-name">{name}</div>
         </div>
-        <div className="text">Job: {job}</div>
-        <div className="text">
+        <div className="profile__personal-data_text">Job: {job}</div>
+        <div className="profile__personal-data_text">
           GitHub:
-          <a href={`https://` + git} className="text2">
+          <a href={`https://` + git} className="profile__personal-data_text-name">
             {" "}
             {git}
           </a>
         </div>
-        <div className="text">
+        <div className="profile__personal-data_text">
           Instagram:
-          <a href={`https://` + youTube} className="text2">
+          <a href={`https://` + youTube} className="profile__personal-data_text-name">
             {" "}
             {youTube}
           </a>
         </div>
-        <div className="text">
+        <div className="profile__personal-data_text">
           YouTube:
-          <a href={`https://` + instagram} className="text2">
+          <a href={`https://` + instagram} className="profile__personal-data_text-name">
             {" "}
             {instagram}
           </a>

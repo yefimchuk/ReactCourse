@@ -3,7 +3,7 @@ import "./Profile.scss";
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 
-import StatusHook from "./ProfileInfo/Status/statusHook";
+import Status from "./ProfileInfo/Status/Status";
 import Post from "./Post";
 
 let Profile = ({ ReviewData, status, Profile }: any) => {
@@ -35,7 +35,7 @@ let Profile = ({ ReviewData, status, Profile }: any) => {
         youTube={Profile.contacts.youtube}
         instagram={Profile.contacts.instagram}
       />
-      <StatusHook status={status} />
+      <Status status={status} />
       <Post />
       {ReviewItem}
     </div>

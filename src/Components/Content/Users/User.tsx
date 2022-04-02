@@ -5,8 +5,11 @@ import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png";
 import { useDispatch } from "react-redux";
 import { followThunk, unfollowThunk } from "../../../BLL/Users/usersSlice";
 import LoaderFollow from "../../../common/Loading/LoaderFollow";
-
-let User = React.memo((props: any) => {
+interface IUser {
+  waitingFollow: Array<any>
+  users: Array<any>
+}
+let User = React.memo(({waitingFollow,users}: IUser) => {
   let dispatch = useDispatch();
 
   const follow = (id: number) => {
@@ -15,35 +18,31 @@ let User = React.memo((props: any) => {
   let unfollow = (id: number) => {
     dispatch(unfollowThunk(id));
   };
-  console.log(
-    props.waitingFollow.some(() => {
-      console.log("fjfj");
-    })
-  );
+
   return (
     <div>
-      {props.users.map((u: any) => (
+      {users.map((u: any) => (
         <div key={u.id}>
-          <div className="User-user">
+          <div className="user">
             <div>
               <NavLink to={"/profile/" + u.id}>
                 <img
-                  className="avatar-user"
+                  className="user__avatar"
                   src={u.photos.small != null ? u.photos.small : photo}
                 />
               </NavLink>
               <div>
                 {u.followed ? (
                   <button
-                    disabled={props.waitingFollow.some(
+                    disabled={waitingFollow.some(
                       (id: any) => id === u.id
                     )}
-                    className="followed"
+                    className="user__followed"
                     onClick={() => {
                       unfollow(u.id);
                     }}
                   >
-                    {props.waitingFollow.some((id: any) => id === u.id) ? (
+                    {waitingFollow.some((id: any) => id === u.id) ? (
                       <LoaderFollow />
                     ) : (
                       "Unfollow"
@@ -51,13 +50,13 @@ let User = React.memo((props: any) => {
                   </button>
                 ) : (
                   <button
-                    disabled={props.waitingFollow.some(
+                    disabled={waitingFollow.some(
                       (id: any) => id === u.id
                     )}
-                    className="unfollowed"
+                    className="user__unfollowed"
                     onClick={() => follow(u.id)}
                   >
-                    {props.waitingFollow.some((id: any) => id === u.id) ? (
+                    {waitingFollow.some((id: any) => id === u.id) ? (
                       <LoaderFollow />
                     ) : (
                       "Follow"
@@ -66,13 +65,13 @@ let User = React.memo((props: any) => {
                 )}
               </div>
             </div>
-            <NavLink className="UserInfo-user" to={"/profile/" + u.id}>
-              <div className="left-user">
-                <div className="nick">{u.name}</div>
-                <div className="status">{u.status}</div>
+            <NavLink className="user__user-info" to={"/profile/" + u.id}>
+              <div className="user__left-side">
+                <div className="user__nick">{u.name}</div>
+                <div className="user__status">{u.status}</div>
               </div>
-              <div className="right-user">
-                <div className="city">{u.city}</div>
+              <div className="user__right-side">
+                <div className="user__city">{u.city}</div>
               </div>
             </NavLink>
           </div>

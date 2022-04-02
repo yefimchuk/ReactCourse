@@ -6,7 +6,7 @@
     padding: 10px;
     font-size: 25px;
     color: white;
-
+  }
     .post__form_flex {
       flex-direction: column;
       width: 80%;
@@ -45,7 +45,7 @@
       }
     }
   }
-}
+
 //image top
 .profile__image-top {
   border-radius: 6px;
@@ -64,10 +64,10 @@ input::-webkit-input-placeholder {
   display: flex;
   flex-direction: row;
 
-  .message__avatar {
-    width: 75px;
-    height: 75px;
-    border-radius: 100px;
+  .profile__review-avatar {
+    width: 65px;
+    height: 65px;
+    border-radius: 17px;
     background: rgba(30, 144, 255, 0);
     margin: 10px;
     object-fit: cover;

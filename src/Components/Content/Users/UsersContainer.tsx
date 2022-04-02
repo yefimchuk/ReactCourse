@@ -28,7 +28,7 @@ let UsersAPIContainer = (props: any) => {
               totalUserCount={props2.totalUserCount}
               users={users}
               pageSize={props2.pageSize}
-              currentPage={props.currentPage}
+              currentPage={props2.currentPage}
               waitingFollow={props2.waitingFollow}
               isLoading={props2.isLogin}
               authMe={props2.authMe}

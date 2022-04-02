@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
 import headerServiceInstance from "../../http/HeaderService";
 import profileServiceInstance from "../../http/ProfileService";
@@ -13,10 +13,11 @@ export const GetNewProfile: any = createAsyncThunk(
       dispatch(setId(auth.data.data.id));
       let profile = await userServiceInstance.SetMyId(auth.data.data.id);
       let status = await dispatch(GetStatusThunk(auth.data.data.id));
+
       return [status.payload, profile];
     }
     let profile = await userServiceInstance.SetMyId(id);
-    let status = await dispatch(GetStatusThunk({ id }));
+    let status = await dispatch(GetStatusThunk(id));
     return [status.payload, profile];
   }
 );

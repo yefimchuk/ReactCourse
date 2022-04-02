@@ -1,66 +1,52 @@
-import React from "react";
-import "./status.module.scss";
+import React, { useEffect, useState } from "react";
+import "./status.scss";
+import { useFormik } from "formik";
+import { UpdateStatusThunk } from "../../../../../BLL/ProfilePage/profilePage";
+import { useDispatch } from "react-redux";
 
-type status = {
-  status: any;
-  editMode: boolean;
-};
+let StatusHook = ({ status }: { status: any }) => {
+    let dispatch = useDispatch();
+    let [editMode, setEditMode] = useState(false);
+    let [UseStatus, setNewStatus] = useState("");
+    let activatedEditMode = () => {
+        setNewStatus(status);
+        setEditMode(true);
+    };
+    let deactivatedEditMode = () => {
+        setEditMode(false);
+        dispatch(UpdateStatusThunk(formik.values.status));
+    };
 
-export class Status extends React.Component<any, any> {
-  statusRef: any = React.createRef();
-  state: status = {
-    status: this.props.status,
-    editMode: false,
-  };
-  activatedEditMode = () => {
-    this.setState({
-      editMode: true,
+    const formik = useFormik({
+        initialValues: {
+            status: status,
+        },
+        onSubmit: (values) => {},
     });
-  };
-  deactivatedEditMode = () => {
-    this.setState({
-      editMode: false,
-    });
-    this.props.updateStatus(this.state.status);
-  };
-  onChangeInput = (e: any) => {
-    console.warn("onChangeInput");
-    this.setState({
-      status: e.currentTarget.value,
-    });
-  };
-  componentDidUpdate(
-    prevProps: Readonly<any>,
-    prevState: Readonly<any>,
-    snapshot?: any
-  ) {
-    if (this.props.status !== prevProps.status) {
-      this.setState({
-        status: this.props.status,
-      });
-    }
-  }
+    useEffect(() => {
+        setNewStatus(formik.values.status);
+    }, [formik.values.status]);
 
-  render() {
     return (
-      <div className="status">
-        {this.state.editMode ? (
-          <div>
-            <input
-              onChange={this.onChangeInput}
-              ref={this.statusRef}
-              className="input"
-              value={this.state.status}
-              autoFocus={true}
-              onBlur={this.deactivatedEditMode}
-            />
-          </div>
-        ) : (
-          <div className="textStatus" onClick={this.activatedEditMode}>{`${
-            this.props.status || "none"
-          }`}</div>
-        )}
-      </div>
+        <div className="profile__status">
+            {editMode ? (
+                <div>
+                    <input
+                        className="profile__status-input"
+                        id="status"
+                        name="status"
+                        onChange={formik.handleChange}
+                        value={UseStatus}
+                        autoFocus={true}
+                        onBlur={deactivatedEditMode}
+                    />
+                </div>
+            ) : (
+                <div className="profile__status-text" onClick={activatedEditMode}>{`${
+                    status || "none"
+                }`}</div>
+            )}
+        </div>
     );
-  }
-}
+};
+export default StatusHook;

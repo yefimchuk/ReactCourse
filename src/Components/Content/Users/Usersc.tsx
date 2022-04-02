@@ -8,8 +8,7 @@ let Users = ({
   users,
   currentPage,
   waitingFollow,
-  unfollow,
-  follow,
+
 }: any) => {
   let pageCount = Math.ceil(totalUserCount / pageSize);
 
@@ -22,8 +21,6 @@ console.log(totalUserCount)
     <div>
       <User
         waitingFollow={waitingFollow}
-        unfollow={unfollow}
-        follow={follow}
         users={users}
       />
       <div>

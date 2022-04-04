@@ -1,20 +1,12 @@
-import {
-    addReview,
-    AuthMeThunk,
-    GetNewProfile,
-    GetStatusThunk,
-    isLogin,
-    like,
-    UpdateStatusThunk
-} from "../../Redux/profile-reducer";
-import {connect} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import React, {useEffect, useState} from "react";
 import Profile from "./Profile";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
-import {GetAuthMeId, GetProfile, GetReviewData, GetStatus} from "../../Redux/users-selector";
+
 import MyLoader from "../../../common/Loading/Skeleton";
 import {WithAuthRedirectToLogin} from "../../../hoc/WithAuthRedirectToLogin";
+import {GetNewProfile, GetStatusThunk} from "../../../BLL/profilePage";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();
@@ -28,45 +20,49 @@ const withRouter = WrappedComponent => props => {
 }
 
 let ProfileAPIContainer = (props) => {
-
-
-    let [state, SetState] = useState(props)
+    let props2 = useSelector(state => state.sliceProfile)
+    const params = useParams();
+    let dispatch = useDispatch()
+    let [state, SetState] = useState(props2)
 
     useEffect(() => {
 
-        let userId = props.params.userId;
+        let userId = params.userId;
         if (!userId) {
-            userId = props.UserId
+            userId = props2.id
         }
-        props.GetNewProfile(userId)
-        props.GetStatusThunk(userId)
+
+        dispatch(GetNewProfile(userId))
+        dispatch(GetStatusThunk(userId))
 
 
     }, [])
+
     useEffect(() => {
 
-        let userId = props.params.userId;
+        let userId = params.userId;
         if (!userId) {
-            userId = props.UserId
+            userId = props2.id
         }
-        props.GetNewProfile(userId)
-        props.GetStatusThunk(userId)
 
+        dispatch(GetNewProfile(userId))
+        dispatch(GetStatusThunk(userId))
 
-    }, [props.UserId])
+    }, [props2.id])
 
-    if (!props.Profile || props.Status === null) {
+    if (!props2.Profile || props2.Profile.Status === null) {
         return <MyLoader/>
     }
 
-    if (props === state) {
+    if (props2 === state) {
         return <MyLoader/>
     }
-    return <Profile {...props} Status={props.Status} updateStatus={props.UpdateStatusThunk}/>
+
+    return <Profile {...props2}/>
 
 }
 
-
+/*
 let mapStateToProps = (state) => {
 
     return {
@@ -77,18 +73,18 @@ let mapStateToProps = (state) => {
         Status: GetStatus(state)
     }
 
-}
+}*/
 export default compose(
     withRouter,
     WithAuthRedirectToLogin,
-    connect(mapStateToProps, {
-        addReview,
-        like,
-        AuthMeThunk,
-        isLogin,
-        UpdateStatusThunk,
-        GetStatusThunk,
-        GetNewProfile
-    }),
+    /*    connect(mapStateToProps, {
+            addReview,
+            like,
+            AuthMeThunk,
+            isLogin,
+            UpdateStatusThunk,
+            GetStatusThunk,
+            GetNewProfile
+        }),*/
 )
 (ProfileAPIContainer);

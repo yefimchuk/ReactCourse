@@ -67,66 +67,7 @@ let initialState = {
 export const ProfileReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
-        case ADD_NEW_REVIEW: {
-            let NewReview = {
-                id: 5,
-                avatar: photo,
-                likes: 1,
-                message: action.NewReviewText
-            }
 
-            return {
-                ...state,
-                ReviewData: [...state.ReviewData, NewReview],
-                NewReviewText: ''
-
-            }
-        }
-        case IsLogin: {
-            return {
-
-                ...state, isLogin: action.isLogin
-            }
-
-        }
-        case SET_ID: {
-            return {
-
-                ...state,
-                id: action.id
-            }
-        }
-        case sendLike: {
-
-            return {
-
-                ...state,
-                ReviewData: [...state.ReviewData].filter((el: any) =>
-
-                    el.id === action.numberLikes.id ? el.likes++ : el.likes
-                )
-
-            }
-
-        }
-        case setProfile: {
-
-            return {
-
-                ...state,
-                Profile: action.profile,
-            }
-
-        }
-        case SET_STATUS: {
-
-            return {
-
-                ...state,
-                status: action.status ,
-            }
-
-        }
         default:
             return state
     }

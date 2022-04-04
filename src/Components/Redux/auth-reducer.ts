@@ -75,12 +75,14 @@ export let GetCaptcha = (captchaURL: any) => ({
     captcha: captchaURL
 })
 //thunk
+
 export const HeaderLoginThunk = () => async (dispatch: any) => {
 
     let a = await HeaderAPI.AuthMe()
 
     if (a.data.resultCode === 0) {
         let {id, email, login} = a.data.data;
+
         dispatch((SetAuthUserData(id, email, login, true)))
 
         HeaderAPI.Login(login).then((b: any) => {
@@ -93,19 +95,8 @@ export const HeaderLoginThunk = () => async (dispatch: any) => {
             })
 
         })
-    } else {
-        let {id, email, login} = a.data.data;
-        HeaderAPI.Login(login).then((b: any) => {
-
-            b.data.items.filter((u: any) => {
-                if (id === u.id) {
-                    dispatch(SetUserData(u))
-
-                }
-            })
-
-        })
     }
+
 }
 
 

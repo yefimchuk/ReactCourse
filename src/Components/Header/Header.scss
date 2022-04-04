@@ -1,11 +1,12 @@
 .Header {
-
+    display: flex;
+    flex-direction: row;
     grid-area: H;
     align-self: start;
     background-color: #1c1e23;
     border-radius: 4px;
 }
-.Login{
+.LoginHeader{
     display: flex;
     flex-direction: row;
     justify-content: space-between;

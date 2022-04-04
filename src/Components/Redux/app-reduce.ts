@@ -10,7 +10,9 @@ export const AppReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
         case INITIALIZING_WAS_SUCCESS: {
+
             return {
+
                 ...state,
                 initialized: true,
             }

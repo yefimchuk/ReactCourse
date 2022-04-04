@@ -1,10 +1,12 @@
 import React, {memo} from "react";
 import s from "../Profile.module.css"
-window.props = []
-let Review = (props) => {
+import {sendLike} from "../../../../BLL/profilePage";
+import {useDispatch} from "react-redux";
 
+let Review = (props) => {
+let dispatch = useDispatch()
     let Like = () => {
-        props.like(props)
+        dispatch(sendLike(props))
     }
 
     return (

@@ -7,10 +7,10 @@ import StatusHook from "./ProfileInfo/Status/statusHook";
 import Post from "./Post";
 
 
-let Profile = ({ReviewData, addReview, updateStatus, Status, Profile, like}) => {
+let Profile = ({ReviewData, status, Profile}) => {
 
     let ReviewItem = [...ReviewData].reverse().map(review => <Review avatar={review.avatar} likes={review.likes}
-                                                                     message={review.message} like={like}
+                                                                     message={review.message}
                                                                      id={review.id} data={ReviewData}/>)
 
     return (
@@ -26,8 +26,8 @@ let Profile = ({ReviewData, addReview, updateStatus, Status, Profile, like}) => 
                                  git={Profile.contacts.mainLink}
                                  youTube={Profile.contacts.youtube}
                                  instagram={Profile.contacts.instagram}/>
-            <StatusHook status={Status} updateStatus={updateStatus}/>
-            <Post addReview={addReview}/>
+            <StatusHook status={status}/>
+            <Post/>
             {ReviewItem}
         </div>
     )

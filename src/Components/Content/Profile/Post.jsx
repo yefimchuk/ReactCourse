@@ -1,15 +1,17 @@
 import React from "react";
 import s from "./Profile.module.css";
 import {useFormik} from "formik";
+import {addNewReview} from "../../../BLL/profilePage";
+import {useDispatch} from "react-redux";
 
-let Post = (props) => {
-    debugger
+let Post = () => {
+    let dispatch = useDispatch()
     const formik = useFormik({
         initialValues: {
             review: '',
         },
         onSubmit: values => {
-            props.addReview(values.review)
+            dispatch(addNewReview(values.review))
         },
     });
     return <div className={s.Post}>

@@ -1,17 +1,25 @@
-import React, {useRef} from "react";
-import MyLoader from "../../../common/Loading/Skeleton";
-import ListingWithThumbnail from "../../../common/Loading/UsersLoading";
+import React from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {decrement, increment} from "../../../BLL/test";
 
-function getFetchUrl(query) {
-    return 'https://hn.algolia.com/api/v1/search?query=' + query;
-}
 
 let News = (props) => {
-
+    console.log("hello")
+    let dispatch = useDispatch()
+    let count = 1
+    count = useSelector(state => state.toolkit.value)
     return (
-        <>
-<ListingWithThumbnail/>
-        </>
+        <div>
+            <button>{count}</button>
+            <button onClick={() => {
+                dispatch(increment({hello: 1, hh: 11}))
+            }}>increment
+            </button>
+            <button onClick={() => {
+                dispatch(decrement())
+            }}>decrement
+            </button>
+        </div>
     );
 }
 export default News

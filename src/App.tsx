@@ -17,11 +17,12 @@ import {initializingThunk} from "./Components/Redux/app-reduce";
 
 
 let App = (props: any) => {
-
+    console.log("app")
     useEffect(() => {
             props.initializingThunk()
-        }
+        }, []
     )
+
 
     if (!props.initialized) {
         return <Loading/>
@@ -29,8 +30,6 @@ let App = (props: any) => {
     return (
 
         <div className='App'>
-
-
             <HeaderContainer/>
             <Sidebar friendsData={props.friendsData}/>
             <div className='app-wrapper-content'>

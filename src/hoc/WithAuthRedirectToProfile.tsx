@@ -9,7 +9,6 @@ let mapStateToProps = (state: any) => {
 }
 export const WithAuthRedirectToProfile = (Component: Function) => {
     const RedirectComponent = (props: { authMe: boolean }) => {
-
         if (props.authMe) {
             return  <Navigate to={"/profile"}/>
         }

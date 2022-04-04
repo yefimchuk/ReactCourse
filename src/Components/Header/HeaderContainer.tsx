@@ -2,22 +2,23 @@ import React from "react";
 import Header from "./Header"
 import {connect} from "react-redux";
 import {UnLoginThunk} from "../Redux/auth-reducer";
-import {Navigate} from "react-router-dom";
 
-interface IRecipeProps {
-    HeaderLoginThunk?: any
-    isLogin?: any
+type IRecipeProps = {
+    isLogin: boolean,
+    id: number,
+    date: {
+        name: string
+        photos: {
+            large: string
+        }
+    }
+    UnLoginThunk: Function
 }
 
 
-let HeaderContainerAPI = (props: any) => {
+let HeaderContainerAPI = (props: IRecipeProps) => {
 
-    if (!props.isLogin) {
-        <Navigate to={"/login"}/>
-    }
-    return (
-        <Header {...props}/>
-    )
+    return <Header {...props}/>
 }
 
 let mapStateToProps = (state: any) => {

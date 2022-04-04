@@ -1,12 +1,15 @@
 import React, {useEffect, useState} from "react";
 import s from "./status.module.css"
 import {useFormik} from "formik";
+import {UpdateStatusThunk} from "../../../../../BLL/profilePage";
+import {useDispatch} from "react-redux";
 
-let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) => {
+let StatusHook = ({status}: { status: any }) => {
+
+    let dispatch = useDispatch()
     let [editMode, setEditMode] = useState(false)
     let [UseStatus, setNewStatus] = useState("")
     let activatedEditMode = () => {
-        debugger
         setNewStatus(status)
         setEditMode(true)
 
@@ -14,7 +17,7 @@ let StatusHook = ({status, updateStatus}: { status: any, updateStatus: any }) =>
     let deactivatedEditMode = () => {
 
         setEditMode(false)
-        updateStatus(formik.values.status)
+        dispatch(UpdateStatusThunk(formik.values.status))
     }
 
     const formik = useFormik({

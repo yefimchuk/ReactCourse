@@ -1,36 +1,43 @@
 import React from "react";
 import logo from "../../logo.svg"
-import s from './Header.module.css'
+import './Header.scss'
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 import {LoginOutlined, LogoutOutlined, setTwoToneColor} from "@ant-design/icons";
-
 import {NavLink} from "react-router-dom";
-
 setTwoToneColor('#eb2f96');
 
-let Header = (props: any) => {
-
-    let logOut = () => {
-        props.UnLoginThunk()
-    }
-    if (props.date !== null) {
-        if (props.date.photos.large === null) {
-            props.date.photos.large = photo;
+type PropsT = {
+    date: {
+        name: string
+        photos:{
+            large: string
         }
     }
+    UnLoginThunk: Function,
+    isLogin: boolean
+
+}
+let Header = ({date, UnLoginThunk, isLogin}: PropsT) => {
+    console.log("header")
+
+    let logOut = () => {
+        UnLoginThunk()
+    }
+    let a = date ? date.photos.large === null ? date.photos.large = photo : null : null
+
 
     return (
-        <div className={s.Header}>
-            <div className={s.Login}>
+        <div className="Header">
+            <div className="LoginHeader">
                 <img src={logo} className="App-logo" alt={logo}/>
 
                 {
-                    props.date === null ? <div><NavLink  className={s.nlink} to={"/login"} > Login <LoginOutlined   className={s.login} /></NavLink> </div> : props.IsLogin !== null ?
-                        <div className={s.info}>
-
-                            <div className={s.name}>{props.date.name}</div>
-                            <img className={s.avatar} src={props.date.photos.large}/>
-                            <LogoutOutlined className={s.logout} onClick={logOut}/>
+                    date === null ? <div><NavLink className="nlink" to={"/login"}> Login <LoginOutlined
+                        className="login"/></NavLink></div> : isLogin !== null ?
+                        <div className="info">
+                            <div className="name">{date.name}</div>
+                            <img className="avatar" src={date.photos.large} alt="avatar"/>
+                            <LogoutOutlined className="logout" onClick={logOut}/>
                         </div> : null
                 }
 

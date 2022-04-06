@@ -32,7 +32,7 @@ let App: any = () => {
   return (
     <div className="App">
       <HeaderContainer />
-      <Sidebar friendsData={friendsData} />
+      <Sidebar  />
       <div className="app-wrapper-content">
         <Routes>
           <Route path="/login" element={<LoginContainer />} />

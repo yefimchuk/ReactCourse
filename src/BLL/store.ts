@@ -7,6 +7,8 @@ import { authSlice } from "./Auth/authSlice";
 import { appSlice } from "./App/appSlice";
 import { messageSlice } from "./Message/messageSlice";
 import { usersPage } from "./Users/usersSlice";
+import {sideBarSlice} from "./SideBar/sidebarSlice";
+
 
 declare global {
   interface Window {
@@ -21,6 +23,7 @@ let reducers = combineReducers({
   sliceApp: appSlice.reducer,
   sliceMessage: messageSlice.reducer,
   sliceUsers: usersPage.reducer,
+  sliceSidebar: sideBarSlice.reducer
 });
 
 const store = createStore(

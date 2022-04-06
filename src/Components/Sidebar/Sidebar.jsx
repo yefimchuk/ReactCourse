@@ -2,8 +2,11 @@ import React from "react";
 import s from "./Sidebar.module.css";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
+import {useSelector} from "react-redux";
+import {getFriendsSelector} from "../../BLL/SideBar/sidebarSelector";
 
 let Sidebar = (props) => {
+  const friendsData = useSelector(getFriendsSelector)
   return (
     <nav className={s.Sidebar}>
       <div className={s.ItemFlex}>
@@ -30,7 +33,7 @@ let Sidebar = (props) => {
           <NavLink to="/settings">Settings</NavLink>
         </div>
         <div className={s.item}>
-          <Friends friendsData={props.friendsData} />
+          <Friends friendsData={friendsData} />
         </div>
       </div>
     </nav>

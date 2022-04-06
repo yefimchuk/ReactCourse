@@ -4,8 +4,8 @@ import {createSlice} from "@reduxjs/toolkit";
 type AuthType = {
     friendsData: object
 };
-const sideBarSlice = createSlice({
-    name: "authPage",
+export const sideBarSlice = createSlice({
+    name: "sidebarPage",
     initialState: {
         friendsData: [
             {
@@ -47,4 +47,3 @@ const sideBarSlice = createSlice({
     reducers: {},
     extraReducers: {},
 });
-export default sideBarSlice.reducer;

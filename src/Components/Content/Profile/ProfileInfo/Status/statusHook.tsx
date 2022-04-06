@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import s from "./status.module.css"
 import {useFormik} from "formik";
-import {UpdateStatusThunk} from "../../../../../BLL/profilePage";
+import {UpdateStatusThunk} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch} from "react-redux";
 
 let StatusHook = ({status}: { status: any }) => {

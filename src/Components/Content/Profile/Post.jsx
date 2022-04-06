@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Profile.module.css";
 import {useFormik} from "formik";
-import {addNewReview} from "../../../BLL/profilePage";
+import {addNewReview} from "../../../BLL/ProfilePage/profilePage";
 import {useDispatch} from "react-redux";
 
 let Post = () => {

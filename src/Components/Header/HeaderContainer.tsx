@@ -1,34 +1,26 @@
 import React from "react";
 import Header from "./Header"
-import {connect} from "react-redux";
-import {UnLoginThunk} from "../Redux/auth-reducer";
 
-type IRecipeProps = {
-    isLogin: boolean,
-    id: number,
-    date: {
-        name: string
-        photos: {
-            large: string
-        }
-    }
-    UnLoginThunk: Function
-}
+import {compose} from "redux";
+import {WithAuthRedirectToProfile} from "../../hoc/WithAuthRedirectToProfile";
+import {getAuthDateSelector, getAuthIsLoginSelector} from "../../BLL/Auth/authSelector";
+import {useSelector} from "react-redux";
+import {Navigate} from "react-router-dom";
 
 
-let HeaderContainerAPI = (props: IRecipeProps) => {
+let HeaderContainerAPI = () => {
+    let date = useSelector(state => getAuthDateSelector(state))
+    let isLogin = useSelector(state => getAuthIsLoginSelector(state))
 
-    return <Header {...props}/>
+    return <Header date={date} isLogin={isLogin}/>
 }
 
 let mapStateToProps = (state: any) => {
 
-    return {
-        id: state.auth.id,
-        isLogin: state.auth.isLogin,
-        date: state.auth.date
-    }
+    return {}
 }
-let HeaderContainer = connect(mapStateToProps, {UnLoginThunk})(HeaderContainerAPI);
 
-export default HeaderContainer
+
+export default compose<any>(
+
+)(HeaderContainerAPI)

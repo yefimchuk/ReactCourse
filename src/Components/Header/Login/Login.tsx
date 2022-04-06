@@ -3,13 +3,12 @@ import "./Login.scss"
 import {LoginForm} from "./LoginForm";
 
 
-export const Login = (props: any) => {
+export const Login = ({captchaURL}: { captchaURL: string }) => {
     return (
         <div className="Login">
             <div className="TextLogin">Login in to Social Network</div>
-            <LoginForm {...props}/>
+            <LoginForm captchaURL={captchaURL}/>
         </div>
     );
 };
-
 

@@ -6,7 +6,7 @@ import {compose} from "redux";
 
 import MyLoader from "../../../common/Loading/Skeleton";
 import {WithAuthRedirectToLogin} from "../../../hoc/WithAuthRedirectToLogin";
-import {GetNewProfile, GetStatusThunk} from "../../../BLL/profilePage";
+import {GetNewProfile, GetStatusThunk} from "../../../BLL/ProfilePage/profilePage";
 
 const withRouter = WrappedComponent => props => {
     const params = useParams();

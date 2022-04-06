@@ -1,4 +1,4 @@
-import {AuthAPI, HeaderAPI} from "../../API/API";
+
 
 const SET_AUTH_USER_DATA = "SET-AUTH-USER-DATA";
 const SET_USER_DATA = "SET-USER-DATA";
@@ -7,11 +7,6 @@ const SET_LOG_OUT = "SET-LOG-OUT"
 const GET_CAPTCHA = "GET-CAPTCHA"
 let initialState = {
     id: null,
-    email: null,
-    login: null,
-    isLogin: false,
-    date: null,
-    captchaURL: null,
 }
 
 
@@ -75,62 +70,3 @@ export let GetCaptcha = (captchaURL: any) => ({
     captcha: captchaURL
 })
 //thunk
-
-export const HeaderLoginThunk = () => async (dispatch: any) => {
-
-    let a = await HeaderAPI.AuthMe()
-
-    if (a.data.resultCode === 0) {
-        let {id, email, login} = a.data.data;
-
-        dispatch((SetAuthUserData(id, email, login, true)))
-
-        HeaderAPI.Login(login).then((b: any) => {
-
-            b.data.items.filter((u: any) => {
-                if (id === u.id) {
-                    dispatch(SetUserData(u))
-
-                }
-            })
-
-        })
-    }
-
-}
-
-
-export const LoginThunk = (data: any, setStatus: any) => {
-    return async (dispatch: any) => {
-
-        let response = await AuthAPI.Login(data)
-console.log(response)
-        if (response.data.resultCode === 0) {
-            dispatch(HeaderLoginThunk())
-        } else {
-            if (response.data.resultCode === 10) {
-                dispatch(GetCaptchaURL())
-            }
-            setStatus({error: response.data.messages})
-        }
-    }
-
-}
-export const UnLoginThunk = () => {
-    return (dispatch: any) => {
-
-        AuthAPI.LogOut().then((response: any) => {
-
-            if (response.data.resultCode === 0) {
-                dispatch(SetLogOut())
-            }
-        })
-    }
-}
-export const GetCaptchaURL = () => {
-    return (dispatch: any) => {
-        AuthAPI.GetCaptcha().then((captchaURL: any) => {
-            dispatch(GetCaptcha(captchaURL))
-        })
-    }
-}

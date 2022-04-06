@@ -1,6 +1,6 @@
 import React, {memo} from "react";
 import s from "../Profile.module.css"
-import {sendLike} from "../../../../BLL/profilePage";
+import {sendLike} from "../../../../BLL/ProfilePage/profilePage";
 import {useDispatch} from "react-redux";
 
 let Review = (props) => {

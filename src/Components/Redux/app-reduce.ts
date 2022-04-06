@@ -1,4 +1,4 @@
-import {HeaderLoginThunk} from "./auth-reducer";
+import {HeaderLogin} from "../../BLL/Auth/authSlice";
 
 const INITIALIZING_WAS_SUCCESS = "INITIALIZING-WAS-SUCCESS"
 let initialState = {
@@ -28,10 +28,3 @@ export let initializingWasSuccess = () => ({
 })
 //thunk
 
-export let initializingThunk = () => (dispatch: any) => {
-    let auth = dispatch(HeaderLoginThunk())
-
-    Promise.all([auth]).then(() => {
-        dispatch(initializingWasSuccess())
-    })
-}

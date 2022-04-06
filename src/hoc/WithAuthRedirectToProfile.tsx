@@ -4,11 +4,12 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state: any) => {
     return {
-        authMe: state.auth.isLogin
+        authMe: state.sliceAuth.isLogin
     }
 }
 export const WithAuthRedirectToProfile = (Component: Function) => {
     const RedirectComponent = (props: { authMe: boolean }) => {
+
         if (props.authMe) {
             return  <Navigate to={"/profile"}/>
         }

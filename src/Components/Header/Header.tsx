@@ -1,30 +1,30 @@
 import React from "react";
 import logo from "../../logo.svg"
 import './Header.scss'
-import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 import {LoginOutlined, LogoutOutlined, setTwoToneColor} from "@ant-design/icons";
 import {NavLink} from "react-router-dom";
+import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
+import {useDispatch} from "react-redux";
+import {UnLogin} from "../../BLL/Auth/authSlice";
+
 setTwoToneColor('#eb2f96');
 
 type PropsT = {
     date: {
         name: string
-        photos:{
+        photos: {
             large: string
         }
     }
-    UnLoginThunk: Function,
+
     isLogin: boolean
 
 }
-let Header = ({date, UnLoginThunk, isLogin}: PropsT) => {
-    console.log("header")
-
+let Header = ({date, isLogin}: PropsT) => {
+    let dispatch = useDispatch()
     let logOut = () => {
-        UnLoginThunk()
+        dispatch(UnLogin())
     }
-    let a = date ? date.photos.large === null ? date.photos.large = photo : null : null
-
 
     return (
         <div className="Header">
@@ -36,7 +36,8 @@ let Header = ({date, UnLoginThunk, isLogin}: PropsT) => {
                         className="login"/></NavLink></div> : isLogin !== null ?
                         <div className="info">
                             <div className="name">{date.name}</div>
-                            <img className="avatar" src={date.photos.large} alt="avatar"/>
+                            <img className="avatar" src={date.photos.large === null ? photo : date.photos.large}
+                                 alt="avatar"/>
                             <LogoutOutlined className="logout" onClick={logOut}/>
                         </div> : null
                 }

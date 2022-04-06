@@ -10,35 +10,37 @@ import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
-import {connect} from "react-redux";
-import {compose} from "redux";
+import {useDispatch, useSelector} from "react-redux";
 import Loading from "./common/Loading/Loading";
-import {initializingThunk} from "./Components/Redux/app-reduce";
+import {initializingThunk} from "./BLL/App/appSlice";
+import {getFriendSelector, getInitializedSelector} from "./BLL/App/appSelector";
 
 
-let App = (props: any) => {
-    console.log("app")
+ let App : any= () => {
+    let dispatch = useDispatch()
+    let initialized = useSelector(getInitializedSelector)
+    let friendsData = useSelector(getFriendSelector)
     useEffect(() => {
-            props.initializingThunk()
+            dispatch(initializingThunk({}))
         }, []
     )
 
 
-    if (!props.initialized) {
+    if (!initialized) {
         return <Loading/>
     }
     return (
 
         <div className='App'>
             <HeaderContainer/>
-            <Sidebar friendsData={props.friendsData}/>
+            <Sidebar friendsData={friendsData}/>
             <div className='app-wrapper-content'>
                 <Routes>
                     <Route path="/login" element={<LoginContainer/>}/>
                     <Route path="/message/:id" element={<MessageContainer/>}/>
                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                     <Route path='/profile' element={<ProfileContainer/>}/>
-                    <Route path="/news" element={<News key={props.initialized}/>}/>
+                    <Route path="/news" element={<News/>}/>
                     <Route path="/music" element={<Music/>}/>
                     <Route path="/settings" element={<Settings/>}/>
                     <Route path="/users" element={<UsersContainer/>}/>
@@ -53,12 +55,4 @@ let App = (props: any) => {
     );
 
 }
-
-let mapStateToProps = (state: any) => {
-    return {
-        authMe: state.auth.isLogin,
-        initialized: state.app.initialized,
-        friendsData: state.sideBar.friendsData
-    }
-}
-export default compose(connect(mapStateToProps, {initializingThunk}))(App);
+export default App

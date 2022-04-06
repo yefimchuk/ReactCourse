@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 let mapStateToProps = (state: any) => {
     return {
-        authMe: state.auth.isLogin
+        authMe: state.sliceAuth.isLogin
     }
 }
 export const WithAuthRedirectToLogin = (Component: Function) => {

@@ -6,9 +6,10 @@ import {SidebarReducer} from "./sidebar-reducer";
 import {UsersReducers} from "./userspage-reducer";
 import {AuthReducer} from "./auth-reducer";
 import {AppReducer} from "./app-reduce";
-import counterSlice from "../../BLL/test"
 import {composeWithDevTools} from 'redux-devtools-extension';
-import {profilePage} from "../../BLL/profilePage";
+import {profilePage} from "../../BLL/ProfilePage/profilePage";
+import {authSlice} from "../../BLL/Auth/authSlice";
+import {appSlice} from "../../BLL/App/appSlice";
 
 declare global {
     interface Window {
@@ -17,20 +18,22 @@ declare global {
 }
 
 let reducers = combineReducers({
+
     messagePage: MessageReducer,
     profilePage: ProfileReducer,
     sideBar: SidebarReducer,
     userPage: UsersReducers,
     auth: AuthReducer,
     app: AppReducer,
-    toolkit: counterSlice,
-    sliceProfile: profilePage.reducer
+    sliceProfile: profilePage.reducer,
+    sliceAuth: authSlice.reducer,
+    sliceApp: appSlice.reducer
 })
 
 const store = createStore(reducers, composeWithDevTools(
     applyMiddleware(thunk),
 
 ));
-window.store = store
+export type RootState = ReturnType<typeof reducers>
 export default store
 

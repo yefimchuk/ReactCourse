@@ -2,7 +2,6 @@ import {HeaderAPI, ProfileAPI, UsersAPI} from "../../API/API";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png"
 
 const ADD_NEW_REVIEW = "ADD-NEW-REVIEW";
-
 const sendLike = "SEND-LIKE";
 const setProfile = "SET-PROFILE"
 const SET_ID = "SET-ID"
@@ -64,6 +63,7 @@ let initialState = {
 
 
 }
+
 export const ProfileReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {

@@ -1,6 +1,8 @@
 import {useFormik} from "formik";
 import {Button, Checkbox, Form, Input} from "antd";
 import React from "react";
+import {Login} from "../../../BLL/Auth/authSlice";
+import {useDispatch} from "react-redux";
 
 
 type ValueFormik = {
@@ -10,11 +12,10 @@ type ValueFormik = {
     captcha: string
 }
 type PropsType = {
-    LoginThunk: Function,
     captchaURL: string
 }
-export let LoginForm = ({LoginThunk, captchaURL}: PropsType) => {
-
+export let LoginForm = ({captchaURL}: PropsType) => {
+    let dispatch = useDispatch()
     const initialValues: ValueFormik = {
         email: "",
         password: "",
@@ -27,7 +28,7 @@ export let LoginForm = ({LoginThunk, captchaURL}: PropsType) => {
 
         onSubmit: (values, action) => {
 
-            LoginThunk(values, action.setStatus)
+            dispatch(Login({values, action}))
 
         },
     });

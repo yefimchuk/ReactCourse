@@ -10,6 +10,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {profilePage} from "../../BLL/ProfilePage/profilePage";
 import {authSlice} from "../../BLL/Auth/authSlice";
 import {appSlice} from "../../BLL/App/appSlice";
+import {messageSlice} from "../../BLL/Message/messageSlice";
 
 declare global {
     interface Window {
@@ -27,7 +28,8 @@ let reducers = combineReducers({
     app: AppReducer,
     sliceProfile: profilePage.reducer,
     sliceAuth: authSlice.reducer,
-    sliceApp: appSlice.reducer
+    sliceApp: appSlice.reducer,
+    sliceMessage: messageSlice.reducer
 })
 
 const store = createStore(reducers, composeWithDevTools(

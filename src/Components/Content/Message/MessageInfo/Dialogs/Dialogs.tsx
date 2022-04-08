@@ -1,12 +1,12 @@
 import React from "react";
-import s from "../MessageAccounts.module.css"
+import "../MessageAccounts.scss"
 
 
-const MessageAccounts = (props) => {
+const MessageAccounts = (props: any) => {
 
     return (
 
-        <div className={s.account}>
+        <div className="account">
             {props.message}
 
         </div>

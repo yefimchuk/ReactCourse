@@ -1,34 +1,35 @@
 import React from "react";
 import MessageAccounts from "./MessageInfo/MessageAccounts";
-import s from "./MessageInfo/Message.module.css"
+import "./MessageInfo/Message.scss"
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
-
 import {useFormik} from "formik";
 import TextArea from "antd/es/input/TextArea";
+import {useDispatch} from "react-redux";
+import {addNewMessage} from "../../../BLL/Message/messageSlice";
 
 
-let Message = (props) => {
-
+let Message = ({messageData, dialogsData}: any) => {
+    let dispatch = useDispatch()
     const formik = useFormik({
         initialValues: {
             input: '',
         },
-        onSubmit: values => {
-
-            props.AddNewMessage(values.input)
-            return values.input = ''
+        onSubmit: (values, {resetForm}) => {
+            dispatch(addNewMessage(values.input))
+            values.input = '';
+            resetForm()
         },
     });
-    const messageDataBLL = props.messageData.map((review) =>
+    const messageDataBLL = messageData.map((review: any) =>
         <MessageAccounts nickname={review.nickname} address={review.address} avatar={review.avatar}/>
     )
-    let dialogsDataBll = props.dialogsData.map((reviews) =>
+    let dialogsDataBll = dialogsData.map((reviews: any) =>
         <Dialogs message={reviews.message}/>
     )
 
     return (
-        <div className={s.message}>
-            <div className={s.account}>
+        <div className="s.message">
+            <div className="account">
                 <div>
                     {messageDataBLL}
 
@@ -36,21 +37,21 @@ let Message = (props) => {
 
             </div>
 
-            <div className={s.dialogs}>
+            <div className="dialogs">
                 <div>
                     {dialogsDataBll}
                 </div>
 
-                    <form onSubmit={formik.handleSubmit}>
-                        <div className={s.postFlex}>
+                <form onSubmit={formik.handleSubmit}>
+                    <div className="postFlex">
                         <TextArea id="input"
                                   name="input"
                                   onChange={formik.handleChange}
                                   value={formik.values.input}
                                   rows={1}/>
-                        <button type="submit" className={s.submit}>Send</button>
-                        </div>
-                    </form>
+                        <button type="submit" className="submit">Send</button>
+                    </div>
+                </form>
 
 
             </div>

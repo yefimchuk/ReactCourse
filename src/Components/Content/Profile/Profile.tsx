@@ -1,5 +1,5 @@
 import React, {memo} from "react";
-import s from "./Profile.module.css"
+import "./Profile.scss"
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 
@@ -7,7 +7,7 @@ import StatusHook from "./ProfileInfo/Status/statusHook";
 import Post from "./Post";
 
 
-let Profile = ({ReviewData, status, Profile}) => {
+let Profile = ({ReviewData, status, Profile}: any) => {
 
     let ReviewItem = [...ReviewData].reverse().map(review => <Review avatar={review.avatar} likes={review.likes}
                                                                      message={review.message}
@@ -16,7 +16,7 @@ let Profile = ({ReviewData, status, Profile}) => {
     return (
 
         <div>
-            <img className={s.ImageTop}
+            <img className="ImageTop"
                  src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"
                  alt={"theme"}/>
 

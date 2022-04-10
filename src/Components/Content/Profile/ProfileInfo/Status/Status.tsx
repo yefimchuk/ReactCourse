@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./status.module.css"
+import "./status.module.scss"
 
 type status = {
     status: any
@@ -44,13 +44,13 @@ componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?
 
     render() {
 
-        return <div className={s.status}>
+        return <div className="status">
             {this.state.editMode ? <div>
-                <input onChange={this.onChangeInput} ref={this.statusRef} className={s.input}
+                <input onChange={this.onChangeInput} ref={this.statusRef} className="input"
                        value={this.state.status}
                        autoFocus={true}
                        onBlur={this.deactivatedEditMode}/>
-            </div> : <div className={s.textStatus} onClick={this.activatedEditMode}>{`${this.props.status || "none"}`}</div>}
+            </div> : <div className="textStatus" onClick={this.activatedEditMode}>{`${this.props.status || "none"}`}</div>}
         </div>
     }
 }

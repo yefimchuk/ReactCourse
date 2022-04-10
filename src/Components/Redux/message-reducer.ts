@@ -37,7 +37,6 @@ let initialState = {
         {message: "Hello"},
         {message: "Dima, how are u?"},
         {message: "Bye"},
-
     ],
 
 }

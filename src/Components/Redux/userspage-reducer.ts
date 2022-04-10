@@ -118,15 +118,7 @@ export const ToggleWaitingFollow = (WaitingFollow: any, id: number) => {
 }
 //func
 
-let FollowUnfollowFLow = async (dispatch: any, id: number, apiMethod: any, actionCreator: Function) => {
-    dispatch(ToggleWaitingFollow(true, id))
-    let response = await apiMethod(id)
 
-    if (response.resultCode === 0) {
-        dispatch(actionCreator(id))
-    }
-    dispatch(ToggleWaitingFollow(false, id))
-}
 // thunk
 export const followThunk = (id: number) => {
     return async (dispatch: any) => {

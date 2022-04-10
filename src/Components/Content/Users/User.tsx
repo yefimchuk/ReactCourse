@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Users.module.css";
+import s from "./Users.scss";
 import {NavLink} from "react-router-dom";
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png";
 

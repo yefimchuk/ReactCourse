@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import s from "./status.module.css"
+import s from "./status.module.scss"
 import {useFormik} from "formik";
 import {UpdateStatusThunk} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch} from "react-redux";

@@ -1,38 +1,40 @@
-import {connect} from "react-redux";
+import {connect, useDispatch, useSelector} from "react-redux";
 import {followThunk, getUsersThunk, isLogin, onChangeUsersThunk, unfollowThunk} from "../../Redux/userspage-reducer";
 import React, {useEffect} from "react";
 import Users from "./Usersc";
 import {compose} from "redux";
 import UsersLoading from "../../../common/Loading/UsersLoading";
+import {a, getIsLoginSelector, getUsersSelector} from "../../../BLL/Users/userSelector";
+import {getUsers} from "../../../BLL/Users/usersSlice";
 
 
 let UsersAPIContainer = (props: any) => {
+    let dispatch = useDispatch()
     useEffect(() => {
-        props.getUsersThunk(props.pageSize);
-    }, [])
 
+        dispatch(getUsers(props.pageSize))
+    }, [])
     useEffect(() => {
         props.getUsersThunk(props.pageSize);
     }, [props.pageSize])
 
+    let users = useSelector(getUsersSelector)
+    let isLogin = useSelector(getIsLoginSelector)
+    let props2 = useSelector(a)
+    return <>
+        {isLogin ? <UsersLoading/> : null}
+        {!isLogin ? <Users totalUserCount={props2.totalUserCount} users={users}
+                                 pageSize={props2.pageSize} currentPage={props.currentPage}
+                                 waitingFollow={props2.waitingFollow}
+                                 isLoading={props2.isLogin}
+                                 authMe={props2.authMe}
 
-        return <>
-            {this.props.IsLogin ? <UsersLoading/> : null}
-            {!this.props.IsLogin ? <Users totalUserCount={this.props.totalUserCount} users={this.props.users}
-                                          pageSize={this.props.pageSize} currentPage={this.props.currentPage}
-                                          onPageChanged={this.onPageChanged}
-                                          follow={this.props.followThunk}
-                                          unfollow={this.props.unfollowThunk}
-                                          WaitingFollow={this.props.WaitingFollow}
-                                          ToggleWaitingFollow={this.props.ToggleWaitingFollow}
-                                          isLoading={this.props.IsLogin}
-                                          authMe={this.props.authMe}
-                />
-                : null}
-        </>
+            />
+            : null}
+    </>
 
 }
-let mapStateToProps = (state) => {
+let mapStateToProps = (state: any) => {
     return {
         users: state.userPage.users,
         pageSize: state.userPage.pageSize,
@@ -50,7 +52,6 @@ export default compose(
         unfollowThunk,
         followThunk,
         getUsersThunk,
-        onChangeUsersThunk,
         isLogin
     }),
 )

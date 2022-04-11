@@ -1,9 +1,9 @@
-import React from "react";
+import React, {useEffect} from "react";
 import User from "./User";
 import PaginationUsers from "../../../common/Pagination";
 
 
-let Users = ({currentPage, onPageChanged, totalUserCount, pageSize, users, WaitingFollow, unfollow, follow}) => {
+let Users = ({currentPage, onPageChanged, totalUserCount, pageSize, users, waitingFollow, unfollow, follow}: any) => {
 
     let pageCount = Math.ceil(totalUserCount / pageSize);
 
@@ -15,10 +15,10 @@ let Users = ({currentPage, onPageChanged, totalUserCount, pageSize, users, Waiti
 
     return <div>
 
-        <User WaitingFollow={WaitingFollow} unfollow={unfollow} follow={follow} users={users}/>
+        <User waitingFollow={waitingFollow} unfollow={unfollow} follow={follow} users={users}/>
         <div>
-            <PaginationUsers currentPage={currentPage} onPageChanged={onPageChanged} total={totalUserCount}
-                        pageCount={pageCount}/>
+            <PaginationUsers currentPage={currentPage}  total={totalUserCount}
+                             pageCount={pageCount}/>
         </div>
     </div>
 

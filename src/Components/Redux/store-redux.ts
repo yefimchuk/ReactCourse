@@ -11,6 +11,7 @@ import {profilePage} from "../../BLL/ProfilePage/profilePage";
 import {authSlice} from "../../BLL/Auth/authSlice";
 import {appSlice} from "../../BLL/App/appSlice";
 import {messageSlice} from "../../BLL/Message/messageSlice";
+import {usersPage} from "../../BLL/Users/usersSlice";
 
 declare global {
     interface Window {
@@ -29,7 +30,8 @@ let reducers = combineReducers({
     sliceProfile: profilePage.reducer,
     sliceAuth: authSlice.reducer,
     sliceApp: appSlice.reducer,
-    sliceMessage: messageSlice.reducer
+    sliceMessage: messageSlice.reducer,
+    sliceUsers: usersPage.reducer
 })
 
 const store = createStore(reducers, composeWithDevTools(

@@ -1,42 +1,56 @@
 import React from "react";
-import s from "./Users.scss";
+import "./Users.scss";
 import {NavLink} from "react-router-dom";
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png";
+import {useDispatch} from "react-redux";
+import {followThunk, unfollowThunk} from "../../../BLL/Users/usersSlice";
+import LoaderFollow from "../../../common/Loading/LoaderFollow";
 
-let User = (props) => {
+
+let User = React.memo((props: any) => {
+    let dispatch = useDispatch()
+
+    const follow = (id: number) => {
+
+        dispatch(followThunk(id))
+
+    }
+    let unfollow = (id: number) => {
+
+        dispatch(unfollowThunk(id))
+    }
+    console.log(props.waitingFollow.some(() => {
+        console.log("fjfj")
+    }))
     return <div>
         {
-            props.users.map(u => <div key={u.id}>
+            props.users.map((u: any) => <div key={u.id}>
 
-                <div className={s.User}>
+                <div className="User-user">
 
                     <div>
                         <NavLink to={"/profile/" + u.id}>
-                            <img className={s.avatar}
-                                 src={u.photos.small != null ? u.photos.small : u.photos.small = photo}/>
+                            <img className="avatar-user"
+                                 src={u.photos.small != null ? u.photos.small : photo}/>
                         </NavLink>
                         <div>{
-                            u.followed ? <button disabled={props.WaitingFollow.some(id => id === u.id)}
-                                                 className={s.followed} onClick={() => {
-                                    props.unfollow(u.id)
-                                }
-                                }>Unfollow</button> :
+                            u.followed ? <button disabled={props.waitingFollow.some((id: any) => id === u.id)}
+                                                 className="followed" onClick={() => {
+                                    unfollow(u.id)
+                                }}>{props.waitingFollow.length !== 0 ? <LoaderFollow/> : "Unfollow"}</button> :
 
-                                <button disabled={props.WaitingFollow.some(id => id === u.id)}
-                                        className={s.unfollowed} onClick={() => {
-                                    props.follow(u.id)
-                                }}>Follow</button>
+                                <button disabled={props.waitingFollow.some((id: any) => id === u.id)}
+                                        className="unfollowed" onClick={() => follow(u.id)}>{props.waitingFollow.some((id: any) => id === u.id)? <LoaderFollow/> : "Follow"}</button>
                         }</div>
                     </div>
-                    <NavLink className={s.UserInfo} to={"/profile/" + u.id}>
+                    <NavLink className="UserInfo-user" to={"/profile/" + u.id}>
 
-                        <div className={s.left}>
-                            <div className={s.nick}>{u.name}</div>
-                            <div className={s.status}>{u.status}</div>
+                        <div className="left-user">
+                            <div className="nick">{u.name}</div>
+                            <div className="status">{u.status}</div>
                         </div>
-                        <div className={s.right}>
-                            <div className={s.city}>{u.city}</div>
-
+                        <div className="right-user">
+                            <div className="city">{u.city}</div>
                         </div>
 
                     </NavLink>
@@ -46,5 +60,5 @@ let User = (props) => {
             </div>)
         }
     </div>
-}
+})
 export default User

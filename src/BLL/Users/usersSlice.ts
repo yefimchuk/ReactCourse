@@ -1,57 +1,54 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {HeaderAPI, UsersAPI} from "../../API/API";
-import {GetStatusThunk, setId} from "../ProfilePage/profilePage";
-import {ToggleWaitingFollow} from "../../Components/Redux/userspage-reducer";
-
-let FollowUnfollowFLow = async (dispatch: any, id: number, apiMethod: any, actionCreator: Function) => {
-    dispatch(ToggleWaitingFollow(true, id))
-    let response = await apiMethod(id)
-
-    if (response.resultCode === 0) {
-        dispatch(actionCreator(id))
-    }
-    dispatch(ToggleWaitingFollow(false, id))
-}
-
-export const followThunk = (id: number) => {
-    return async (dispatch: any) => {
+import {UsersAPI} from "../../API/API";
 
 
-        await FollowUnfollowFLow(dispatch, id, UsersAPI.Follow.bind((UsersAPI)), follow)
-    }
-}
-export const followThunk: any = createAsyncThunk(
+export let followThunk: any = createAsyncThunk(
     'usersPage/follow',
-    async (id: number, {dispatch}) => {
-        await FollowUnfollowFLow(dispatch, id, UsersAPI.Follow.bind((UsersAPI)), follow)
+    async (id: number, {dispatch, rejectWithValue}) => {
+        try {
+            dispatch(waitingFollow(id))
+            let response = await UsersAPI.Follow(id)
+            if (response.resultCode === 0) {
+                dispatch(waitingFollow(id))
+                return id
+            }
+        } catch (err) {
+            rejectWithValue(err)
+        }
 
     })
-export const unfollowThunk = (id: number) => {
-    return async (dispatch: any) => {
-        await  FollowUnfollowFLow(dispatch, id, UsersAPI.Unfollow.bind((UsersAPI)), unfollow)
-    }
-}
-export const getUsersThunk = (pageSize: number) => {
-    return (dispatch: any) => {
-        dispatch(isLogin(true))
-        UsersAPI.GetUsers(pageSize).then((data: any) => {
-            dispatch(isLogin(false))
-            dispatch(setUsers(data.items))
-            dispatch(setNewTotalCount(data.totalCount))
-        })
-    }
-}
-export const onChangeUsersThunk = (currentPage: number, pageSize: number) => {
-    return (dispatch: any) => {
-        dispatch(isLogin(true))
-        dispatch(setCurrentPage(currentPage))
-        UsersAPI.OnPageUsersChange(currentPage, pageSize).then((response: any) => {
-            dispatch(isLogin(false))
-            dispatch(setUsers(response.data.items))
-        })
-    }
-}
 
+export const unfollowThunk: any = createAsyncThunk(
+    'usersPage/unfollow',
+    async (id: number, {dispatch, rejectWithValue}) => {
+        try {
+            dispatch(waitingFollow(id))
+            let response = await UsersAPI.Unfollow(id)
+            if (response.resultCode === 0) {
+                dispatch(waitingFollow(id))
+                return id
+            }
+        } catch (err) {
+            rejectWithValue(err)
+        }
+    })
+
+
+export const getUsers: any = createAsyncThunk(
+    'usersPage/getUsers',
+    async (pageSize: number, {dispatch}) => {
+
+        return await UsersAPI.GetUsers(pageSize)
+    })
+
+export const onChangeUsersThunk: any = createAsyncThunk(
+    'usersPage/onChangeUsersThunk',
+    async ({page, pageSize}: any, {dispatch}) => {
+
+        let response = await UsersAPI.OnPageUsersChange(page, pageSize)
+
+        return [response, page]
+    })
 
 export const usersPage = createSlice({
     name: 'usersPage',
@@ -69,79 +66,83 @@ export const usersPage = createSlice({
         }],
         pageSize: 5,
         totalUserCount: 0,
-        currentPage: 0,
+        isFollowing: true,
+        currentPage: 1,
         isLogin: false,
-        WaitingFollow: []
+        waitingFollow: []
     } as any,
     reducers: {
-        Follow: (state, action) => {
-            return {
-
-                ...state,
-                users: state.users.map((u: { id: number }) => {
-                    if (u.id === action.payload) {
-
-                        return {...u, followed: true}
-                    }
-                    return u
-                })
-
-            }
-        },
-        UnFollow: (state, action) => {
-
-            return {
-                ...state,
-                users: state.users.map((u: { id: number }) => {
-                    if (u.id === action.payload) {
-                        return {...u, followed: false}
-                    }
-                    return u
-                })
-
-            }
-        },
-        SetUsers: (state, action) => {
-            return {
-                ...state, users: action.payload
-
-            }
-        },
         SetCurrentPage: (state, action) => {
-
-            return {
-                ...state, currentPage: action.payload
-
-            }
+            state.currentPage = action.payload
         },
         waitingFollow: (state, action) => {
-
-            return {
-                ...state,
-
-                WaitingFollow: action.payload ? [...state.WaitingFollow, action.id] : state.WaitingFollow.filter((id => id != action.id))
-            }
+            state.waitingFollow = state.isFollowing ? [...state.waitingFollow, action.payload] : state.waitingFollow.filter(((id: number) => id != action.payload))
+            state.isFollowing = false
         },
-
-        SetTotalUserCount: (state, action) => {
-
-            return {
-                ...state, totalUserCount: action.payload
-
-            }
-        },
-
-        IsLogin: (state, action) => {
-
-            return {
-
-                ...state, isLogin: action.payload
-            }
-
-        }
     },
-    extraReducers: {}
-    ,
+    extraReducers: {
+        [followThunk.pending]: (state, action) => {
+            state.isFollowing = true
+        },
+        [followThunk.fulfilled]: (state, action: any) => {
+
+            state.isFollowing = false
+            state.users = state.users.map((u: { id: number }) => {
+                if (u.id === action.payload) {
+
+                    return {...u, followed: true}
+                }
+                return u
+            })
+
+
+        },
+        [followThunk.rejected]: (state, action) => {
+            console.log(action)
+        },
+        [unfollowThunk.pending]: (state, action) => {
+            state.isFollowing = true
+        },
+        [unfollowThunk.fulfilled]: (state, action) => {
+            state.isFollowing = false
+            state.users = state.users.map((u: { id: number }) => {
+                if (u.id === action.payload) {
+
+                    return {...u, followed: false}
+                }
+                return u
+            })
+
+        },
+        [unfollowThunk.rejected]: (state, action) => {
+
+        },
+        [getUsers.pending]: (state, action) => {
+            state.isLogin = true
+        },
+        [getUsers.fulfilled]: (state, action) => {
+            state.isLogin = false
+            state.users = action.payload.items
+            state.totalUserCount = action.payload.totalCount
+        },
+        [getUsers.rejected]: (state, action) => {
+
+        },
+        [onChangeUsersThunk.pending]: (state, action) => {
+            state.isLogin = true
+        },
+        [onChangeUsersThunk.fulfilled]: (state, action) => {
+
+            state.currentPage = action.payload[1]
+            state.users = action.payload[0].data.items
+            state.isLogin = false
+
+        },
+        [onChangeUsersThunk.rejected]: (state, action) => {
+
+        },
+    },
 },)
 
+export let {waitingFollow} = usersPage.actions
 

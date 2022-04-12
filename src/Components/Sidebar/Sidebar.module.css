@@ -1,29 +1,25 @@
 .Sidebar {
-    grid-area: S;
-    background-color: #1c1e23;
-    border-radius: 6px;
+  grid-area: S;
+  background-color: #1c1e23;
+  border-radius: 6px;
 }
 
 .item a {
-
-    font-size: 27px;
-    color: white;
-    margin-left: 20px;
-    padding: 5px;
-    text-align: start;
-    text-decoration: none;
-    margin-top: 50px;
-    transition: all 0.3s ease;
-
+  font-size: 27px;
+  color: white;
+  margin-left: 20px;
+  padding: 5px;
+  text-align: start;
+  text-decoration: none;
+  margin-top: 50px;
+  transition: all 0.3s ease;
 }
-.item a:hover{
-    color: #4ca2d7;
-
+.item a:hover {
+  color: #4ca2d7;
 }
 a[class="active"] {
-
   color: #40c0de !important;
 }
-.ItemFlex{
-    margin-top: 20px;
+.ItemFlex {
+  margin-top: 20px;
 }

@@ -1,15 +1,15 @@
-import {createSelector} from 'reselect';
+import { createSelector } from "reselect";
 
 export const getAuthIdSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sliceAuth.id,
+  (state: any) => state,
+  (state) => state.sliceAuth.id
 );
 
 export const getAuthIsLoginSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sliceAuth.isLogin
+  (state: any) => state,
+  (state) => state.sliceAuth.isLogin
 );
 export const getAuthDateSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sliceAuth.date,
+  (state: any) => state,
+  (state) => state.sliceAuth.date
 );

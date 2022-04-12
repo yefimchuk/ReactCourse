@@ -1,55 +1,55 @@
 .Header {
-    display: flex;
-    flex-direction: row;
-    grid-area: H;
-    align-self: start;
-    background-color: #1c1e23;
-    border-radius: 4px;
+  display: flex;
+  flex-direction: row;
+  grid-area: H;
+  align-self: start;
+  background-color: #1c1e23;
+  border-radius: 4px;
 }
-.LoginHeader{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 99%;
+.LoginHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 99%;
 }
 
 .avatar {
-    width: 40px;
-    height: 40px;
-    background-color: white;
-    border-radius: 11px;
-margin-right: 20px;
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 11px;
+  margin-right: 20px;
 }
-.login{
-    font-size: 30px;
-    color: white;
+.login {
+  font-size: 30px;
+  color: white;
 }
-.login:hover{
-    color: greenyellow!important;
+.login:hover {
+  color: greenyellow !important;
 }
-.nlink{
-     font-size: 30px;
-margin-right: 10px;
-    color: white;
+.nlink {
+  font-size: 30px;
+  margin-right: 10px;
+  color: white;
 }
-.info{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.info {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
-.name{
-    color: white;
-    font-size: 20px;
-    margin-right: 10px;
+.name {
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
 }
-.logout{
-    color: white!important;
-    font-size: 30px;
-    transition: all linear .2s;
+.logout {
+  color: white !important;
+  font-size: 30px;
+  transition: all linear 0.2s;
 }
-.logout:hover{
-    color: #ff2323 !important;
-    font-size: 35px;
+.logout:hover {
+  color: #ff2323 !important;
+  font-size: 35px;
 }

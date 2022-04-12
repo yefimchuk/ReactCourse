@@ -1,113 +1,103 @@
-
 .Post {
-    padding: 15px;
-
+  padding: 15px;
 }
 
 .ImageTop {
-    border-radius: 6px;
-    width: 100%;
-    height: 30%;
-
+  border-radius: 6px;
+  width: 100%;
+  height: 30%;
 }
 
 .postFlex {
-flex-direction: column;
-    width: 80%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 7px;
+  flex-direction: column;
+  width: 80%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 7px;
 }
-.submitButton{
-    width: 80.7%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-    padding: 7px;
+.submitButton {
+  width: 80.7%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 7px;
 }
-input::-webkit-input-placeholder {color: white; font-size: 17px; align-items: start}
+input::-webkit-input-placeholder {
+  color: white;
+  font-size: 17px;
+  align-items: start;
+}
 .blockPost {
-    color: lightgray;
-    padding: 10px;
-    background: lightslategray;
-    width: 80%;
-    height: 70px;
+  color: lightgray;
+  padding: 10px;
+  background: lightslategray;
+  width: 80%;
+  height: 70px;
 
-text-decoration: none;
-    border-radius: 4px;
-    outline: none;
-    border: none;
-
+  text-decoration: none;
+  border-radius: 4px;
+  outline: none;
+  border: none;
 }
 
 .textPost {
-    padding: 10px;
-    font-size: 25px;
-    color: white;
+  padding: 10px;
+  font-size: 25px;
+  color: white;
 }
 
 .submit {
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: green;
-    width: 100px;
-    height: 40px;
-    border: 0px ;
-    border-radius: 4px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: green;
+  width: 100px;
+  height: 40px;
+  border: 0px;
+  border-radius: 4px;
 }
 
 .avatar {
-    width: 75px;
-    height: 75px;
-    border-radius: 100px;
-    background: rgba(30, 144, 255, 0);
-    margin: 10px;
-    object-fit:cover;
-    ;
+  width: 75px;
+  height: 75px;
+  border-radius: 100px;
+  background: rgba(30, 144, 255, 0);
+  margin: 10px;
+  object-fit: cover;
 }
 
 .review {
-    display: flex;
+  display: flex;
 
-    flex-direction: row;
-
-
+  flex-direction: row;
 }
 
 .reviewText {
-
-    color: white;
-    font-size: 18px;
-    display: flex;
-    justify-content: flex-start;
-    flex-direction: row;
-    align-items: center;
+  color: white;
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  align-items: center;
 }
 
 .likes {
-
-
-    color: red;
-    height: auto;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-
-
+  color: red;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .likePhoto {
-    height: 30px;
+  height: 30px;
 }
 
 .textLike {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-
-
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }

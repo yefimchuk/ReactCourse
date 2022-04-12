@@ -1,19 +1,18 @@
 import Message from "./Message";
 
-import {compose} from "redux";
-import {WithAuthRedirectToLogin} from "../../../hoc/WithAuthRedirectToLogin";
-import {dialogsDataSelector, messageDataSelector} from "../../../BLL/Message/messageSelector";
-import {useSelector} from "react-redux";
-
+import { compose } from "redux";
+import { WithAuthRedirectToLogin } from "../../../hoc/WithAuthRedirectToLogin";
+import {
+  dialogsDataSelector,
+  messageDataSelector,
+} from "../../../BLL/Message/messageSelector";
+import { useSelector } from "react-redux";
 
 let MessageContainerAPI = () => {
-    let messageData = useSelector(messageDataSelector)
-    let dialogsData = useSelector(dialogsDataSelector)
+  let messageData = useSelector(messageDataSelector);
+  let dialogsData = useSelector(dialogsDataSelector);
 
-    return <Message dialogsData={dialogsData} messageData={messageData}/>
-}
+  return <Message dialogsData={dialogsData} messageData={messageData} />;
+};
 
-export default compose(
-    WithAuthRedirectToLogin
-)
-(MessageContainerAPI);
+export default compose(WithAuthRedirectToLogin)(MessageContainerAPI);

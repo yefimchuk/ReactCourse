@@ -1,10 +1,10 @@
-import {createSelector} from 'reselect';
+import { createSelector } from "reselect";
 
 export const getFriendSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sideBar.friendsData
+  (state: any) => state,
+  (state) => state.sideBar.friendsData
 );
 export const getInitializedSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sliceApp.initialized
+  (state: any) => state,
+  (state) => state.sliceApp.initialized
 );

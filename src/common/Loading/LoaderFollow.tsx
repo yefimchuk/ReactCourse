@@ -1,11 +1,11 @@
 import React from "react";
-import photo from "../../img/giadadadadat.gif"
+import photo from "../../img/giadadadadat.gif";
 
 let LoaderFollow = () => {
-    return <div className="LoaderFollow">
-        <img className="LoaderFollow" src={photo}/>
-
-
+  return (
+    <div className="LoaderFollow">
+      <img className="LoaderFollow" src={photo} />
     </div>
-}
-export default LoaderFollow
+  );
+};
+export default LoaderFollow;

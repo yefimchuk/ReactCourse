@@ -1,101 +1,80 @@
-
 .account {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .personalData {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 .text1 {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-     color: white;
-     font-size: 25px;
-
-
-
-
- }
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  font-size: 25px;
+}
 .text2 {
-    margin-left: 10px;
-    color: white;
-    font-size: 20px;
-    animation: super-rainbow 2s infinite linear;
-
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+  animation: super-rainbow 2s infinite linear;
 }
 
 .text {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
 
-    color: white;
-    font-size: 20px;
-    text-decoration: none;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
 }
 
-.websites{
-
-    display: flex;
-    flex-direction: column;
-
+.websites {
+  display: flex;
+  flex-direction: column;
 }
 @keyframes super-rainbow {
-    0% {
-        color: #ff0000;
-
-    }
-    10% {
-        color: #ffcc00;
-
-    }
-    20% {
-        color: #f7ff00;
-
-    }
-    30% {
-        color: #98f300;
-
-    }
-    40% {
-        color: #11f800;
-
-    }
-    50% {
-        color: #00e7c2;
-
-    }
-    60% {
-        color: #0031ff;
-
-    }
-    70% {
-        color: #6800ff;
-
-    }
-    80% {
-        color: #9600ff;
-
-    }
-    90% {
-        color: #eb00ff;
-
-    }
-    100% {
-        color: #ff0000;
-
-    }
-
+  0% {
+    color: #ff0000;
+  }
+  10% {
+    color: #ffcc00;
+  }
+  20% {
+    color: #f7ff00;
+  }
+  30% {
+    color: #98f300;
+  }
+  40% {
+    color: #11f800;
+  }
+  50% {
+    color: #00e7c2;
+  }
+  60% {
+    color: #0031ff;
+  }
+  70% {
+    color: #6800ff;
+  }
+  80% {
+    color: #9600ff;
+  }
+  90% {
+    color: #eb00ff;
+  }
+  100% {
+    color: #ff0000;
+  }
 }
 
 .accountAvatar {
-    height: 150px;
-    border-radius: 400px;
+  height: 150px;
+  border-radius: 400px;
 }
-

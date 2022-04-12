@@ -6,10 +6,10 @@ import profileServiceInstance from "../../http/ProfileService";
 import userServiceInstance from "../../http/UserService";
 import {UpdateHeaderAvatar} from "../Auth/authSlice";
 
-
 export const GetNewProfile: any = createAsyncThunk(
   "profilePage/getNewProfile",
   async (id: number, { dispatch }) => {
+
     if (!id) {
       const auth = await headerServiceInstance.AuthMe();
       dispatch(setId(auth.data.data.id));
@@ -33,29 +33,24 @@ export const AuthMeThunk: any = createAsyncThunk(
 );
 export const UpdateProfile: any = createAsyncThunk(
     "profile/updateProfile",
-    async (data: any, {dispatch,rejectWithValue}: any) => {
-
-      let response = await profileServiceInstance.UpdateProfile(data)
+    async (data: any, {dispatch, rejectWithValue}: any) => {
+      let response = await profileServiceInstance.UpdateProfile(data);
 
       if (response.data.resultCode == 0) {
-        dispatch(GetNewProfile(data.userId))
-      }
-      else return rejectWithValue(response.data)
-
+        dispatch(GetNewProfile(data.userId));
+      } else return rejectWithValue(response.data);
     }
 );
 
 export const UpdatePhoto: any = createAsyncThunk(
     "profile/updateProfile",
     async (file: any, {dispatch}) => {
-
-      let response = await profileServiceInstance.UpdatePhoto(file)
+      let response = await profileServiceInstance.UpdatePhoto(file);
 
       if (response.data.resultCode == 0) {
-        dispatch(GetNewProfile(file.userId))
-        dispatch(UpdateHeaderAvatar({response}))
+        dispatch(GetNewProfile(file.userId));
+        dispatch(UpdateHeaderAvatar({response}));
       }
-
     }
 );
 export const GetStatusThunk: any = createAsyncThunk(
@@ -64,7 +59,9 @@ export const GetStatusThunk: any = createAsyncThunk(
       if (!id) {
         let response = await headerServiceInstance.AuthMe();
         dispatch(setId(response.data.data.id));
-        let statusResponse = await profileServiceInstance.SetStatus(response.data.data.id);
+        let statusResponse = await profileServiceInstance.SetStatus(
+            response.data.data.id
+        );
         if (statusResponse.data !== null) {
           return statusResponse.data;
         }
@@ -77,7 +74,6 @@ export const GetStatusThunk: any = createAsyncThunk(
       return response.data;
     }
 );
-
 
 export const UpdateStatusThunk: any = createAsyncThunk(
   "profile/getStatus",
@@ -94,12 +90,13 @@ export const UpdateStatusThunk: any = createAsyncThunk(
 type ProfileType = {
   ReviewData: object[];
   PersonalData: object;
-  Profile: object;
+  Profile: object | null;
   id: number | null;
   isLogin: boolean;
   status: string;
   isLoading: boolean;
-  errorMessage: null
+  errorMessage: null;
+  UserId: number | null
 };
 
 export const profilePage = createSlice({
@@ -153,18 +150,20 @@ export const profilePage = createSlice({
       photos: {
         large: null,
       },
+      UserId: null,
       lookingForAJobDescription: null,
       contacts: {
         instagram: null,
         youtube: null,
         mainLink: null,
       },
+
     },
     id: null,
     isLogin: false,
     status: "",
     isLoading: false,
-    errorMessage: null
+    errorMessage: null,
   } as ProfileType,
   reducers: {
     addNewReview: (state, action) => {
@@ -180,16 +179,34 @@ export const profilePage = createSlice({
         NewReviewText: "",
       };
     },
-    sendLike: (state, action) => {
-      debugger;
+    clearProfileId: (state) => {
+      console.log("unmount")
+      state.id = null
+      state.Profile = {
+        fullName: null,
+        photos: {
+          large: null,
+        },
+        UserId: null,
+        lookingForAJobDescription: null,
+        contacts: {
+          instagram: null,
+          youtube: null,
+          mainLink: null,
+        },
+      }
 
-      state.ReviewData.filter((el: any) =>
-        el.id === action.payload.id ? el.likes++ : el.likes
-      );
-    },
-    setId: (state, action) => {
-      return {
-        ...state,
+  },
+      sendLike: (state, action) => {
+
+
+        state.ReviewData.filter((el: any) =>
+            el.id === action.payload.id ? el.likes++ : el.likes
+        );
+      },
+      setId: (state, action) => {
+        return {
+          ...state,
         id: action.payload,
       };
     },
@@ -202,12 +219,11 @@ export const profilePage = createSlice({
   },
   extraReducers: {
     [GetNewProfile.fulfilled]: (state, action) => {
-      state.isLogin = false
-      state.errorMessage = null
-      state.status = action.payload[0];
-      state.Profile = action.payload[1].data;
-    },
-
+    state.isLogin = false;
+    state.errorMessage = null;
+    state.status = action.payload[0];
+    state.Profile = action.payload[1].data;
+  },
 
     [GetStatusThunk.fulfilled]: (state, action) => {
       state.status = action.payload;
@@ -217,16 +233,14 @@ export const profilePage = createSlice({
       state.status = action.payload;
     },
     [UpdateProfile.pending]: (state, action) => {
-state.isLogin = true
+    state.isLogin = true;
     },
     [UpdateProfile.rejected]: (state, action) => {
-      state.isLogin = false
-      state.errorMessage = action.payload.messages
-    },
-    [UpdateProfile.fulfilled]: (state, action) => {
-
-    },
+    state.isLogin = false;
+    state.errorMessage = action.payload.messages;
+  },
   },
 });
 
-export const { setId, addNewReview, sendLike } = profilePage.actions;
+export const {setId, addNewReview, sendLike, clearProfileId} =
+    profilePage.actions;

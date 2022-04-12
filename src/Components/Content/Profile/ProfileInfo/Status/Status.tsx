@@ -9,6 +9,7 @@ import EditErrorMessage from "./ErrorMessage";
 import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
 
 let Edit = React.memo(({}: any) => {
+
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
     let isLogin = useSelector(getIsLoginSelector);
@@ -39,7 +40,7 @@ let Edit = React.memo(({}: any) => {
 
         return errors;
     }
-
+    console.log("rendering")
     return (
         <div>
 

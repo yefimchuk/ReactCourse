@@ -30,14 +30,14 @@ console.log(date);
       <div className="LoginHeader">
         <img src={logo} className="App-logo" alt={logo} />
 
-        {isLogin ? (
+        {!isLogin ? (
           <div>
             <NavLink className="nlink" to={"/login"}>
               {" "}
               Login <LoginOutlined className="login" />
             </NavLink>
           </div>
-        ) : isLogin !== null ? (
+        ) : isLogin  ? (
           <div className="info">
             <div className="name">{date.name}</div>
             <img

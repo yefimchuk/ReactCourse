@@ -203,11 +203,11 @@ export const profilePage = createSlice({
   extraReducers: {
     [GetNewProfile.fulfilled]: (state, action) => {
 
-      state.isLogin = false;
+
       state.errorMessage = null
       state.status = action.payload[0];
       state.Profile = action.payload[1].data;
-
+      state.isLogin = false;
     },
 
 

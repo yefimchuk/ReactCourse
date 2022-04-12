@@ -3,7 +3,6 @@ import "./Profile.scss";
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
 
-import Status from "./ProfileInfo/Status/Status";
 import Post from "./Post";
 import Edit from "./ProfileInfo/Status/Status";
 import { useSelector } from "react-redux";
@@ -13,7 +12,7 @@ import {useParams} from "react-router";
 let Profile = ({ ReviewData, status }: any) => {
   let Profile = useSelector(getProfileSelector);
   let isOwner = useParams().userId
-
+debugger
   let ReviewItem = [...ReviewData]
     .reverse()
     .map((review) => (
@@ -41,9 +40,10 @@ let Profile = ({ ReviewData, status }: any) => {
         git={Profile.contacts.github}
         youTube={Profile.contacts.youtube}
         instagram={Profile.contacts.instagram}
+        status={Profile.aboutMe}
       />
 
-        {!isOwner?<Edit status={status} />: null}
+        {!isOwner?<Edit />: null}
 
       <Post />
       {ReviewItem}

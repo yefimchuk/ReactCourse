@@ -1,3 +1,10 @@
+.profile__account-status{
+  font-size: 23px;
+  font-weight: 30;
+  color: #c0c0c0;
+margin: 18px;
+}
+
 //personal data
 .profile__account {
   padding: 10px;
@@ -6,32 +13,33 @@
   justify-content: flex-start;
   align-items: center;
 
+    .profile__personal-data-form {
+      margin-left: 30px;
 
-  .profile__personal-data-form {
-    margin-left: 30px;
+      .profile__personal-data-name {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        color: white;
+        font-size: 25px;
 
-    .profile__personal-data-name {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      color: white;
-      font-size: 25px;
-      .profile__personal-data_text-name {
-        margin-left: 10px;
+        .profile__personal-data_text-name {
+          margin-left: 10px;
+          color: white;
+          font-size: 20px;
+          animation: super-rainbow 2s infinite linear;
+        }
+      }
+
+      .profile__personal-data_text {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
         color: white;
         font-size: 20px;
-        animation: super-rainbow 2s infinite linear;
+        text-decoration: none;
       }
-    }
 
-    .profile__personal-data_text {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      color: white;
-      font-size: 20px;
-      text-decoration: none;
-}
       .profile__personal-data_text-name {
         margin-left: 10px;
         color: white;
@@ -40,7 +48,6 @@
       }
     }
   }
-
 
 
 //animation

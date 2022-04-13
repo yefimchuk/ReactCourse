@@ -1,11 +1,15 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import axios from "axios";
 
-let News = (props) => {
-  console.log("hello");
-  let dispatch = useDispatch();
-  let count = 1;
-  console.log(process.env);
-  return <div></div>;
-};
+let News = React.memo((props) => {
+
+    axios.get(`/auth/me`, {}).then(r => {
+        console.log(r)
+    })
+
+
+    return <div>
+        <button>click</button>
+    </div>;
+});
 export default News;

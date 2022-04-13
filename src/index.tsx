@@ -5,17 +5,19 @@ import "./index.css";
 import App from "./App";
 // @ts-ignore
 import store from "./Components/Redux/store-redux.ts";
-import { Provider } from "react-redux";
-import { HashRouter } from "react-router-dom";
+import {Provider} from "react-redux";
+import {HashRouter} from "react-router-dom";
+import axios from "axios";
+
 
 ReactDOM.render<any>(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HashRouter>
-        <App store={store} />
-      </HashRouter>
-    </Provider>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <Provider store={store}>
+            <HashRouter>
+                <App store={store}/>
+            </HashRouter>
+        </Provider>
+    </React.StrictMode>,
 
   document.getElementById("root")
 );

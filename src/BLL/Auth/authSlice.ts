@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { AuthAPI, HeaderAPI } from "../../API/API";
+import { AuthAPI, HeaderAPI } from "../../http/services";
 
 export let HeaderLogin: any = createAsyncThunk(
   "authPage/HeaderLogin",

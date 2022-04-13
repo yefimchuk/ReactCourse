@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { UsersAPI } from "../../API/API";
+
+import userServiceInstance from "../../http/UserService";
 
 export let followThunk: any = createAsyncThunk(
   "usersPage/follow",
   async (id: number, { dispatch, rejectWithValue }) => {
     try {
       dispatch(waitingFollow(id));
-      let response = await UsersAPI.Follow(id);
+      let response = await userServiceInstance.Follow(id);
       if (response.resultCode === 0) {
         dispatch(waitingFollow(id));
         return id;
@@ -22,7 +23,7 @@ export const unfollowThunk: any = createAsyncThunk(
   async (id: number, { dispatch, rejectWithValue }) => {
     try {
       dispatch(waitingFollow(id));
-      let response = await UsersAPI.Unfollow(id);
+      let response = await userServiceInstance.Unfollow(id);
       if (response.resultCode === 0) {
         dispatch(waitingFollow(id));
         return id;
@@ -35,16 +36,15 @@ export const unfollowThunk: any = createAsyncThunk(
 
 export const getUsers: any = createAsyncThunk(
   "usersPage/getUsers",
-  async (pageSize: number, { dispatch }) => {
-    return await UsersAPI.GetUsers(pageSize);
+  async (pageSize: number) => {
+    return await userServiceInstance.GetUsers(pageSize);
   }
 );
 
 export const onChangeUsersThunk: any = createAsyncThunk(
   "usersPage/onChangeUsersThunk",
-  async ({ page, pageSize }: any, { dispatch }) => {
-    let response = await UsersAPI.OnPageUsersChange(page, pageSize);
-
+  async ({ page, pageSize }: any) => {
+    let response = await userServiceInstance.OnPageUsersChange(page, pageSize);
     return [response, page];
   }
 );

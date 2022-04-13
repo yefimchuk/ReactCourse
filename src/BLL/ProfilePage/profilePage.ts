@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
-import { HeaderAPI, ProfileAPI, UsersAPI } from "../../API/API";
+import { HeaderAPI, ProfileAPI, UsersAPI } from "../../http/services";
 
 export const GetNewProfile: any = createAsyncThunk(
   "profilePage/getNewProfile",

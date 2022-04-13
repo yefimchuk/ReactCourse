@@ -1,4 +1,4 @@
-import { HeaderAPI, ProfileAPI, UsersAPI } from "../../API/API";
+import { HeaderAPI, ProfileAPI, UsersAPI } from "../../http/services";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
 
 const ADD_NEW_REVIEW = "ADD-NEW-REVIEW";

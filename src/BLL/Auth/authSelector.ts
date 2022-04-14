@@ -13,3 +13,7 @@ export const getAuthDateSelector = createSelector(
   (state: any) => state,
   (state) => state.sliceAuth.date
 );
+export const getSubmittingSelector = createSelector(
+    (state: any) => state,
+    (state) => state.sliceAuth.submitting
+);

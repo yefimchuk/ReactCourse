@@ -2,7 +2,6 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import headerServiceInstance from "../../http/HeaderService";
 import authServiceInstance from "../../http/AuthService";
-import { clearProfileId} from "../ProfilePage/profilePage";
 
 export let HeaderLogin: any = createAsyncThunk(
   "authPage/HeaderLogin",
@@ -148,6 +147,7 @@ export const authSlice = createSlice({
 
     },
     [Login.fulfilled]: (state, action) => {
+      state.submitting = false
       state.isLogin = true;
       state.date = action.payload[0];
     },

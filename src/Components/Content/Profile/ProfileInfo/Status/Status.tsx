@@ -40,7 +40,7 @@ let Edit = React.memo(({}: any) => {
 
         return errors;
     }
-    console.log("rendering")
+
     return (
         <div>
 

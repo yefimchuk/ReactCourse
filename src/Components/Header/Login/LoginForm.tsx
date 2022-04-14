@@ -4,7 +4,7 @@ import React, {useEffect} from "react";
 import {Login} from "../../../BLL/Auth/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {getAuthIsLoginSelector} from "../../../BLL/Auth/authSelector";
+import {getAuthIsLoginSelector, getSubmittingSelector} from "../../../BLL/Auth/authSelector";
 import LoaderFollow from "../../../common/Loading/LoaderFollow";
 
 type ValueFormik = {
@@ -24,6 +24,7 @@ declare global {
 export let LoginForm = React.memo(({captchaURL}: PropsType) => {
     console.log("helo")
     let isLogin = useSelector(getAuthIsLoginSelector);
+    let submitting = useSelector(getSubmittingSelector);
     const navigate = useNavigate();
     let dispatch = useDispatch();
     const initialValues: ValueFormik = {
@@ -80,6 +81,7 @@ export let LoginForm = React.memo(({captchaURL}: PropsType) => {
         </Form.Item>
 
         <Form.Item
+            htmlFor="password"
           initialValue={formik.values.password}
           label="Password"
           name="password"
@@ -109,7 +111,7 @@ export let LoginForm = React.memo(({captchaURL}: PropsType) => {
           }}
         >
           <Button className="submit" type="primary" htmlType="submit">
-              {isLogin ? <LoaderFollow/> : "Submit"}
+              {submitting ? <LoaderFollow/> : "Submit"}
           </Button>
           <div className="error">
             {formik.status && formik.status.error}

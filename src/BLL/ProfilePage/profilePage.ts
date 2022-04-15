@@ -1,18 +1,21 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
-import { HeaderAPI, ProfileAPI, UsersAPI } from "../../http/services";
+import headerServiceInstance from "../../http/HeaderService";
+import profileServiceInstance from "../../http/ProfileService";
+import userServiceInstance from "../../http/UserService";
+
 
 export const GetNewProfile: any = createAsyncThunk(
   "profilePage/getNewProfile",
   async (id: number, { dispatch }) => {
     if (!id) {
-      const auth = await HeaderAPI.AuthMe();
+      const auth = await headerServiceInstance.AuthMe();
       dispatch(setId(auth.data.data.id));
-      let profile = await UsersAPI.SetMyId(auth.data.data.id);
+      let profile = await userServiceInstance.SetMyId(auth.data.data.id);
       let status = await dispatch(GetStatusThunk(auth.data.data.id));
       return [status.payload, profile];
     }
-    let profile = await UsersAPI.SetMyId(id);
+    let profile = await userServiceInstance.SetMyId(id);
     let status = await dispatch(GetStatusThunk({ id }));
     return [status.payload, profile];
   }
@@ -21,7 +24,7 @@ export const GetNewProfile: any = createAsyncThunk(
 export const AuthMeThunk: any = createAsyncThunk(
   "profile/authMe",
   async (userId: number, { dispatch }) => {
-    let response = await HeaderAPI.AuthMe();
+    let response = await headerServiceInstance.AuthMe();
     dispatch(setId(response.data.data.id));
   }
 );
@@ -30,15 +33,15 @@ export const GetStatusThunk: any = createAsyncThunk(
   "profile/getStatus",
   async (id: number, { dispatch }) => {
     if (!id) {
-      let response = await HeaderAPI.AuthMe();
+      let response = await headerServiceInstance.AuthMe();
       dispatch(setId(response.data.data.id));
-      let statusResponse = await ProfileAPI.SetStatus(response.data.data.id);
+      let statusResponse = await profileServiceInstance.SetStatus(response.data.data.id);
       if (statusResponse.data !== null) {
         return statusResponse.data;
       }
     }
 
-    let response = await ProfileAPI.SetStatus(id);
+    let response = await profileServiceInstance.SetStatus(id);
     if (response.data === null) {
       response.data = "";
     }
@@ -49,9 +52,9 @@ export const GetStatusThunk: any = createAsyncThunk(
 export const UpdateStatusThunk: any = createAsyncThunk(
   "profile/getStatus",
   async (status: string, { dispatch }) => {
-    await HeaderAPI.AuthMe();
+    await headerServiceInstance.AuthMe();
 
-    let response = await ProfileAPI.UpdateStatus(status);
+    let response = await profileServiceInstance.UpdateStatus(status);
     if (response.data.resultCode === 0) {
       return status;
     }

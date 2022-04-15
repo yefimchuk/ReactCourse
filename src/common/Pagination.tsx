@@ -11,6 +11,7 @@ interface D {
 }
 
 let PaginationUsers = ({ currentPage, total, pageCount }: D) => {
+
   let dispatch = useDispatch();
 
   return (

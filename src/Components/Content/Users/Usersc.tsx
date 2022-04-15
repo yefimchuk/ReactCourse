@@ -1,13 +1,12 @@
-import React, { useEffect } from "react";
+import React from "react";
 import User from "./User";
 import PaginationUsers from "../../../common/Pagination";
 
 let Users = ({
-  currentPage,
-  onPageChanged,
   totalUserCount,
   pageSize,
   users,
+  currentPage,
   waitingFollow,
   unfollow,
   follow,
@@ -18,7 +17,7 @@ let Users = ({
   for (let i = 1; i <= pageCount; i++) {
     pages.push(i);
   }
-
+console.log(totalUserCount)
   return (
     <div>
       <User

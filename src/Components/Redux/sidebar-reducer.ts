@@ -1,3 +1,4 @@
+//todo Create sidebar slice and delete this out of date folder "Redux"
 let initialState = {
   friendsData: [
     {

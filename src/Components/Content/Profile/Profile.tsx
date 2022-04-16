@@ -22,7 +22,7 @@ let Profile = ({ ReviewData, status, Profile }: any) => {
   return (
     <div>
       <img
-        className="ImageTop"
+        className="profile__image-top"
         src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"
         alt={"theme"}
       />

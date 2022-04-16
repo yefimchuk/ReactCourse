@@ -10,13 +10,13 @@ let Review = (props: any) => {
   };
 
   return (
-    <div className="review">
-      <img src={props.avatar} className="avatar" />
-      <div className="textLike">
-        <div className="reviewText">{props.message}</div>
-        <div onClick={Like} className="likes">
+    <div className="profile__review">
+      <img src={props.avatar} className="profile__review-avatar" />
+      <div className="profile__review-info">
+        <div className="profile__review-text">{props.message}</div>
+        <div onClick={Like} className="profile__like">
           <img
-            className="likePhoto"
+            className="profile__like-img"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/800px-Heart_coraz%C3%B3n.svg.png"
           />
           {props.likes}

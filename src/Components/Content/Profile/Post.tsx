@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { addNewReview } from "../../../BLL/ProfilePage/profilePage";
 import { useDispatch } from "react-redux";
 
-type a = {
+type IInitialStatePost = {
   input: string;
   review: string;
 };
@@ -13,26 +13,26 @@ let Post = () => {
   const formik = useFormik({
     initialValues: {
       review: "",
-    } as a,
+    } as IInitialStatePost,
     onSubmit: (values) => {
       dispatch(addNewReview(values.review));
     },
   });
   return (
-    <div className="Post">
-      <div className="textPost">My post</div>
-      <form className="postFlex" onSubmit={formik.handleSubmit}>
+    <div className="post">
+      <div className="post__text">My post</div>
+      <form className="post__form_flex" onSubmit={formik.handleSubmit}>
         <input
           id="review"
           name="review"
           onChange={formik.handleChange}
           value={formik.values.input}
-          className="blockPost"
+          className="post__input-post"
           placeholder="you post..."
-        ></input>
+        />
 
-        <div className="submitButton">
-          <button type="submit" className="submit">
+        <div className="post__button-submit-form">
+          <button type="submit" className="post__button_submit">
             Send
           </button>
         </div>

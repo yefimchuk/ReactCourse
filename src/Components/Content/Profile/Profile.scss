@@ -1,103 +1,103 @@
-.Post {
+//post
+.post {
   padding: 15px;
-}
 
-.ImageTop {
+  .post__text {
+    padding: 10px;
+    font-size: 25px;
+    color: white;
+
+    .post__form_flex {
+      flex-direction: column;
+      width: 80%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 7px;
+      .post__input-post {
+        color: lightgray;
+        padding: 10px;
+        background: lightslategray;
+        width: 80%;
+        height: 70px;
+        text-decoration: none;
+        border-radius: 4px;
+        outline: none;
+        border: none;
+      }
+      .post__button-submit-form {
+        width: 80.7%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-end;
+        padding: 7px;
+        .post__button_submit {
+          color: white;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: green;
+          width: 100px;
+          height: 40px;
+          border: 0px;
+          border-radius: 4px;
+        }
+      }
+    }
+  }
+}
+//image top
+.profile__image-top {
   border-radius: 6px;
   width: 100%;
   height: 30%;
 }
 
-.postFlex {
-  flex-direction: column;
-  width: 80%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 7px;
-}
-.submitButton {
-  width: 80.7%;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 7px;
-}
 input::-webkit-input-placeholder {
   color: white;
   font-size: 17px;
   align-items: start;
 }
-.blockPost {
-  color: lightgray;
-  padding: 10px;
-  background: lightslategray;
-  width: 80%;
-  height: 70px;
 
-  text-decoration: none;
-  border-radius: 4px;
-  outline: none;
-  border: none;
-}
-
-.textPost {
-  padding: 10px;
-  font-size: 25px;
-  color: white;
-}
-
-.submit {
-  color: white;
+//review
+.profile__review {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background: green;
-  width: 100px;
-  height: 40px;
-  border: 0px;
-  border-radius: 4px;
-}
-
-.avatar {
-  width: 75px;
-  height: 75px;
-  border-radius: 100px;
-  background: rgba(30, 144, 255, 0);
-  margin: 10px;
-  object-fit: cover;
-}
-
-.review {
-  display: flex;
-
   flex-direction: row;
-}
 
-.reviewText {
-  color: white;
-  font-size: 18px;
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  align-items: center;
-}
+  .message__avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 100px;
+    background: rgba(30, 144, 255, 0);
+    margin: 10px;
+    object-fit: cover;
+  }
 
-.likes {
-  color: red;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-}
+  .profile__review-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
 
-.likePhoto {
-  height: 30px;
-}
+    .profile__review-text {
+      color: white;
+      font-size: 18px;
+      display: flex;
+      justify-content: flex-start;
+      flex-direction: row;
+      align-items: center;
+    }
 
-.textLike {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+    .profile__like {
+      color: red;
+      height: auto;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+
+      .profile__like-img {
+        height: 30px;
+      }
+    }
+  }
 }

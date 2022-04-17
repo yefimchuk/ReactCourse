@@ -29,4 +29,4 @@ let ProfileAPIContainer = () => {
   debugger;
   return <Profile {...props} />;
 };
-export default compose(WithAuthRedirectToLogin)(ProfileAPIContainer);
+export default compose()(ProfileAPIContainer);

@@ -3,8 +3,6 @@ import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import News from "./Components/Content/News/News";
-
-import Settings from "./Components/Content/Settings/Settings";
 import MessageContainer from "./Components/Content/Message/messageContainer";
 import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
@@ -17,6 +15,7 @@ import {
   getFriendSelector,
   getInitializedSelector,
 } from "./BLL/App/appSelector";
+import PrivateRoute from "./hoc/PrivateRoute";
 
 let App: any = () => {
   let dispatch = useDispatch();
@@ -32,17 +31,33 @@ let App: any = () => {
   return (
     <div className="App">
       <HeaderContainer />
-      <Sidebar  />
+      <Sidebar />
+
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/login" element={<LoginContainer />} />
-          <Route path="/message/:id" element={<MessageContainer />} />
+          <Route
+            path="/message/:id"
+            element={
+              <PrivateRoute>
+                <MessageContainer />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <PrivateRoute>
+                <ProfileContainer />
+              </PrivateRoute>
+            }
+          />
           <Route path="/profile/:userId" element={<ProfileContainer />} />
-          <Route path="/profile" element={<ProfileContainer />} />
+          <Route path="/login" element={<LoginContainer />} />
           <Route path="/news" element={<News />} />
-          <Route path="/settings" element={<Settings />} />
           <Route path="/users" element={<UsersContainer />} />
-          <Route path="/" element={<ProfileContainer/>}/>
+         {/*  init url  */}
+          <Route path="/" element={<ProfileContainer />} />
         </Routes>
       </div>
     </div>

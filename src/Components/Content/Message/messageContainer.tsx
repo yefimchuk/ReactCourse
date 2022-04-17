@@ -15,4 +15,4 @@ let MessageContainerAPI = () => {
   return <Message dialogsData={dialogsData} messageData={messageData} />;
 };
 
-export default compose(WithAuthRedirectToLogin)(MessageContainerAPI);
+export default compose()(MessageContainerAPI);

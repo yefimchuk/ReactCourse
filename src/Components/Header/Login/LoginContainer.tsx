@@ -14,4 +14,4 @@ let LoginAPIContainer = (props: {
   return <Login captchaURL={captchaURL} />;
 };
 
-export default compose<any>(WithAuthRedirectToProfile)(LoginAPIContainer);
+export default compose<any>()(LoginAPIContainer);

@@ -1,22 +1,30 @@
 import React from "react";
 import "./Users.scss";
-import { NavLink } from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png";
-import { useDispatch } from "react-redux";
-import { followThunk, unfollowThunk } from "../../../BLL/Users/usersSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {followThunk, unfollowThunk} from "../../../BLL/Users/usersSlice";
 import LoaderFollow from "../../../common/Loading/LoaderFollow";
+import {getAuthIsLoginSelector} from "../../../BLL/Auth/authSelector";
+
 interface IUser {
   waitingFollow: Array<any>
   users: Array<any>
 }
-let User = React.memo(({waitingFollow,users}: IUser) => {
-  let dispatch = useDispatch();
 
+let User = React.memo(({waitingFollow, users}: IUser) => {
+  let dispatch = useDispatch();
+  let auth = useSelector(getAuthIsLoginSelector)
   const follow = (id: number) => {
-    dispatch(followThunk(id));
+    debugger
+    if (!auth) {
+      return <Navigate to={"/login"}/>
+    }
+    dispatch(followThunk(id))
   };
   let unfollow = (id: number) => {
-    dispatch(unfollowThunk(id));
+    auth ? dispatch(unfollowThunk(id)) : <Navigate to={"login"}/>
+
   };
 
   return (
@@ -49,19 +57,19 @@ let User = React.memo(({waitingFollow,users}: IUser) => {
                     )}
                   </button>
                 ) : (
-                  <button
-                    disabled={waitingFollow.some(
-                      (id: any) => id === u.id
-                    )}
-                    className="user__unfollowed"
-                    onClick={() => follow(u.id)}
-                  >
-                    {waitingFollow.some((id: any) => id === u.id) ? (
-                      <LoaderFollow />
-                    ) : (
-                      "Follow"
-                    )}
-                  </button>
+                    <button
+                        disabled={waitingFollow.some(
+                            (id: any) => id === u.id
+                        )}
+                        className="user__unfollowed"
+                        onClick={(() => follow(u.id))}
+                    >
+                      {waitingFollow.some((id: any) => id === u.id) ? (
+                          <LoaderFollow/>
+                      ) : (
+                          "Follow"
+                      )}
+                    </button>
                 )}
               </div>
             </div>

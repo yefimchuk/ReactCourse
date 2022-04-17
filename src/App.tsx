@@ -12,8 +12,8 @@ import PrivateRoute from "./hoc/PrivateRoute";
 import MessageContainer from "./Components/Content/Message/Message";
 import ProfileContainer from "./Components/Content/Profile/Profile";
 import UsersContainer from "./Components/Content/Users/UsersContainer";
-import LoginContainer from "./Components/Header/Login/LoginContainer";
 import PublicRoute from "./hoc/PublicRoute";
+import {Login} from "./Components/Header/Login/Login";
 
 let App: any = () => {
   let dispatch = useDispatch();
@@ -68,7 +68,7 @@ let App: any = () => {
               path="/login"
               element={
                 <PublicRoute>
-                  <LoginContainer />
+                  <Login />
                 </PublicRoute>
               }
             />

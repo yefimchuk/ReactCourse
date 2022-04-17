@@ -1,38 +1,33 @@
 import React from "react";
-import s from "./Sidebar.scss";
+import  "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
 import {useSelector} from "react-redux";
 import {getFriendsSelector} from "../../BLL/SideBar/sidebarSelector";
 
-let Sidebar = (props) => {
+let Sidebar = () => {
   const friendsData = useSelector(getFriendsSelector)
   return (
-    <nav className={s.Sidebar}>
-      <div className={s.ItemFlex}>
-        <div className={s.item}>
-          <NavLink activeClassName="active" to="/profile">
+    <nav className="side-bar">
+      <div className="side-bar__items_flex">
+        <div className="side-bar__item">
+          <NavLink  to="/profile">
             Profile
           </NavLink>
         </div>
 
-        <div className={s.item}>
+        <div className="side-bar__item">
           <NavLink to="/message/:id">Message</NavLink>
         </div>
-        <div className={s.item}>
+
+        <div className="side-bar__item">
           <NavLink to="/users">Users</NavLink>
         </div>
-        <div className={s.item}>
-          <NavLink to="/news">News</NavLink>
-        </div>
 
-        <div className={s.item}>
-          <NavLink to="/music">Music</NavLink>
-        </div>
-        <div className={s.item}>
+        <div className="side-bar__item">
           <NavLink to="/settings">Settings</NavLink>
         </div>
-        <div className={s.item}>
+        <div className="side-bar__item">
           <Friends friendsData={friendsData} />
         </div>
       </div>

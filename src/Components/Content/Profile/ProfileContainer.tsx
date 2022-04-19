@@ -26,7 +26,7 @@ let ProfileAPIContainer = () => {
   if (props === state || !props.Profile.fullName) {
     return <MyLoader />;
   }
-  debugger;
+
   return <Profile {...props} />;
 };
 export default compose()(ProfileAPIContainer);

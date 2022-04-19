@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React, {lazy, Suspense, useEffect} from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import News from "./Components/Content/News/News";
-import MessageContainer from "./Components/Content/Message/messageContainer";
-import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
-import UsersContainer from "./Components/Content/Users/UsersContainer";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import LoginContainer from "./Components/Header/Login/LoginContainer";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +13,9 @@ import {
   getInitializedSelector,
 } from "./BLL/App/appSelector";
 import PrivateRoute from "./hoc/PrivateRoute";
+const ProfileContainer = lazy(() => import("./Components/Content/Profile/ProfileContainer"));
+const UsersContainer = lazy(() => import("./Components/Content/Users/UsersContainer"));
+const MessageContainer = lazy(() => import("./Components/Content/Message/messageContainer"));
 
 let App: any = () => {
   let dispatch = useDispatch();
@@ -34,31 +34,39 @@ let App: any = () => {
       <Sidebar />
 
       <div className="app-wrapper-content">
-        <Routes>
-          <Route
-            path="/message/:id"
-            element={
-              <PrivateRoute>
-                <MessageContainer />
-              </PrivateRoute>
-            }
-          />
+        <Suspense fallback={<Loading/>}>
+          <Routes>
+            <Route
+              path="/message/:id"
+              element={
+                <PrivateRoute>
+                  <MessageContainer />
+                </PrivateRoute>
+              }
+            />
 
-          <Route
-            path="/profile"
-            element={
-              <PrivateRoute>
-                <ProfileContainer />
-              </PrivateRoute>
-            }
-          />
-          <Route path="/profile/:userId" element={<ProfileContainer />} />
-          <Route path="/login" element={<LoginContainer />} />
-          <Route path="/news" element={<News />} />
-          <Route path="/users" element={<UsersContainer />} />
-         {/*  init url  */}
-          <Route path="/" element={<ProfileContainer />} />
-        </Routes>
+            <Route
+              path="/profile"
+              element={
+                <PrivateRoute>
+                  <ProfileContainer />
+                </PrivateRoute>
+              }
+            />      <Route
+              path="/"
+              element={
+                <PrivateRoute>
+                  <ProfileContainer />
+                </PrivateRoute>
+              }
+            />
+            <Route path="/profile/:userId" element={<ProfileContainer />} />
+            <Route path="/login" element={<LoginContainer />} />
+            <Route path="/news" element={<News />} />
+            <Route path="/users" element={<UsersContainer />} />
+
+          </Routes>
+        </Suspense>
       </div>
     </div>
   );

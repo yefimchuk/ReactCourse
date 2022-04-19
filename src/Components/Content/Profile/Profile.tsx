@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, {memo} from "react";
 import "./Profile.scss";
 import Review from "./ProfileInfo/Review";
 import PersonalInformation from "./ProfileInfo/PersonalData";
@@ -20,25 +20,28 @@ let Profile = ({ ReviewData, status, Profile }: any) => {
     ));
 
   return (
-    <div>
-      <img
-        className="profile__image-top"
-        src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"
-        alt={"theme"}
-      />
+      <div>
 
-      <PersonalInformation
-        avatar={Profile.photos.large}
-        name={Profile.fullName}
-        job={Profile.lookingForAJobDescription}
-        git={Profile.contacts.mainLink}
-        youTube={Profile.contacts.youtube}
-        instagram={Profile.contacts.instagram}
-      />
-      <Status status={status} />
-      <Post />
-      {ReviewItem}
-    </div>
+          <img
+              className="profile__image-top"
+              src="https://tproger.ru/s3/uploads/2021/02/iconfinder_reactjs_javascript_library_atom_atomic_react_5362908-cover.png"
+              alt={"theme"}
+          />
+
+          <PersonalInformation
+              avatar={Profile.photos.large}
+              name={Profile.fullName}
+              job={Profile.lookingForAJobDescription}
+              git={Profile.contacts.mainLink}
+              youTube={Profile.contacts.youtube}
+              instagram={Profile.contacts.instagram}
+          />
+
+          <Status status={status}/>
+
+          <Post/>
+          {ReviewItem}
+      </div>
   );
 };
 

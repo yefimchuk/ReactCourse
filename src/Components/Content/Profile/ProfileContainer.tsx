@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import Profile from "./Profile";
 import { useParams } from "react-router-dom";
 import { compose } from "redux";
-
 import MyLoader from "../../../common/Loading/Skeleton";
-import { WithAuthRedirectToLogin } from "../../../hoc/WithAuthRedirectToLogin";
 import { GetNewProfile } from "../../../BLL/ProfilePage/profilePage";
 import { getSliceProfileSelector } from "../../../BLL/ProfilePage/profileSelector";
 

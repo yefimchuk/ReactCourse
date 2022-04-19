@@ -1,26 +1,23 @@
-import React, {lazy, Suspense, useEffect} from "react";
+import React, { Suspense, useEffect } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
 import News from "./Components/Content/News/News";
 import HeaderContainer from "./Components/Header/HeaderContainer";
-import LoginContainer from "./Components/Header/Login/LoginContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./common/Loading/Loading";
 import { initializingThunk } from "./BLL/App/appSlice";
-import {
-  getFriendSelector,
-  getInitializedSelector,
-} from "./BLL/App/appSelector";
+import { getInitializedSelector } from "./BLL/App/appSelector";
 import PrivateRoute from "./hoc/PrivateRoute";
-const ProfileContainer = lazy(() => import("./Components/Content/Profile/ProfileContainer"));
-const UsersContainer = lazy(() => import("./Components/Content/Users/UsersContainer"));
-const MessageContainer = lazy(() => import("./Components/Content/Message/messageContainer"));
+import MessageContainer from "./Components/Content/Message/messageContainer";
+import ProfileContainer from "./Components/Content/Profile/ProfileContainer";
+import UsersContainer from "./Components/Content/Users/UsersContainer";
+import LoginContainer from "./Components/Header/Login/LoginContainer";
+import PublicRoute from "./hoc/PublicRoute";
 
 let App: any = () => {
   let dispatch = useDispatch();
   let initialized = useSelector(getInitializedSelector);
-  let friendsData = useSelector(getFriendSelector);
   useEffect(() => {
     dispatch(initializingThunk({}));
   }, [dispatch]);
@@ -34,7 +31,7 @@ let App: any = () => {
       <Sidebar />
 
       <div className="app-wrapper-content">
-        <Suspense fallback={<Loading/>}>
+        <Suspense fallback={<Loading />}>
           <Routes>
             <Route
               path="/message/:id"
@@ -52,7 +49,9 @@ let App: any = () => {
                   <ProfileContainer />
                 </PrivateRoute>
               }
-            />      <Route
+            />
+
+            <Route
               path="/"
               element={
                 <PrivateRoute>
@@ -60,11 +59,20 @@ let App: any = () => {
                 </PrivateRoute>
               }
             />
-            <Route path="/profile/:userId" element={<ProfileContainer />} />
-            <Route path="/login" element={<LoginContainer />} />
-            <Route path="/news" element={<News />} />
+
             <Route path="/users" element={<UsersContainer />} />
 
+            <Route path="/profile/:userId" element={<ProfileContainer />} />
+
+            <Route
+              path="/login"
+              element={
+                <PublicRoute>
+                  <LoginContainer />
+                </PublicRoute>
+              }
+            />
+            <Route path="/news" element={<News />} />
           </Routes>
         </Suspense>
       </div>

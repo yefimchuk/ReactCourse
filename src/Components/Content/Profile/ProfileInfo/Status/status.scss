@@ -1,8 +1,19 @@
+
+.profile__edit_activated {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+}
+
+
 .profile__status {
   display: flex;
-  align-items: center;
-  height: 30px;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
   margin-left: 25px;
+
   .profile__status-input {
     background-color: rgba(0, 0, 0, 0);
     border: 1px solid #b4b4b4;

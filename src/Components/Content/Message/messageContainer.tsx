@@ -1,7 +1,6 @@
 import Message from "./Message";
 
 import { compose } from "redux";
-import { WithAuthRedirectToLogin } from "../../../hoc/WithAuthRedirectToLogin";
 import {
   dialogsDataSelector,
   messageDataSelector,

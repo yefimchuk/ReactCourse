@@ -1,8 +1,10 @@
-import { useFormik } from "formik";
-import { Button, Checkbox, Form, Input } from "antd";
+import {useFormik} from "formik";
+import {Button, Checkbox, Form, Input} from "antd";
 import React from "react";
-import { Login } from "../../../BLL/Auth/authSlice";
-import { useDispatch } from "react-redux";
+import {Login} from "../../../BLL/Auth/authSlice";
+import {useDispatch} from "react-redux";
+import {useNavigate} from "react-router-dom";
+
 
 type ValueFormik = {
   email: string;
@@ -14,6 +16,7 @@ type PropsType = {
   captchaURL: string;
 };
 export let LoginForm = ({ captchaURL }: PropsType) => {
+  const navigate = useNavigate()
   let dispatch = useDispatch();
   const initialValues: ValueFormik = {
     email: "",
@@ -25,7 +28,8 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
     initialValues: initialValues,
 
     onSubmit: (values, action) => {
-      dispatch(Login({ values, action }));
+      dispatch(Login({values, action}));
+      navigate("/profile")
     },
   });
 

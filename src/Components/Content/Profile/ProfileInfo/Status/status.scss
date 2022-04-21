@@ -1,38 +1,175 @@
-
+@use "/src/Components/Content/Profile/ProfileInfo/PersonalData";
+.test{
+  background-color: #01a41a;
+}
 .profile__edit_activated {
   display: flex;
   flex-direction: column;
   height: 100%;
-
 }
 
+label {
+  cursor: pointer;
+  /* Style as you please, it will become the visible UI component. */
+}
 
-.profile__status {
+#upload-photo {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+}
+.profile__edit {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   height: 100%;
   margin-left: 25px;
 
-  .profile__status-input {
+  ::placeholder {
+    color: #9d9a9a !important;
+
+    font-size: 17px;
+  }
+textarea{
+  margin: 2px 2px 5px;
+}
+  .profile__edit-input {
+    display: flex;
+    align-items: center;
     background-color: rgba(0, 0, 0, 0);
-    border: 1px solid #b4b4b4;
+    border: 1px solid #696969;
     outline: 0;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
     width: 100%;
+    padding-left: 13px;
     color: #c0c0c0;
-    border-radius: 7px;
+    border-radius: 6px;
+    margin: 2px 2px 7px 10px;
+    &:focus {
+      border: 3px solid #00c4ff !important;
+      margin: 0 0 5px 8px;
+    }
+    &:hover {
+
+      animation: border-rainbow 1s infinite linear;
+
+    }
+    @keyframes border-rainbow {
+      0% {
+        border: 3px solid #ff0000;
+        margin: 0px 0 5px 8px;
+      }
+      10% {
+        border: 3px solid #ffcc00;
+        margin: 0 0 5px 8px;
+      }
+      20% {
+        border: 3px solid #f7ff00;
+        margin: 0 0 5px 8px;
+      }
+      30% {
+        border: 3px solid #98f300;
+        margin: 0 0 5px 8px;
+      }
+      40% {
+        border: 3px solid #11f800;
+        margin: 0 0 5px 8px;
+      }
+      50% {
+        border: 3px solid #00e7c2;
+        margin: 0 0 5px 8px;
+      }
+      60% {
+        border: 3px solid #0031ff;
+        margin: 0 0 5px 8px;
+      }
+      70% {
+        border: 3px solid #6800ff;
+        margin: 0 0 5px 8px;
+      }
+      80% {
+        border: 3px solid #9600ff;
+        margin: 0 0 5px 8px;
+      }
+      90% {
+        border: 3px solid #eb00ff;
+        margin: 0 0 5px 8px;
+      }
+      100% {
+        border: 3px solid #ff0000;
+        margin: 0 0 5px 8px;
+      }
+    }
   }
 }
-.profile__status-text {
+.profile__status-text{
+  font-weight: 500;
+  font-size: 16px;
   color: #c0c0c0;
-  font-size: 25px;
-  font-weight: 300;
+}
+.profile__edit-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px  ;
+  width: 200px;
+  height: 35px;
+  background-color: #1c1e23;
+  border: 1px solid #3d434d;
+  color: #c0c0c0;
+  font-size: 20px;
+  font-weight: 400;
   margin-left: 3px;
 }
 
-
 .button {
   background-color: white;
+}
+
+.profile__edit__buttons {
+  margin: 5px;
+  display: flex;
+  flex-direction: row;
+  .profile__edit__buttons_save {
+    background-color: #01a41a;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: 0;
+    width: 62px;
+    height: 30px;
+    border-radius: 6px;
+    &:hover {
+      border: 1px solid #2cc02c;
+      background-color: #63ee77;
+    }
+  }
+  .profile__edit__buttons_cancel {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0 0 0 5px;
+    background-color: #545252;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid #696969;
+    width: 65px;
+    height: 30px;
+    border-radius: 6px;
+    &:hover {
+      border: 1px solid #bebbbb;
+      background-color: #6b6969;
+    }
+  }
+}
+.profile__edit_link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+
 }

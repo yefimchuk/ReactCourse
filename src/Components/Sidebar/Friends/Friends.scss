@@ -1,18 +1,19 @@
-.friendAvatars {
+.side-bar__friend-avatar-flex {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  .side-bar__friend-avatar {
+    border-radius: 100px;
+    width: 65px;
+    height: 65px;
+    object-fit: cover;
+    padding: 9px;
+  }
 }
-.avatars {
-  border-radius: 100px;
-  width: 65px;
-  height: 65px;
-  object-fit: cover;
-  padding: 9px;
-}
-.text {
+
+.side-bar__friend-text {
   font-size: 38px;
   color: white;
   padding: 5px;

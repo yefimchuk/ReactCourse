@@ -1,51 +1,49 @@
 import React, {useState} from "react";
 import "./status.scss";
 import {useFormik} from "formik";
-import {UpdateStatusThunk} from "../../../../../BLL/ProfilePage/profilePage";
-import {useDispatch} from "react-redux";
+import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
+import {useDispatch, useSelector} from "react-redux";
 import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined} from "@ant-design/icons";
+import {getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
 
-let Edit = ({
-                name,
-                status,
-                job,
-                gitHub,
-                instagram,
-                youTube,
-            }: any) => {
+let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
-
+    let formData = useSelector(getProfileSelector)
+    console.log(formData)
     let [editMode, setEditMode] = useState(false);
     // states for edit
     let [UseStatus, setNewStatus] = useState("");
     let upload = (e: any) => {
-
-        console.log("hello")
-      return   e.target.files[0];
+        return e.target.files[0];
     }
     let activatedEditMode = () => {
         setEditMode(true);
     };
     const save = () => {
         setEditMode(false);
-        dispatch(UpdateStatusThunk(formik.values.status));
+        /*     dispatch(UpdateStatusThunk(formik.values.status));*/
     };
     let cancel = () => {
         setEditMode(false);
-        dispatch(UpdateStatusThunk(formik.values.status));
-    };
 
+    };
 
     const formik = useFormik({
         initialValues: {
-            name: name,
-            status: status,
-            job: job,
-            gitHub: gitHub,
-            instagram: instagram,
-            youTube: youTube,
+            userId: formData.userId,
+            lookingForAJobDescription: formData.lookingForAJobDescription,
+            fullName: formData.fullName,
+            contacts: {
+                github: formData.contacts.github,
+                instagram: formData.contacts.instagram,
+                youtube: formData.contacts.youtube
+            },
+            aboutMe: formData.aboutMe
         },
         onSubmit: (values) => {
+            setEditMode(false);
+            dispatch(UpdateProfile(values))
+
         },
     });
 
@@ -53,7 +51,7 @@ let Edit = ({
     return (
         <div className="profile__edit">
             {editMode ? (
-                <div className="profile__edit_activated">
+                <form onSubmit={formik.handleSubmit} className="profile__edit_activated">
 
                     <input type="file" name="photo" id="upload-photo" onChange={upload}/>
 
@@ -61,10 +59,10 @@ let Edit = ({
                     <input
                         className="profile__edit-input"
                         placeholder="Name"
-                        id="names"
-                        name="names"
+                        id="fullName"
+                        name="fullName"
                         onChange={formik.handleChange}
-                        value={formik.values.name}
+                        value={formik.values.fullName}
 
                     />
 
@@ -72,11 +70,11 @@ let Edit = ({
                     <span className="profile__status-text">Status</span>
                     <textarea
                         className="profile__edit-input"
-                        placeholder="Status"
-                        id="status"
-                        name="status"
+                        placeholder="status"
+                        id="aboutMe"
+                        name="aboutMe"
                         onChange={formik.handleChange}
-                        value={formik.values.status}
+                        value={formik.values.aboutMe}
 
                     />
 
@@ -85,10 +83,10 @@ let Edit = ({
                         <input
                             className="profile__edit-input"
                             placeholder="Job"
-                            id="job"
-                            name="job"
+                            id="lookingForAJobDescription"
+                            name="lookingForAJobDescription"
                             onChange={formik.handleChange}
-                            value={formik.values.job}
+                            value={formik.values.lookingForAJobDescription}
 
                         />
                     </div>
@@ -98,9 +96,9 @@ let Edit = ({
                             className="profile__edit-input"
                             placeholder="GitHub"
                             id="gitHub"
-                            name="gitHub"
+                            name="contacts.github"
                             onChange={formik.handleChange}
-                            value={formik.values.gitHub}
+                            value={formik.values.contacts.github}
                         />
                     </div>
                     <div className="profile__edit_link">
@@ -109,9 +107,9 @@ let Edit = ({
                             className="profile__edit-input"
                             placeholder="Instagram"
                             id="instagram"
-                            name="instagram"
+                            name="contacts.instagram"
                             onChange={formik.handleChange}
-                            value={formik.values.instagram}
+                            value={formik.values.contacts.instagram}
                         />
                     </div>
                     <div className="profile__edit_link">
@@ -120,19 +118,19 @@ let Edit = ({
                             className="profile__edit-input"
                             placeholder="YouTube"
                             id="youTube"
-                            name="youTube"
+                            name="contacts.youtube"
                             onChange={formik.handleChange}
-                            value={formik.values.youTube}
+                            value={formik.values.contacts.youtube}
 
                         />
                     </div>
                     <div className="profile__edit_link">
                         <div className="profile__edit__buttons">
-                            <button className="profile__edit__buttons_save" onClick={save}>Save</button>
+                            <button className="profile__edit__buttons_save" type="submit">Save</button>
                             <button className="profile__edit__buttons_cancel" onClick={cancel}>Cancel</button>
                         </div>
                     </div>
-                </div>
+                </form>
             ) : (
                 /* lookingForAJob: required(boolean)
                             lookingForAJobDescription: required(string)
@@ -150,7 +148,7 @@ let Edit = ({
                     Edit mode
                 </div>
             )}
-      </div>
-  );
-};
+        </div>
+    );
+});
 export default Edit;

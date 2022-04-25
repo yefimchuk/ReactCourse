@@ -44,6 +44,7 @@ export const getUsers: any = createAsyncThunk(
 export const onChangeUsersThunk: any = createAsyncThunk(
   "usersPage/onChangeUsersThunk",
   async ({ page, pageSize }: any) => {
+
     let response = await userServiceInstance.OnPageUsersChange(page, pageSize);
     return [response, page];
   }

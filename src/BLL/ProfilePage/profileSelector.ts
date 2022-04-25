@@ -4,3 +4,7 @@ export const getSliceProfileSelector = createSelector(
   (state: any) => state,
   (state) => state.sliceProfile
 );
+export const getProfileSelector = createSelector(
+    (state:any) => state,
+    (state) => state.sliceProfile.Profile
+)

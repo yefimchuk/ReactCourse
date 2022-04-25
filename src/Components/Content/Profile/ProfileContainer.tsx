@@ -25,6 +25,6 @@ let ProfileAPIContainer = () => {
     return <MyLoader />;
   }
 
-  return <Profile {...props} />;
+  return <Profile {...props}  />;
 };
 export default compose()(ProfileAPIContainer);

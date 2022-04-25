@@ -10,10 +10,8 @@ import {
 import { useSelector } from "react-redux";
 
 let HeaderContainerAPI = () => {
-  let date = useSelector((state) => getAuthDateSelector(state));
-  let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
 
-  return <Header date={date} isLogin={isLogin} />;
+  return <Header />;
 };
 
 let mapStateToProps = (state: any) => {

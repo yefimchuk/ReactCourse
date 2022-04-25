@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../../logo.svg";
 import "./Header.scss";
 import {
@@ -8,23 +8,21 @@ import {
 } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { UnLogin } from "../../BLL/Auth/authSlice";
+import {
+  getAuthDateSelector,
+  getAuthIsLoginSelector,
+} from "../../BLL/Auth/authSelector";
+import { getProfileSelector } from "../../BLL/ProfilePage/profileSelector";
 
 setTwoToneColor("#eb2f96");
 
-type PropsT = {
-  date: {
-    name: string;
-    photos: {
-      large: string;
-    };
-  };
-
-  isLogin: boolean;
-};
-let Header = ({ date, isLogin }: PropsT) => {
+let Header = () => {
+  let date = useSelector(getProfileSelector);
+  let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
   const dispatch = useDispatch();
+console.log(date);
 
   return (
     <div className="Header">
@@ -40,7 +38,7 @@ let Header = ({ date, isLogin }: PropsT) => {
           </div>
         ) : isLogin !== null ? (
           <div className="info">
-            <div className="name">{date.name}</div>
+            <div className="name">{date.fullName}</div>
             <img
               className="avatar"
               src={date.photos.large === null ? photo : date.photos.large}

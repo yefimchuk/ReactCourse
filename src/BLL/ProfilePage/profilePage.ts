@@ -23,32 +23,56 @@ export const GetNewProfile: any = createAsyncThunk(
 );
 
 export const AuthMeThunk: any = createAsyncThunk(
-  "profile/authMe",
-  async (userId: number, { dispatch }) => {
-    let response = await headerServiceInstance.AuthMe();
-    dispatch(setId(response.data.data.id));
-  }
-);
-
-export const GetStatusThunk: any = createAsyncThunk(
-  "profile/getStatus",
-  async (id: number, { dispatch }) => {
-    if (!id) {
+    "profile/authMe",
+    async (userId: number, {dispatch}) => {
       let response = await headerServiceInstance.AuthMe();
       dispatch(setId(response.data.data.id));
-      let statusResponse = await profileServiceInstance.SetStatus(response.data.data.id);
-      if (statusResponse.data !== null) {
-        return statusResponse.data;
-      }
     }
-
-    let response = await profileServiceInstance.SetStatus(id);
-    if (response.data === null) {
-      response.data = "";
-    }
-    return response.data;
-  }
 );
+export const UpdateProfile: any = createAsyncThunk(
+    "profile/updateProfile",
+    async (data: any, {dispatch}) => {
+
+      let response = await profileServiceInstance.UpdateProfile(data)
+
+      if (response.data.resultCode == 0) {
+        dispatch(GetNewProfile(data.userId))
+      }
+
+    }
+);
+export const UpdatePhoto: any = createAsyncThunk(
+    "profile/updateProfile",
+    async (file: any, {dispatch}) => {
+
+      let response = await profileServiceInstance.UpdatePhoto(file)
+
+      if (response.data.resultCode == 0) {
+        dispatch(GetNewProfile(file.userId))
+      }
+
+    }
+);
+export const GetStatusThunk: any = createAsyncThunk(
+    "profile/getStatus",
+    async (id: number, {dispatch}) => {
+      if (!id) {
+        let response = await headerServiceInstance.AuthMe();
+        dispatch(setId(response.data.data.id));
+        let statusResponse = await profileServiceInstance.SetStatus(response.data.data.id);
+        if (statusResponse.data !== null) {
+          return statusResponse.data;
+        }
+      }
+
+      let response = await profileServiceInstance.SetStatus(id);
+      if (response.data === null) {
+        response.data = "";
+      }
+      return response.data;
+    }
+);
+
 
 export const UpdateStatusThunk: any = createAsyncThunk(
   "profile/getStatus",
@@ -181,6 +205,15 @@ export const profilePage = createSlice({
 
     [UpdateStatusThunk.fulfilled]: (state, action) => {
       state.status = action.payload;
+    },
+    [UpdateProfile.pending]: (state, action) => {
+
+    },
+    [UpdateProfile.rejected]: (state, action) => {
+
+    },
+    [UpdateProfile.fulfilled]: (state, action) => {
+
     },
   },
 });

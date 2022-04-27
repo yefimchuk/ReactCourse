@@ -3,11 +3,15 @@ import "./status.scss";
 import {Formik} from "formik";
 import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch, useSelector} from "react-redux";
+<<<<<<< HEAD
 import {
     getErrorMessageSelector,
     getIsLoginSelector,
     getProfileSelector
 } from "../../../../../BLL/ProfilePage/profileSelector";
+=======
+import {getErrorMessageSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
+>>>>>>> 141441d (create error message)
 import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined,} from "@ant-design/icons";
 import EditErrorMessage from "./ErrorMessage";
 import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
@@ -15,9 +19,13 @@ import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
 let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
+<<<<<<< HEAD
     let errors = useSelector(getErrorMessageSelector);
     console.log(errors)
     const isLogin = useSelector(getIsLoginSelector);
+=======
+    const errors = useSelector(getErrorMessageSelector);
+>>>>>>> 141441d (create error message)
     console.log(formData);
     let [editMode, setEditMode] = useState(false);
     // states for edit
@@ -29,8 +37,12 @@ let Edit = React.memo(({}: any) => {
         setEditMode(true);
     };
     const save = () => {
+<<<<<<< HEAD
         debugger
         return errors
+=======
+        setEditMode(false);
+>>>>>>> 141441d (create error message)
     };
     let cancel = () => {
         setEditMode(false);
@@ -69,11 +81,19 @@ let Edit = React.memo(({}: any) => {
 
                 }}
                 validate={validateEmail}
+<<<<<<< HEAD
                 onSubmit={async (values) => {
 
                     let response = await dispatch(UpdateProfile(values));
 debugger
                     if (!response.payload) {
+=======
+                onSubmit={(values) => {
+
+                    dispatch(UpdateProfile(values));
+                    debugger
+                    if (!errors){
+>>>>>>> 141441d (create error message)
                         setEditMode(false);
                     }
                 }}

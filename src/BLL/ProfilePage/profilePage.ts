@@ -1,8 +1,10 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
 import headerServiceInstance from "../../http/HeaderService";
 import profileServiceInstance from "../../http/ProfileService";
 import userServiceInstance from "../../http/UserService";
+import {UpdateHeaderAvatar} from "../Auth/authSlice";
 
 
 export const GetNewProfile: any = createAsyncThunk(
@@ -24,23 +26,25 @@ export const GetNewProfile: any = createAsyncThunk(
 
 export const AuthMeThunk: any = createAsyncThunk(
     "profile/authMe",
-    async (userId: number, {dispatch}) => {
+    async (userId: number, {dispatch}: any) => {
       let response = await headerServiceInstance.AuthMe();
       dispatch(setId(response.data.data.id));
     }
 );
 export const UpdateProfile: any = createAsyncThunk(
     "profile/updateProfile",
-    async (data: any, {dispatch}) => {
+    async (data: any, {dispatch,rejectWithValue}: any) => {
 
       let response = await profileServiceInstance.UpdateProfile(data)
 
       if (response.data.resultCode == 0) {
         dispatch(GetNewProfile(data.userId))
       }
+      else return rejectWithValue(response.data)
 
     }
 );
+
 export const UpdatePhoto: any = createAsyncThunk(
     "profile/updateProfile",
     async (file: any, {dispatch}) => {
@@ -49,6 +53,7 @@ export const UpdatePhoto: any = createAsyncThunk(
 
       if (response.data.resultCode == 0) {
         dispatch(GetNewProfile(file.userId))
+        dispatch(UpdateHeaderAvatar({response}))
       }
 
     }
@@ -94,6 +99,7 @@ type ProfileType = {
   isLogin: boolean;
   status: string;
   isLoading: boolean;
+  errorMessage: null
 };
 
 export const profilePage = createSlice({
@@ -197,7 +203,9 @@ export const profilePage = createSlice({
     [GetNewProfile.fulfilled]: (state, action) => {
       state.status = action.payload[0];
       state.Profile = action.payload[1].data;
+
     },
+
 
     [GetStatusThunk.fulfilled]: (state, action) => {
       state.status = action.payload;
@@ -210,7 +218,7 @@ export const profilePage = createSlice({
 
     },
     [UpdateProfile.rejected]: (state, action) => {
-
+      state.errorMessage = action.payload.messages
     },
     [UpdateProfile.fulfilled]: (state, action) => {
 

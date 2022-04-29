@@ -9,13 +9,3 @@ import {
 } from "../../BLL/Auth/authSelector";
 import { useSelector } from "react-redux";
 
-let HeaderContainerAPI = () => {
-
-  return <Header />;
-};
-
-let mapStateToProps = (state: any) => {
-  return {};
-};
-
-export default compose<any>()(HeaderContainerAPI);

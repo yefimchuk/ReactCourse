@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import headerServiceInstance from "../../http/HeaderService";
 import authServiceInstance from "../../http/AuthService";
@@ -60,23 +60,28 @@ export let Login: any = createAsyncThunk(
 );
 
 export let UnLogin = createAsyncThunk(
-  "authPage/unLogin",
-  async ({ val }: any, { dispatch }) => {
-    let response = await authServiceInstance.LogOut();
+    "authPage/unLogin",
+    async ({val}: any, {dispatch}) => {
+      let response = await authServiceInstance.LogOut();
 
-    if (response.data.resultCode === 0) {
-      dispatch(setLogOut());
+      if (response.data.resultCode === 0) {
+        dispatch(setLogOut());
+      }
+      return response;
     }
-    return response;
-  }
 );
-
+export let UpdateHeaderAvatar: any = createAsyncThunk(
+    "authPage/UpdateHeaderAvatar",
+    async (date) => {
+      return date;
+    }
+);
 export let GetCaptchaUrl = createAsyncThunk(
-  "authPage/getCaptchaUrl",
-  async ({}, { dispatch }) => {
-    let response = authServiceInstance.GetCaptcha();
-    dispatch(getCaptcha(response));
-  }
+    "authPage/getCaptchaUrl",
+    async ({}, {dispatch}) => {
+      let response = authServiceInstance.GetCaptcha();
+      dispatch(getCaptcha(response));
+    }
 );
 
 type AuthType = {
@@ -84,7 +89,7 @@ type AuthType = {
   email: string | null;
   login: string | null;
   isLogin: boolean;
-  date: object | null;
+  date: any;
   captchaURL: string | null;
 };
 export const authSlice = createSlice({
@@ -94,7 +99,9 @@ export const authSlice = createSlice({
     email: null,
     login: null,
     isLogin: false,
-    date: null,
+    date: {
+      photos: null
+    },
     captchaURL: null,
   } as AuthType,
   reducers: {
@@ -137,6 +144,10 @@ export const authSlice = createSlice({
     },
     [HeaderLogin.pending]: (state, action) => {
       state.isLogin = false;
+    },
+    [UpdateHeaderAvatar.fulfilled]: (state, action) => {
+
+      state.date.photos = action.payload.response.data.data.photos
     },
   },
 });

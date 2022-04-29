@@ -19,7 +19,9 @@ import { getProfileSelector } from "../../BLL/ProfilePage/profileSelector";
 setTwoToneColor("#eb2f96");
 
 let Header = () => {
-  let date = useSelector(getProfileSelector);
+
+  let date = useSelector((state) => getAuthDateSelector(state));
+
   let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
   const dispatch = useDispatch();
 console.log(date);
@@ -38,7 +40,7 @@ console.log(date);
           </div>
         ) : isLogin !== null ? (
           <div className="info">
-            <div className="name">{date.fullName}</div>
+            <div className="name">{date.name}</div>
             <img
               className="avatar"
               src={date.photos.large === null ? photo : date.photos.large}

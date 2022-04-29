@@ -8,3 +8,7 @@ export const getProfileSelector = createSelector(
     (state:any) => state,
     (state) => state.sliceProfile.Profile
 )
+export const getErrorMessageSelector = createSelector(
+    (state:any) => state,
+    (state) => state.sliceProfile.errorMessage
+)

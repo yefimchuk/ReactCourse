@@ -1,6 +1,9 @@
 .loading {
   display: flex;
   justify-content: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
   width: 100%;
   align-items: center;
 
@@ -9,6 +12,9 @@
   }
 }
 .LoaderFollow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(0, 231, 194, 0);
   width: 30px;
   height: 30px;

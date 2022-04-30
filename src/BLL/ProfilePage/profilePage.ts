@@ -202,6 +202,7 @@ export const profilePage = createSlice({
   },
   extraReducers: {
     [GetNewProfile.fulfilled]: (state, action) => {
+
       state.isLogin = false;
       state.errorMessage = null
       state.status = action.payload[0];
@@ -211,6 +212,7 @@ export const profilePage = createSlice({
 
 
     [GetStatusThunk.fulfilled]: (state, action) => {
+
       state.status = action.payload;
     },
 
@@ -221,6 +223,7 @@ export const profilePage = createSlice({
       state.isLogin = true;
     },
     [UpdateProfile.rejected]: (state, action) => {
+      state.isLogin = false;
       state.errorMessage = action.payload.messages
     },
     [UpdateProfile.fulfilled]: (state, action) => {

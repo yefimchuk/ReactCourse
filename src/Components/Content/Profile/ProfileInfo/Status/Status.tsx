@@ -3,14 +3,21 @@ import "./status.scss";
 import {Formik} from "formik";
 import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch, useSelector} from "react-redux";
-import {getErrorMessageSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
+import {
+    getErrorMessageSelector,
+    getIsLoginSelector,
+    getProfileSelector
+} from "../../../../../BLL/ProfilePage/profileSelector";
 import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined,} from "@ant-design/icons";
 import EditErrorMessage from "./ErrorMessage";
+import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
 
 let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
-    const errors = useSelector(getErrorMessageSelector);
+    let errors = useSelector(getErrorMessageSelector);
+    console.log(errors)
+    const isLogin = useSelector(getIsLoginSelector);
     console.log(formData);
     let [editMode, setEditMode] = useState(false);
     // states for edit
@@ -22,7 +29,8 @@ let Edit = React.memo(({}: any) => {
         setEditMode(true);
     };
     const save = () => {
-        setEditMode(false);
+        debugger
+        return errors
     };
     let cancel = () => {
         setEditMode(false);
@@ -36,6 +44,7 @@ let Edit = React.memo(({}: any) => {
             errors.fullName = "Must be 15 characters or less";
         }
         if (formData.errorMessage) {
+
             errors.error = formData.errorMessage;
         }
 
@@ -60,11 +69,11 @@ let Edit = React.memo(({}: any) => {
 
                 }}
                 validate={validateEmail}
-                onSubmit={(values) => {
+                onSubmit={async (values) => {
 
-                    dispatch(UpdateProfile(values));
-                    debugger
-                    if (!errors){
+                    let response = await dispatch(UpdateProfile(values));
+debugger
+                    if (!response.payload) {
                         setEditMode(false);
                     }
                 }}
@@ -164,11 +173,12 @@ let Edit = React.memo(({}: any) => {
                                     </div>
                                     <div className="profile__edit_link">
                                         <div className="profile__edit__buttons">
+
                                             <button
                                                 className="profile__edit__buttons_save"
                                                 type="submit"
                                             >
-                                                Save
+                                                {isLogin ? <LoaderFollow/> : "Save"}
                                             </button>
                                             <button
                                                 className="profile__edit__buttons_cancel"

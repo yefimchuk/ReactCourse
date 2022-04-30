@@ -12,3 +12,7 @@ export const getErrorMessageSelector = createSelector(
     (state:any) => state,
     (state) => state.sliceProfile.errorMessage
 )
+export const getIsLoginSelector = createSelector(
+    (state:any) => state,
+    (state) => state.sliceProfile.isLogin
+)

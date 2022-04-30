@@ -172,6 +172,9 @@ textarea{
   display: flex;
   flex-direction: row;
   .profile__edit__buttons_save {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #01a41a;
     color: white;
     font-size: 14px;

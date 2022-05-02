@@ -4,11 +4,14 @@ import "./MessageInfo/Message.scss";
 import Dialogs from "./MessageInfo/Dialogs/Dialogs";
 import { useFormik } from "formik";
 import TextArea from "antd/es/input/TextArea";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import { addNewMessage } from "../../../BLL/Message/messageSlice";
+import {dialogsDataSelector, messageDataSelector} from "../../../BLL/Message/messageSelector";
 
-let Message = ({ messageData, dialogsData }: any) => {
+let Message = () => {
   let dispatch = useDispatch();
+  let messageData = useSelector(messageDataSelector);
+  let dialogsData = useSelector(dialogsDataSelector);
   const formik = useFormik({
     initialValues: {
       input: "",

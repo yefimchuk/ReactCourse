@@ -19,19 +19,17 @@ import { getProfileSelector } from "../../BLL/ProfilePage/profileSelector";
 setTwoToneColor("#eb2f96");
 
 let Header = () => {
-
   let date = useSelector((state) => getAuthDateSelector(state));
-
   let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
   const dispatch = useDispatch();
 console.log(date);
-
+debugger
   return (
     <div className="Header">
       <div className="LoginHeader">
         <img src={logo} className="App-logo" alt={logo} />
 
-        {date === null ? (
+        {date.photos === null ? (
           <div>
             <NavLink className="nlink" to={"/login"}>
               {" "}

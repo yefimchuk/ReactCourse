@@ -7,6 +7,7 @@ export let HeaderLogin: any = createAsyncThunk(
   "authPage/HeaderLogin",
   async ({}, { dispatch, rejectWithValue }) => {
     try {
+
       let responseFromAuthMe = await headerServiceInstance.AuthMe();
       if (responseFromAuthMe.data.resultCode === 0) {
         let { id, email, login } = responseFromAuthMe.data.data;

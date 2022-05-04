@@ -28,7 +28,7 @@ debugger
     <div className="Header">
       <div className="LoginHeader">
         <img src={logo} className="App-logo" alt={logo} />
-
+        {/*fix*/}
         {date.photos === null ? (
           <div>
             <NavLink className="nlink" to={"/login"}>

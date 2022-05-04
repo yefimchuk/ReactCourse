@@ -27,7 +27,7 @@ let PersonalInformation = ({
   const updatePhoto = (e: any) => {
     dispatch(UpdatePhoto(e.target.files[0]));
   };
-  debugger;
+
   return (
     <div>
       <div className="profile__account">

@@ -11,7 +11,8 @@ let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
     let [editMode, setEditMode] = useState(false);
-    const errors = useSelector(getErrorMessageSelector);
+    let [error, setError] = useState(null)
+
     let upload = (e: any) => {
         return e.target.files[0];
     };
@@ -56,9 +57,9 @@ let Edit = React.memo(({}: any) => {
 
                 }}
                 validate={validateEmail}
-                onSubmit={(values) => {
-                    dispatch(UpdateProfile(values));
-                    if (!errors){
+                onSubmit={async (values) => {
+                    let errors = await dispatch(UpdateProfile(values));
+                    if (!errors.payload){
                         setEditMode(false);
                     }
                 }}

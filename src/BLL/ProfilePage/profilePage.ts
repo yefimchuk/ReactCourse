@@ -164,6 +164,7 @@ export const profilePage = createSlice({
     isLogin: false,
     status: "",
     isLoading: false,
+    errorMessage: null
   } as ProfileType,
   reducers: {
     addNewReview: (state, action) => {
@@ -201,6 +202,7 @@ export const profilePage = createSlice({
   },
   extraReducers: {
     [GetNewProfile.fulfilled]: (state, action) => {
+      state.errorMessage = null
       state.status = action.payload[0];
       state.Profile = action.payload[1].data;
 

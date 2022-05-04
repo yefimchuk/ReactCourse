@@ -3,27 +3,23 @@ import "./status.scss";
 import {Formik} from "formik";
 import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch, useSelector} from "react-redux";
-import {getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
+import {getErrorMessageSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
 import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined,} from "@ant-design/icons";
 import EditErrorMessage from "./ErrorMessage";
 
 let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
-    console.log(formData);
     let [editMode, setEditMode] = useState(false);
-    // states for edit
-    let [UseStatus, setNewStatus] = useState("");
+    const errors = useSelector(getErrorMessageSelector);
     let upload = (e: any) => {
         return e.target.files[0];
     };
+
     let activatedEditMode = () => {
         setEditMode(true);
     };
-    const save = () => {
-        setEditMode(false);
-        /*     dispatch(UpdateStatusThunk(formik.values.status));*/
-    };
+
     let cancel = () => {
         setEditMode(false);
     };
@@ -61,8 +57,10 @@ let Edit = React.memo(({}: any) => {
                 }}
                 validate={validateEmail}
                 onSubmit={(values) => {
-                    setEditMode(false);
                     dispatch(UpdateProfile(values));
+                    if (!errors){
+                        setEditMode(false);
+                    }
                 }}
             >
                 {({errors, values, touched, handleSubmit, handleChange}) => (
@@ -107,9 +105,7 @@ let Edit = React.memo(({}: any) => {
                                             style={{fontSize: "25px", color: "#bbbaba"}}
                                         />
                                         <input
-                                            className={`profile__edit-input ${
-                                                errors && "is-invalid"
-                                            }`}
+                                            className={`profile__edit-input`}
                                             placeholder="Job"
                                             id="lookingForAJobDescription"
                                             name="lookingForAJobDescription"

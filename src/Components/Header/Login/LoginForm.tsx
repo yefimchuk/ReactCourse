@@ -2,9 +2,10 @@ import {useFormik} from "formik";
 import {Button, Checkbox, Form, Input} from "antd";
 import React from "react";
 import {Login} from "../../../BLL/Auth/authSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
-
+import {getAuthIsLoginSelector} from "../../../BLL/Auth/authSelector";
+import LoaderFollow from "../../../common/Loading/LoaderFollow";
 
 type ValueFormik = {
   email: string;
@@ -17,7 +18,8 @@ type PropsType = {
 };
 
 export let LoginForm = ({ captchaURL }: PropsType) => {
-  const navigate = useNavigate()
+    let isLogin = useSelector(getAuthIsLoginSelector);
+  const navigate = useNavigate();
   let dispatch = useDispatch();
   const initialValues: ValueFormik = {
     email: "",
@@ -29,23 +31,29 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
   const formik = useFormik({
     initialValues: initialValues,
 
-    onSubmit: (values, action) => {
-      dispatch(Login({values, action}));
-      navigate("/profile")
-    },
+    onSubmit: async (values, action) => {
+      let response = await dispatch(Login({values, action}));
+      if (response.payload) {
+        debugger
+        action.setStatus({error: response.payload[0]})
+      } else navigate("/profile");
 
+
+
+    },
   });
-/*ff*/
+
+  console.log(formik)
   return (
-    <div className="LoginBlock">
-      <Form
-        onChange={formik.handleChange}
-        onFinish={formik.handleSubmit}
-        labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 20,
+      <div className="LoginBlock">
+        <Form
+            onChange={formik.handleChange}
+            onFinish={formik.handleSubmit}
+            labelCol={{
+              span: 8,
+            }}
+            wrapperCol={{
+              span: 20,
         }}
         initialValues={{
           remember: true,
@@ -65,7 +73,7 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
             },
           ]}
         >
-          <Input className="input" />
+          <Input className={`input`}/>
         </Form.Item>
 
         <Form.Item
@@ -98,7 +106,7 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
           }}
         >
           <Button className="submit" type="primary" htmlType="submit">
-            Submit
+              {isLogin ? <LoaderFollow/> : "Submit"}
           </Button>
           <div className="error">
             {formik.status && formik.status.error}

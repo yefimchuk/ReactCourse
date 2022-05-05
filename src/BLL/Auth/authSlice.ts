@@ -30,14 +30,14 @@ export let HeaderLogin: any = createAsyncThunk(
 
 export let Login: any = createAsyncThunk(
   "authPage/Login",
-  async ({ values, action }: any, { dispatch, rejectWithValue }) => {
+  async ({values}: any, {dispatch, rejectWithValue}) => {
     try {
       let response = await authServiceInstance.Login(values);
 
       if (response.data.resultCode === 0) {
         let responseFromAuthMe = await headerServiceInstance.AuthMe();
         if (responseFromAuthMe.data.resultCode === 0) {
-          let { id, login } = responseFromAuthMe.data.data;
+          let {id, login} = responseFromAuthMe.data.data;
 
           let responseLogin = await headerServiceInstance.Login(login);
 
@@ -47,12 +47,17 @@ export let Login: any = createAsyncThunk(
             }
           });
         }
+
       } else {
+
         if (response.data.resultCode === 10) {
-          let response = authServiceInstance.GetCaptcha();
-          dispatch(getCaptcha(response));
+          let responseCaptcha = await authServiceInstance.GetCaptcha();
+          dispatch(getCaptcha(responseCaptcha));
         }
-        action.setStatus({ error: response.data.messages });
+
+
+        return rejectWithValue(response.data.messages);
+
       }
     } catch (err: any) {
       return rejectWithValue(err.response.data);
@@ -92,6 +97,8 @@ type AuthType = {
   isLogin: boolean;
   date: any;
   captchaURL: string | null;
+  errors: string[] | null;
+  submitting: boolean
 };
 export const authSlice = createSlice({
   name: "authPage",
@@ -104,6 +111,8 @@ export const authSlice = createSlice({
       photos: null
     },
     captchaURL: null,
+    errors: null,
+    submitting: false
   } as AuthType,
   reducers: {
     setUserData: (state, action) => {
@@ -129,10 +138,10 @@ export const authSlice = createSlice({
   },
   extraReducers: {
     [Login.pending]: (state) => {
-      state.isLogin = false;
+      state.submitting = true;
     },
-    [Login.rejected]: (state) => {
-      state.isLogin = false;
+    [Login.rejected]: (state, action) => {
+
     },
     [Login.fulfilled]: (state, action) => {
       state.isLogin = true;

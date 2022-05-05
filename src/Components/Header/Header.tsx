@@ -30,7 +30,7 @@ console.log(date);
       <div className="LoginHeader">
         <img src={logo} className="App-logo" alt={logo} />
 
-        {date === null ? (
+        {isLogin ? (
           <div>
             <NavLink className="nlink" to={"/login"}>
               {" "}

@@ -40,7 +40,7 @@ export let Login: any = createAsyncThunk(
           let { id, login } = responseFromAuthMe.data.data;
 
           let responseLogin = await headerServiceInstance.Login(login);
-          debugger;
+
           return responseLogin.data.items.filter((u: any) => {
             if (id === u.id) {
               return u;

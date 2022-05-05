@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+
 import logo from "../../logo.svg";
 import "./Header.scss";
 import {
@@ -20,6 +20,7 @@ setTwoToneColor("#eb2f96");
 
 let Header = () => {
   let date = useSelector((state) => getAuthDateSelector(state));
+  let profile = useSelector(getProfileSelector)
   let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
   const dispatch = useDispatch();
 console.log(date);
@@ -29,7 +30,7 @@ console.log(date);
       <div className="LoginHeader">
         <img src={logo} className="App-logo" alt={logo} />
 
-        {date.photos === null ? (
+        {date === null ? (
           <div>
             <NavLink className="nlink" to={"/login"}>
               {" "}
@@ -41,7 +42,7 @@ console.log(date);
             <div className="name">{date.name}</div>
             <img
               className="avatar"
-              src={date.photos.large === null ? photo : date.photos.large}
+              src={profile.photos.large === null ? photo : profile.photos.large}
               alt="avatar"
             />
             <LogoutOutlined

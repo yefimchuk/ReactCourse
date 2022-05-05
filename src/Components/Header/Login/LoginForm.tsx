@@ -15,6 +15,7 @@ type ValueFormik = {
 type PropsType = {
   captchaURL: string;
 };
+
 export let LoginForm = ({ captchaURL }: PropsType) => {
   const navigate = useNavigate()
   let dispatch = useDispatch();
@@ -24,6 +25,7 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
     rememberMe: false,
     captcha: "",
   };
+
   const formik = useFormik({
     initialValues: initialValues,
 
@@ -31,6 +33,7 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
       dispatch(Login({values, action}));
       navigate("/profile")
     },
+
   });
 
   return (

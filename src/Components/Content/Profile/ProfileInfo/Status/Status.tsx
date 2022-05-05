@@ -3,15 +3,16 @@ import "./status.scss";
 import {Formik} from "formik";
 import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch, useSelector} from "react-redux";
-import {getErrorMessageSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
+import {getIsLoginSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
 import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined,} from "@ant-design/icons";
 import EditErrorMessage from "./ErrorMessage";
+import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
 
 let Edit = React.memo(({}: any) => {
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
+    let isLogin = useSelector(getIsLoginSelector);
     let [editMode, setEditMode] = useState(false);
-    let [error, setError] = useState(null)
 
     let upload = (e: any) => {
         return e.target.files[0];
@@ -35,7 +36,6 @@ let Edit = React.memo(({}: any) => {
         if (formData.errorMessage) {
             errors.error = formData.errorMessage;
         }
-
 
         return errors;
     }
@@ -163,7 +163,7 @@ let Edit = React.memo(({}: any) => {
                                                 className="profile__edit__buttons_save"
                                                 type="submit"
                                             >
-                                                Save
+                                                {isLogin ? <LoaderFollow/> : "Save"}
                                             </button>
                                             <button
                                                 className="profile__edit__buttons_cancel"

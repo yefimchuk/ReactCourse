@@ -35,7 +35,7 @@ export let LoginForm = ({ captchaURL }: PropsType) => {
     },
 
   });
-
+/*ff*/
   return (
     <div className="LoginBlock">
       <Form

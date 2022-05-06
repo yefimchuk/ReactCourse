@@ -1,4 +1,4 @@
-import { createSelector } from "reselect";
+import {createSelector} from "reselect";
 
 export const getAuthIdSelector = createSelector(
   (state: any) => state,
@@ -17,3 +17,7 @@ export const getSubmittingSelector = createSelector(
     (state: any) => state,
     (state) => state.sliceAuth.submitting
 );
+export const getCaptchaURLSelector = createSelector(
+    (state: any) => state,
+    (state) => state.sliceAuth.captchaURL
+)

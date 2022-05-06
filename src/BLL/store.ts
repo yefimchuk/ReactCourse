@@ -1,6 +1,6 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import thunk from "redux-thunk";
-import { SidebarReducer } from "../Components/Redux/sidebar-reducer";
+
 import { composeWithDevTools } from "redux-devtools-extension";
 import { profilePage } from "./ProfilePage/profilePage";
 import { authSlice } from "./Auth/authSlice";
@@ -17,7 +17,6 @@ declare global {
 }
 
 let reducers = combineReducers({
-  sideBar: SidebarReducer,
   sliceProfile: profilePage.reducer,
   sliceAuth: authSlice.reducer,
   sliceApp: appSlice.reducer,

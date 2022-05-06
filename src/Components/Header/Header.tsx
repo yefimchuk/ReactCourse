@@ -1,4 +1,3 @@
-
 import logo from "../../logo.svg";
 import "./Header.scss";
 import {
@@ -20,10 +19,10 @@ setTwoToneColor("#eb2f96");
 
 let Header = () => {
   let date = useSelector((state) => getAuthDateSelector(state));
-  let profile = useSelector(getProfileSelector)
+  let profile = useSelector(getProfileSelector);
   let isLogin = useSelector((state) => getAuthIsLoginSelector(state));
   const dispatch = useDispatch();
-console.log(date);
+  console.log(date);
 
   return (
     <div className="Header">
@@ -37,7 +36,7 @@ console.log(date);
               Login <LoginOutlined className="login" />
             </NavLink>
           </div>
-        ) : isLogin  ? (
+        ) : isLogin ? (
           <div className="info">
             <div className="name">{date.name}</div>
             <img

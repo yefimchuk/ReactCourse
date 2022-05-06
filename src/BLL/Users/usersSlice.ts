@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import userServiceInstance from "../../http/UserService";
+import userServiceInstance from "../../DAL/http/UserService";
 
 export let followThunk: any = createAsyncThunk(
   "usersPage/follow",

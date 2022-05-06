@@ -1,13 +1,13 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-import headerServiceInstance from "../../http/HeaderService";
-import authServiceInstance from "../../http/AuthService";
+import headerServiceInstance from "../../DAL/http/HeaderService";
+import authServiceInstance from "../../DAL/http/AuthService";
+import { InitialStateAuthPage } from "../../types/Auth.types";
 
 export let HeaderLogin: any = createAsyncThunk(
   "authPage/HeaderLogin",
   async ({}, { dispatch, rejectWithValue }) => {
     try {
-
       let responseFromAuthMe = await headerServiceInstance.AuthMe();
       if (responseFromAuthMe.data.resultCode === 0) {
         let { id, email, login } = responseFromAuthMe.data.data;
@@ -30,17 +30,16 @@ export let HeaderLogin: any = createAsyncThunk(
 
 export let Login: any = createAsyncThunk(
   "authPage/Login",
-    async ({values, action}: any, {dispatch, rejectWithValue}) => {
+  async ({ values, action }: any, { dispatch, rejectWithValue }) => {
+    try {
+      let response = await authServiceInstance.Login(values);
 
-      try {
-        let response = await authServiceInstance.Login(values);
+      if (response.data.resultCode === 0) {
+        let responseFromAuthMe = await headerServiceInstance.AuthMe();
+        if (responseFromAuthMe.data.resultCode === 0) {
+          let { id, login } = responseFromAuthMe.data.data;
 
-        if (response.data.resultCode === 0) {
-          let responseFromAuthMe = await headerServiceInstance.AuthMe();
-          if (responseFromAuthMe.data.resultCode === 0) {
-            let {id, login} = responseFromAuthMe.data.data;
-
-            let responseLogin = await headerServiceInstance.Login(login);
+          let responseLogin = await headerServiceInstance.Login(login);
 
           return responseLogin.data.items.filter((u: any) => {
             if (id === u.id) {
@@ -48,19 +47,15 @@ export let Login: any = createAsyncThunk(
             }
           });
         }
-
       } else {
-
-          if (response.data.resultCode === 10) {
-            let responseCaptcha = await authServiceInstance.GetCaptcha();
-            dispatch(getCaptcha(responseCaptcha));
-          }
-
-
-          action.setStatus({error: response.data.messages});
-          return rejectWithValue(response);
-
+        if (response.data.resultCode === 10) {
+          let responseCaptcha = await authServiceInstance.GetCaptcha();
+          dispatch(getCaptcha(responseCaptcha));
         }
+
+        action.setStatus({ error: response.data.messages });
+        return rejectWithValue(response);
+      }
     } catch (err: any) {
       return rejectWithValue(err.response.data);
     }
@@ -68,41 +63,30 @@ export let Login: any = createAsyncThunk(
 );
 
 export let UnLogin: any = createAsyncThunk(
-    "authPage/unLogin",
-    async ({val}: any, {dispatch}) => {
-      let response = await authServiceInstance.LogOut();
+  "authPage/unLogin",
+  async ({ val }: any, { dispatch }) => {
+    let response = await authServiceInstance.LogOut();
 
-      if (response.data.resultCode === 0) {
-        dispatch(setLogOut());
-
-      }
-      return response;
+    if (response.data.resultCode === 0) {
+      dispatch(setLogOut());
     }
+    return response;
+  }
 );
 export let UpdateHeaderAvatar: any = createAsyncThunk(
-    "authPage/UpdateHeaderAvatar",
-    async (date) => {
-      return date;
-    }
+  "authPage/UpdateHeaderAvatar",
+  async (date) => {
+    return date;
+  }
 );
 export let GetCaptchaUrl = createAsyncThunk(
-    "authPage/getCaptchaUrl",
-    async ({}, {dispatch}) => {
-      let response = authServiceInstance.GetCaptcha();
-      dispatch(getCaptcha(response));
-    }
+  "authPage/getCaptchaUrl",
+  async ({}, { dispatch }) => {
+    let response = authServiceInstance.GetCaptcha();
+    dispatch(getCaptcha(response));
+  }
 );
 
-type AuthType = {
-  id: number | null;
-  email: string | null;
-  login: string | null;
-  isLogin: boolean;
-  date: any;
-  captchaURL: string | null;
-  errors: string[] | null;
-  submitting: boolean
-};
 export const authSlice = createSlice({
   name: "authPage",
   initialState: {
@@ -111,12 +95,12 @@ export const authSlice = createSlice({
     login: null,
     isLogin: false,
     date: {
-      photos: null
+      photos: null,
     },
     captchaURL: null,
     errors: null,
-    submitting: false
-  } as AuthType,
+    submitting: false,
+  } as InitialStateAuthPage,
   reducers: {
     setUserData: (state, action) => {
       state.date = action.payload;
@@ -143,20 +127,16 @@ export const authSlice = createSlice({
     [Login.pending]: (state) => {
       state.submitting = true;
     },
-    [Login.rejected]: (state, action) => {
-
-    },
+    [Login.rejected]: (state, action) => {},
     [Login.fulfilled]: (state, action) => {
-      state.submitting = false
+      state.submitting = false;
       state.isLogin = true;
       state.date = action.payload[0];
     },
     [UnLogin.fulfilled]: (state, action) => {
-
-      state.date = null
+      state.date = null;
     },
     [HeaderLogin.fulfilled]: (state, action) => {
-
       state.isLogin = true;
       state.date = action.payload[0];
     },
@@ -164,8 +144,7 @@ export const authSlice = createSlice({
       state.isLogin = false;
     },
     [UpdateHeaderAvatar.fulfilled]: (state, action) => {
-
-      state.date.photos = action.payload.response.data.data.photos
+      state.date.photos = action.payload.response.data.data.photos;
     },
   },
 });

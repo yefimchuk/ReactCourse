@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./Sidebar.module.css";
+import s from "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
 import Friends from "./Friends/Friends";
 import {useSelector} from "react-redux";

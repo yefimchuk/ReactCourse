@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
 import photo from "../../img/—Pngtree—vector avatar icon_4013749.png";
-import headerServiceInstance from "../../http/HeaderService";
-import profileServiceInstance from "../../http/ProfileService";
-import userServiceInstance from "../../http/UserService";
+import headerServiceInstance from "../../DAL/http/HeaderService";
+import profileServiceInstance from "../../DAL/http/ProfileService";
+import userServiceInstance from "../../DAL/http/UserService";
 import {UpdateHeaderAvatar} from "../Auth/authSlice";
 
 export const GetNewProfile: any = createAsyncThunk(

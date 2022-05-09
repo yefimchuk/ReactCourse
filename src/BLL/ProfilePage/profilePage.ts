@@ -99,7 +99,7 @@ type ProfileType = {
   isLogin: boolean;
   status: string;
   isLoading: boolean;
-  errorMessage: null
+  errorMessage: any
 };
 
 export const profilePage = createSlice({
@@ -164,6 +164,7 @@ export const profilePage = createSlice({
     isLogin: false,
     status: "",
     isLoading: false,
+    errorMessage: null
   } as ProfileType,
   reducers: {
     addNewReview: (state, action) => {
@@ -201,6 +202,8 @@ export const profilePage = createSlice({
   },
   extraReducers: {
     [GetNewProfile.fulfilled]: (state, action) => {
+      state.isLogin = false;
+      state.errorMessage = null
       state.status = action.payload[0];
       state.Profile = action.payload[1].data;
 
@@ -215,7 +218,7 @@ export const profilePage = createSlice({
       state.status = action.payload;
     },
     [UpdateProfile.pending]: (state, action) => {
-
+      state.isLogin = true;
     },
     [UpdateProfile.rejected]: (state, action) => {
       state.errorMessage = action.payload.messages

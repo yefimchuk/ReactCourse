@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/socialNetworkReact/static/css/main.56dd860f.css",
-    "main.js": "/socialNetworkReact/static/js/main.e2ef6927.js",
+    "main.css": "/socialNetworkReact/static/css/main.11e0bd9f.css",
+    "main.js": "/socialNetworkReact/static/js/main.f7729a87.js",
     "static/media/giadadadadat.gif": "/socialNetworkReact/static/media/giadadadadat.81453d27bc56443373e9.gif",
     "static/media/35771931234507.564a1d2403b3a.gif": "/socialNetworkReact/static/media/35771931234507.564a1d2403b3a.df1e3eaf65d9d3112bee.gif",
     "static/media/—Pngtree—vector avatar icon_4013749.png": "/socialNetworkReact/static/media/—Pngtree—vector avatar icon_4013749.d7f0e99a072186ca4adc.png",
     "static/media/logo.svg": "/socialNetworkReact/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/socialNetworkReact/index.html",
-    "main.56dd860f.css.map": "/socialNetworkReact/static/css/main.56dd860f.css.map",
-    "main.e2ef6927.js.map": "/socialNetworkReact/static/js/main.e2ef6927.js.map"
+    "main.11e0bd9f.css.map": "/socialNetworkReact/static/css/main.11e0bd9f.css.map",
+    "main.f7729a87.js.map": "/socialNetworkReact/static/js/main.f7729a87.js.map"
   },
   "entrypoints": [
-    "static/css/main.56dd860f.css",
-    "static/js/main.e2ef6927.js"
+    "static/css/main.11e0bd9f.css",
+    "static/js/main.f7729a87.js"
   ]
 }

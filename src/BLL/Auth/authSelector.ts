@@ -18,6 +18,6 @@ export const getSubmittingSelector = createSelector(
     (state) => state.sliceAuth.submitting
 );
 export const getCaptchaURLSelector = createSelector(
-    (state: any) => state,
-    (state) => state.sliceAuth.captchaURL
-)
+  (state: any) => state,
+  (state) => state.sliceAuth.captchaURL
+);

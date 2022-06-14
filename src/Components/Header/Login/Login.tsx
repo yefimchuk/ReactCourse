@@ -4,8 +4,8 @@ import { LoginForm } from "./LoginForm";
 
 export const Login = () => {
   return (
-    <div className="Login">
-      <div className="TextLogin">Login in to Social Network</div>
+    <div className="login">
+      <div className="login__text">Login in to Social Network</div>
       <LoginForm />
     </div>
   );

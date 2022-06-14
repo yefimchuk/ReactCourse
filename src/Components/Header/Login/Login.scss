@@ -1,4 +1,4 @@
-.Login {
+.login {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -7,7 +7,7 @@
   height: 90%;
   padding-right: 25px;
 
-  .TextLogin {
+  .login__text {
     font-size: 40px;
     font-weight: 200;
     color: white;

@@ -1,9 +1,8 @@
 import {createSlice} from "@reduxjs/toolkit";
+import {InitialStateSideBar} from "../../types/App.types";
 
 
-type AuthType = {
-    friendsData: object
-};
+
 export const sideBarSlice = createSlice({
     name: "sidebarPage",
     initialState: {
@@ -43,7 +42,7 @@ export const sideBarSlice = createSlice({
                     "https://lh3.googleusercontent.com/xGwxQS8E_TgS53kA02U4OW31mGgrhY6Ey5zrbEP62dFq-BJJmuiMM1B3ACCU5VW0fY8H25SjxWuLF5bWZF-R5uWH",
             },
         ],
-    } as AuthType,
+    } as InitialStateSideBar,
     reducers: {},
     extraReducers: {},
 });

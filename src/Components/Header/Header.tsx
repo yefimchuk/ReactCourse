@@ -33,7 +33,8 @@ let Header = () => {
           <div>
             <NavLink className="nlink" to={"/login"}>
               {" "}
-              Login <LoginOutlined className="login" />
+              <div>Login</div>
+               <LoginOutlined className="login" />
             </NavLink>
           </div>
         ) : isLogin ? (

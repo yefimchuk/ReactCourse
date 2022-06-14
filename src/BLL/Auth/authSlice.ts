@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 import headerServiceInstance from "../../DAL/http/HeaderService";
 import authServiceInstance from "../../DAL/http/AuthService";
-import { InitialStateAuthPage } from "../../types/Auth.types";
+import { InitialStateAuthPage } from "../../types/App.types";
 
 export let HeaderLogin: any = createAsyncThunk(
   "authPage/HeaderLogin",

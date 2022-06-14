@@ -2,7 +2,6 @@ import React, { Suspense, useEffect } from "react";
 import "./App.css";
 import Sidebar from "./Components/Sidebar/Sidebar";
 import { Route, Routes } from "react-router-dom";
-
 import HeaderContainer from "./Components/Header/Header";
 import { useDispatch, useSelector } from "react-redux";
 import Loading from "./common/Loading/Loading";

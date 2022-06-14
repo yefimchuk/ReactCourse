@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {HeaderLogin} from "../Auth/authSlice";
+import {InitialStateApp} from "../../types/App.types";
 
 export let initializingThunk: any = createAsyncThunk(
     "app/initializingWasSuccess",
@@ -15,27 +16,22 @@ export let initializingThunk: any = createAsyncThunk(
     }
 );
 
-export let Interceptors: any = createAsyncThunk(
-    "app/initializingWasSuccess",
-    async ({}, {dispatch, rejectWithValue}) => {
 
-    }
-);
 
-type AuthType = { initialized: boolean };
+
 
 export const appSlice = createSlice({
-  name: "app",
-  initialState: {initialized: false} as AuthType,
-  reducers: {},
-  extraReducers: {
-    [initializingThunk.fulfilled]: (state, action) => {
-      state.initialized = true;
+    name: "app",
+    initialState: {initialized: false} as InitialStateApp,
+    reducers: {},
+    extraReducers: {
+        [initializingThunk.fulfilled]: (state) => {
+            state.initialized = true;
+        },
+        [initializingThunk.rejected]: (state) => {
+            
+            state.initialized = false;
+        },
     },
-    [initializingThunk.rejected]: (state, action) => {
-      debugger;
-      state.initialized = false;
-    },
-  },
 });
 export default appSlice.reducer;

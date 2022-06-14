@@ -5,6 +5,7 @@ import headerServiceInstance from "../../DAL/http/HeaderService";
 import profileServiceInstance from "../../DAL/http/ProfileService";
 import userServiceInstance from "../../DAL/http/UserService";
 import {UpdateHeaderAvatar} from "../Auth/authSlice";
+import {InitialStateProfile} from "../../types/App.types";
 
 export const GetNewProfile: any = createAsyncThunk(
   "profilePage/getNewProfile",
@@ -87,18 +88,6 @@ export const UpdateStatusThunk: any = createAsyncThunk(
   }
 );
 
-type ProfileType = {
-  ReviewData: object[];
-  PersonalData: object;
-  Profile: object | null;
-  id: number | null;
-  isLogin: boolean;
-  status: string;
-  isLoading: boolean;
-  errorMessage: null;
-  UserId: number | null
-};
-
 export const profilePage = createSlice({
   name: "profilePage",
   initialState: {
@@ -164,7 +153,7 @@ export const profilePage = createSlice({
     status: "",
     isLoading: false,
     errorMessage: null,
-  } as ProfileType,
+  } as InitialStateProfile,
   reducers: {
     addNewReview: (state, action) => {
       let NewReview = {

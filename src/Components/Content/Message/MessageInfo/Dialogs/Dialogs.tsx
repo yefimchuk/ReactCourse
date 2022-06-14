@@ -1,7 +1,7 @@
 import React from "react";
 import "../MessageAccounts.scss";
 
-const MessageAccounts = (props: any) => {
-  return <div className="message__account-message">{props.message}</div>;
+const MessageAccounts = ({message}: any) => {
+  return <div className="message__account-message">{message}</div>;
 };
 export default MessageAccounts;

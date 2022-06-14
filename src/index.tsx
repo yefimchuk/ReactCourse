@@ -1,8 +1,10 @@
 import React from "react";
+
 // @ts-ignore
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+
 // @ts-ignore
 import store from "./BLL/store.ts";
 import { Provider } from "react-redux";

@@ -9,7 +9,7 @@ import {
   getSubmittingSelector,
 } from "../../../BLL/Auth/authSelector";
 import LoaderFollow from "../../../common/Loading/LoaderFollow";
-import { LoginFormTypes } from "../../../types/Auth.types";
+import { LoginFormTypes } from "../../../types/App.types";
 
 export let LoginForm = React.memo(() => {
   let submitting = useSelector(getSubmittingSelector);

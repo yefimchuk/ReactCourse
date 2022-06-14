@@ -3,13 +3,20 @@ import "./status.scss";
 import {Formik} from "formik";
 import {UpdateProfile} from "../../../../../BLL/ProfilePage/profilePage";
 import {useDispatch, useSelector} from "react-redux";
-import {getIsLoginSelector, getProfileSelector} from "../../../../../BLL/ProfilePage/profileSelector";
-import {GithubOutlined, InstagramOutlined, UserOutlined, YoutubeOutlined,} from "@ant-design/icons";
+import {
+    getIsLoginSelector,
+    getProfileSelector,
+} from "../../../../../BLL/ProfilePage/profileSelector";
+import {
+    GithubOutlined,
+    InstagramOutlined,
+    UserOutlined,
+    YoutubeOutlined,
+} from "@ant-design/icons";
 import EditErrorMessage from "./ErrorMessage";
 import LoaderFollow from "../../../../../common/Loading/LoaderFollow";
 
 let Edit = React.memo(({}: any) => {
-
     let dispatch = useDispatch();
     let formData = useSelector(getProfileSelector);
     let isLogin = useSelector(getIsLoginSelector);
@@ -43,7 +50,6 @@ let Edit = React.memo(({}: any) => {
 
     return (
         <div>
-
             <Formik
                 initialValues={{
                     userId: formData.userId,
@@ -55,12 +61,11 @@ let Edit = React.memo(({}: any) => {
                         youtube: formData.contacts.youtube,
                     },
                     aboutMe: formData.aboutMe,
-
                 }}
                 validate={validateEmail}
                 onSubmit={async (values) => {
                     let errors = await dispatch(UpdateProfile(values));
-                    if (!errors.payload){
+                    if (!errors.payload) {
                         setEditMode(false);
                     }
                 }}
@@ -69,7 +74,10 @@ let Edit = React.memo(({}: any) => {
                     <div className="profile__edit">
                         {editMode ? (
                             <div className="profile__edit-form">
-                                <form onSubmit={handleSubmit} className="profile__edit_activated">
+                                <form
+                                    onSubmit={handleSubmit}
+                                    className="profile__edit_activated"
+                                >
                                     <input
                                         type="file"
                                         name="photo"
@@ -90,7 +98,7 @@ let Edit = React.memo(({}: any) => {
                                     />
 
                                     {errors.fullName ? (
-                                        <div className="error">{errors.fullName}</div>
+                                        <div className="error">{errors.fullName == ""}</div>
                                     ) : null}
 
                                     <span className="profile__status-text">Status</span>
@@ -116,7 +124,7 @@ let Edit = React.memo(({}: any) => {
                                         />
                                     </div>
                                     {errors ? (
-                                        <div className="error">{errors.fullName}</div>
+                                        <div className="error">{errors.fullName == ""}</div>
                                     ) : null}
 
                                     <div className="profile__edit_link">
@@ -174,11 +182,9 @@ let Edit = React.memo(({}: any) => {
                                             </button>
                                         </div>
                                     </div>
-
                                 </form>
                                 <EditErrorMessage/>
                             </div>
-
                         ) : (
                             <div className="profile__edit-button" onClick={activatedEditMode}>
                                 Edit mode

@@ -27,6 +27,9 @@
     border: 1px solid #282c34;
 
     .submit {
+    display: flex;
+      justify-content: center;
+      align-items: center;
       background-color: #01a41a;
       border-radius: 10px;
       width: 100%;

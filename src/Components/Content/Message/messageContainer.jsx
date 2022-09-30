@@ -23,7 +23,8 @@ const mapStateToProps = (state) => {
 
         messageData: state.messagePage.messageData,
         dialogsData: state.messagePage.dialogsData,
-        NewReviewText: state.messagePage.NewMessageText
+        NewReviewText: state.messagePage.NewMessageText,
+
     }
 }
 

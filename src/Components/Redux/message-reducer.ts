@@ -46,13 +46,13 @@ export const MessageReducer = (state: any = initialState, action: any) => {
 
     switch (action.type) {
 
-        case updatemessagetext: {
+      /*  case updatemessagetext: {
             let newState = {...state}
             newState.NewMessageText = {...state.NewMessageText}
             newState.NewMessageText = action.newText
             return newState
-        }
-        case addnewmessage: {
+        }*/
+       /* case addnewmessage: {
             let newState = {...state}
             newState.dialogsData = [...state.dialogsData]
             let NewMessage = {
@@ -64,7 +64,7 @@ export const MessageReducer = (state: any = initialState, action: any) => {
 
             return newState;
 
-        }
+        }*/
         default:
             return state
     }
@@ -72,6 +72,7 @@ export const MessageReducer = (state: any = initialState, action: any) => {
 }
 
 
+/*
 export const addNewMessageActionCreator = () => {
     return {type: addnewmessage}
 }
@@ -80,3 +81,4 @@ export const updateMessageTextActionCreator = (text: string) => {
     return {type: updatemessagetext, newText: text}
 }
 
+*/

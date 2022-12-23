@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "./Users.scss";
-import {Navigate, NavLink} from "react-router-dom";
+import {Navigate, NavLink, useNavigate} from "react-router-dom";
 import photo from "../../../img/—Pngtree—vector avatar icon_4013749.png";
 import {useDispatch, useSelector} from "react-redux";
 import {followThunk, unfollowThunk} from "../../../BLL/Users/usersSlice";
@@ -14,14 +14,19 @@ interface IUser {
 
 let User = React.memo(({waitingFollow, users}: IUser) => {
   let dispatch = useDispatch();
+  let navigate = useNavigate();
   let auth = useSelector(getAuthIsLoginSelector)
   const follow = (id: number) => {
-    debugger
+
     if (!auth) {
-      return <Navigate to={"/login"}/>
+
+      navigate("/login")
+    }else {
+      dispatch(followThunk(id))
     }
-    dispatch(followThunk(id))
+
   };
+
   let unfollow = (id: number) => {
     auth ? dispatch(unfollowThunk(id)) : <Navigate to={"login"}/>
 
